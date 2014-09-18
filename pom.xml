@@ -146,5 +146,9 @@
 	</dependencies>
 	<modules>
 		<module>config</module>
+		<module>batch</module>
+		<module>conversion</module>
+		<module>rest</module>
+		<module>webui</module>
 	</modules>
 </project>
