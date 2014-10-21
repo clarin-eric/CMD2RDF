@@ -91,15 +91,15 @@ public class ClarinProfileResolver implements URIResolver {
 			filename = file.getAbsolutePath();
 		}
 		log.debug("resolve: CacheService contains " + cacheService.entries() + " items.");
-		System.out.println("===== Filename: " + filename);
-	    if (cacheService.retrieveByteArray(filename) != null) {
-	    	InputStream is = null;
+		log.debug("===== Filename: " + filename);
+		byte b[];
+		synchronized (cacheService) {
+			b = (byte[]) cacheService.retrieveByteArray(filename);
+		}
+	    if (b != null) {
 	    	log.debug("Using profile from the cache service. Key: " + filename + "\tValue: " + href);
-	    	synchronized (cacheService) {
-	    		byte b[] = (byte[]) cacheService.retrieveByteArray(filename);
-		    	is = new ByteArrayInputStream(b);
-			}
 	    	
+	    	 InputStream is = new ByteArrayInputStream(b);
 	    	 return new StreamSource(is);
 	    } else {
 	    	log.debug(filename + " is not in the cache service.");
