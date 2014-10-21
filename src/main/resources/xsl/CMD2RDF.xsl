@@ -82,17 +82,23 @@
         <xsl:sequence select="concat($registry,'/rest/registry/profiles/',cmd:id($id),'/',$ext)"/>
     </xsl:function>
 
-    <!-- the registry URL for a component -->
+	<!-- load a profile from the registry -->
+	<xsl:function name="cmd:profile">
+		<xsl:param name="id"/>
+		<xsl:sequence select="doc(cmd:ppath($id,'xml'))"/>
+	</xsl:function>
+	
+	<!-- the registry URL for a component -->
     <xsl:function name="cmd:cpath">
         <xsl:param name="id"/>
         <xsl:param name="ext"/>
         <xsl:sequence select="concat($registry,'/rest/registry/components/',cmd:id($id),'/',$ext)"/>
     </xsl:function>
     
-    <!-- load a profile from the registry -->
-    <xsl:function name="cmd:profile">
-        <xsl:param name="id"/>
-        <xsl:sequence select="doc(cmd:ppath($id,'xml'))"/>
-    </xsl:function>
-
+	<!-- load a component from the registry -->
+	<xsl:function name="cmd:component">
+		<xsl:param name="id"/>
+		<xsl:sequence select="doc(cmd:cpath($id,'xml'))"/>
+	</xsl:function>
+	
 </xsl:stylesheet>

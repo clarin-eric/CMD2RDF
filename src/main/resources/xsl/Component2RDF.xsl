@@ -8,21 +8,19 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:dcr="http://www.isocat.org/ns/dcr.rdf#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:cmd="http://www.clarin.eu/cmd/" xmlns:cmdm="http://www.clarin.eu/cmd/general.rdf" xmlns:dcterms="http://purl.org/dc/terms/">
 
     <xsl:output method="xml" encoding="UTF-8"/>
-
-    <xsl:param name="out" select="'.'"/>
+	
+	<xsl:param name="fetch_components" select="'true'"/>
 
     <xsl:include href="CMD2RDF.xsl"/>
 
     <!-- let's create some RDF -->
     <xsl:template match="/CMD_ComponentSpec">
         <!-- for the output base replace the xml extension by rdf -->
-        <xsl:result-document href="{concat($out,'/',Header/ID,'.rdf')}">
-            <rdf:RDF xml:base="{if (@isProfile='true') then (cmd:ppath(Header/ID,'rdf')) else (cmd:cpath(Header/ID,'rdf'))}">
-                <xsl:apply-templates>
-                    <xsl:with-param name="context" tunnel="yes" select="''"/>
-                </xsl:apply-templates>
-            </rdf:RDF>
-        </xsl:result-document>
+        <rdf:RDF xml:base="{if (@isProfile='true') then (cmd:ppath(Header/ID,'rdf')) else (cmd:cpath(Header/ID,'rdf'))}">
+            <xsl:apply-templates>
+                <xsl:with-param name="context" tunnel="yes" select="''"/>
+            </xsl:apply-templates>
+        </rdf:RDF>
     </xsl:template>
 
     <!-- override default text template -->
@@ -42,20 +40,18 @@
         </xsl:if>
     </xsl:template>
 
-    <!-- a profile (and component?) contains all the nested components as well,
-         but as these are shared we want to also share their RDF representations.
-         So restart the traversal when there is reuse. -->
+    <!-- fetch the embedded component -->
     <xsl:template match="CMD_Component[exists(@ComponentId)]">
-        <xsl:if test="empty(preceding::CMD_Component[@ComponentId=current()/@ComponentId])">
-            <xsl:result-document href="{concat($out,'/',@ComponentId,'.rdf')}">
-                <!-- for the output base replace the xml extension by rdf -->
-                <rdf:RDF xml:base="{cmd:cpath(@ComponentId,'rdf')}">
-                    <xsl:call-template name="CMD_Component">
-                        <xsl:with-param name="context" tunnel="yes" select="''"/>
-                    </xsl:call-template>
-                </rdf:RDF>
-            </xsl:result-document>
-        </xsl:if>
+    	<xsl:if test="$fetch_components='true'">
+    		<!-- trigger a fetch of the embedded component, so it will be cached -->
+    		<xsl:variable name="c" select="cmd:component(@ComponentId)"/>
+    		<xsl:comment>
+	        	<xsl:text>External component[</xsl:text>
+	    		<xsl:value-of select="$c/CMD_ComponentSpec/Header/ID"/>
+	    		<xsl:text>]</xsl:text>
+        	</xsl:comment>
+    		<xsl:apply-templates select="$c//CMD_Component[exists(@ComponentId)]"/>
+    	</xsl:if>
     </xsl:template>
 
     <xsl:template name="CMD_Component">
