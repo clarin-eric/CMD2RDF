@@ -37,6 +37,10 @@ public class ChecksumDb {
 	private static long totalQueryDuration;
 	private static long totalMD5GeneratedTime;
 	private static long totalDbProcessingTime;
+	private static int nRecords = 0;
+	private static int nInsert = 0;
+	private static int nUpdate = 0;
+	private static int nSkip = 0;
 	private static final Logger log = LoggerFactory.getLogger(ChecksumDb.class);
 	public static final String DB_NAME = "db_cmd_md5";
 	public static final String QUERY = "";
@@ -323,8 +327,7 @@ public class ChecksumDb {
         	long t = System.currentTimeMillis();
             log.debug("Generate MD5 Checksum of " + files.size() + " files.");
             PreparedStatement psInsert = conn.prepareStatement(INSERT_PREPARED_STATEMENT);
-            int nRecords = 0;
-            int nInsert = 0;
+            
             long totalhashingtime = 0;
             long totaldatabaseprocessingtime = 0;
             for (File file : files) {
@@ -385,10 +388,7 @@ public class ChecksumDb {
             PreparedStatement psUpdate = conn.prepareStatement(UPDATE_PREPARED_STATEMENT);
             PreparedStatement psSkip = conn.prepareStatement(SKIP_PREPARED_STATEMENT);
             
-            int nRecords = 0;
-            int nInsert = 0;
-            int nUpdate = 0;
-            int nSkip = 0;
+            
             long totalhashingtime = 0;
             long totaldatabaseprocessingtime = 0;
             for (File file : files) {
@@ -401,6 +401,7 @@ public class ChecksumDb {
             	String checksum = getChecksumRecord(path);
             	if (checksum == null) {
             		nInsert++;
+            		log.debug("INSERTING " + file.getName());
 					setInsertedRecord(psInsert, hash, path, file.length());
                 	if (nInsert%10000 ==0) {
                     	 totaldatabaseprocessingtime += commitRecords(
@@ -409,7 +410,7 @@ public class ChecksumDb {
                     }
             	} else {
 	            	if (!checksum.equals(hash)) {
-	            		System.out.println("++++++++++++++++++++++++++++++++++++++ UPDATE " + file.getName());	
+	            		log.debug("UPDATING " + file.getName());	
 	            			nUpdate++;
 	            			setUpdateRecord(psUpdate, hash, file.length(), path, ActionStatus.UPDATE);
 	            			if (nUpdate%10000 ==0) {
@@ -418,7 +419,7 @@ public class ChecksumDb {
 										"Updating 10.000");
 		                    }
 	            		} else {
-	            			log.debug("<<<<< SKIP " + file.getName());
+	            			log.debug("SKIPPING " + file.getName());
 	            			nSkip++;
 	            			setSkipRecord(psSkip, path, ActionStatus.NONE);
 	            			if (nSkip%10000==0){
@@ -513,6 +514,22 @@ public class ChecksumDb {
 
 	public static long getTotalDbProcessingTime() {
 		return totalDbProcessingTime;
+	}
+
+	public static int getnRecords() {
+		return nRecords;
+	}
+
+	public static int getnInsert() {
+		return nInsert;
+	}
+
+	public static int getnUpdate() {
+		return nUpdate;
+	}
+
+	public static int getnSkip() {
+		return nSkip;
 	}
     
 }   
