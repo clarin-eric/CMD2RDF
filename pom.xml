@@ -1,13 +1,235 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>nl.knaw.dans.cmd2rdf</groupId>
-	<artifactId>cmd2rdf</artifactId>
-	<version>0.5-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<build>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>nl.knaw.dans.clarin.cmd2rdf</groupId>
+  <artifactId>cmdi2rdf</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>cmdi2rdf</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>1.9.5</version>
+        <scope>test</scope>
+    </dependency>
+    
+   <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-module-junit4</artifactId>
+      <version>1.5.5</version>
+      <scope>test</scope>
+   </dependency>
+   <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-api-mockito</artifactId>
+      <version>1.5.5</version>
+      <scope>test</scope>
+   </dependency>
+
+    <dependency>
+		<groupId>xmlunit</groupId>
+		<artifactId>xmlunit</artifactId>
+		<version>1.5</version>
+	</dependency>
+    <!-- Logging -->
+    <dependency>
+    <groupId>org.slf4j</groupId>
+     <artifactId>jul-to-slf4j</artifactId>
+    <version>1.7.2</version>
+</dependency>
+    <dependency>
+    	<groupId>org.slf4j</groupId>
+    	<artifactId>slf4j-api</artifactId>
+    	<version>1.7.2</version>
+	</dependency>
+    <dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-classic</artifactId>
+		<version>1.1.2</version>
+	</dependency>
+	<dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-core</artifactId>
+		<version>1.1.2</version>
+	</dependency>
+	
+	<!-- Saxon -->
+    <dependency>
+			<groupId>net.sf.saxon</groupId>
+			<artifactId>Saxon-HE</artifactId>
+			<version>9.5.1-4</version>
+	</dependency>
+	
+	 <!-- Common IO -->
+  	<dependency>
+		<groupId>commons-io</groupId>
+		<artifactId>commons-io</artifactId>
+		<version>2.4</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-collections4</artifactId>
+		<version>4.0</version>
+	</dependency>
+
+	
+	<!-- joda-time -->
+	<dependency>
+		<groupId>joda-time</groupId>
+		<artifactId>joda-time</artifactId>
+		<version>2.3</version>
+	</dependency>
+	
+	<!-- Java Simple Argument Parser -->
+<!-- 	<dependency> -->
+<!-- 		<groupId>com.martiansoftware</groupId> -->
+<!-- 		<artifactId>jsap</artifactId> -->
+<!-- 		<version>2.1</version> -->
+<!-- 	</dependency> -->
+	
+	<!-- Akka -->
+<!-- 	<dependency> -->
+<!--          <groupId>com.typesafe.akka</groupId> -->
+<!--          <artifactId>akka-actor_2.10</artifactId> -->
+<!--          <version>2.1.0</version> -->
+<!--       </dependency> -->
+	
+	<!-- RxJava -->
+<!-- 	<dependency> -->
+<!--             <groupId>com.netflix.rxjava</groupId> -->
+<!--             <artifactId>rxjava-core</artifactId> -->
+<!--             <version>0.17.0</version> -->
+<!--             <scope/> -->
+<!--         </dependency> -->
+	<!-- rx-jdbc -->
+<!-- 	<dependency> -->
+<!--     	<groupId>com.github.davidmoten</groupId> -->
+<!--     	<artifactId>rxjava-jdbc</artifactId> -->
+<!--     	<version>0.1.3</version> -->
+<!-- 	</dependency> -->
+	
+	<!-- EasyBatch -->
+	<dependency>
+    	<groupId>org.easybatch</groupId>
+    	<artifactId>easybatch-xml</artifactId>
+    	<version>2.2.0</version>
+		</dependency>
+	<dependency>
+        <groupId>org.easybatch</groupId>
+        <artifactId>easybatch-core</artifactId>
+        <version>2.2.0</version>
+    </dependency>
+    
+	<!-- Caching -->
+	<dependency>
+    	<groupId>org.apache.directmemory</groupId>
+    	<artifactId>directmemory-cache</artifactId>
+<!--     	<version>0.3-SNAPSHOT</version> -->
+		<version>0.2</version>
+  	</dependency>
+  	
+  	<!-- Jersey REST Client -->
+  	<dependency>
+    	<groupId>org.glassfish.jersey.core</groupId>
+    	<artifactId>jersey-client</artifactId>
+    	<version>2.9</version>
+	</dependency>
+	<dependency>
+		<groupId>org.glassfish.jersey.connectors</groupId>
+		<artifactId>jersey-apache-connector</artifactId>
+		<version>2.9.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.glassfish.jersey.connectors</groupId>
+		<artifactId>jersey-grizzly-connector</artifactId>
+		<version>2.9.1</version>
+	</dependency>
+	
+	<!-- HSQLDB -->
+	<dependency>
+		<groupId>org.hsqldb</groupId>
+		<artifactId>hsqldb</artifactId>
+		<version>2.3.2</version>
+	</dependency>
+
+	<!-- OAI-PMH library -->
+	<dependency>
+		<groupId>se.kb</groupId>
+		<artifactId>oai4j</artifactId>
+		<version>0.6b1</version>
+	</dependency>	
+	
+	<!-- Fast MD5 -->
+	<dependency>
+        <groupId>com.twmacinta</groupId>
+        <artifactId>fast-md5</artifactId>
+        <version>2.7.1</version>
+     </dependency>
+      
+      <!-- JAVA MAIL -->
+   	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>javax.mail-api</artifactId>
+		<version>1.5.2</version>
+	</dependency>
+	
+	<!-- JENA -->
+	<dependency>
+	<groupId>org.apache.jena</groupId>
+	<artifactId>jena-arq</artifactId>
+	<version>2.12.0</version>
+</dependency>
+<!-- 	<dependency> -->
+<!--       <groupId>com.openlink.virtuoso</groupId> -->
+<!--       <artifactId>virtjdbc3</artifactId> -->
+<!--       <version>1.0</version> -->
+<!--     </dependency> -->
+<!-- 	 	<dependency> -->
+<!--     <groupId>tr.com.srdc</groupId> -->
+<!--     <artifactId>virt-jena</artifactId> -->
+<!--     <version>2.6.2-srdc</version> -->
+<!-- </dependency> -->
+<!-- 	<dependency> -->
+<!--        	<groupId>org.rabinfingerprint</groupId> -->
+<!-- 		<artifactId>rabinfingerprint</artifactId> -->
+<!-- 		<version>1.0.0-SNAPSHOT</version> -->
+<!--     </dependency> -->
+	
+	<!-- javasimom  -->
+	<dependency>
+		<groupId>org.javasimon</groupId>
+		<artifactId>javasimon-core</artifactId>
+		<version>3.5.1</version>
+	</dependency>
+	
+	
+	<!-- APACHE HTTP CLIENT -->
+<!-- 	<dependency> -->
+<!-- 	<groupId>org.apache.httpcomponents</groupId> -->
+<!-- 	<artifactId>httpasyncclient</artifactId> -->
+<!-- 	<version>4.0.2</version> -->
+<!-- </dependency> -->
+	
+  </dependencies>
+  
+  <build>
 		<resources>
 			<resource>
 				<filtering>false</filtering>
@@ -27,6 +249,10 @@
 		<testResources>
 			<testResource>
 				<filtering>false</filtering>
+				<directory>src/test/resources</directory>
+			</testResource>
+			<testResource>
+				<filtering>false</filtering>
 				<directory>src/test/java</directory>
 				<includes>
 					<include>**</include>
@@ -38,117 +264,126 @@
 		</testResources>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<optimize>true</optimize>
-					<debug>true</debug>
-					<compilerArgument>-proc:none</compilerArgument>
-				</configuration>
-			</plugin>
+  				<artifactId>maven-assembly-plugin</artifactId>
+  				<executions>
+<!--   					<execution> -->
+<!-- 				      <id>make-assembly CMD2RDF</id> this is used for inheritance merges -->
+<!-- 				      <phase>package</phase> bind to the packaging phase -->
+<!-- 				      <goals> -->
+<!-- 				        <goal>single</goal> -->
+<!-- 				      </goals> -->
+<!-- 				      <configuration> -->
+<!-- 					    <archive> -->
+<!-- 					      <manifest> -->
+<!-- 					        <mainClass>nl.knaw.dans.clarin.cmd2rdf.ConverterApps</mainClass> -->
+<!-- 					      </manifest> -->
+<!-- 					    </archive> -->
+<!-- 					    <descriptorRefs> -->
+<!-- 					      <descriptorRef>jar-with-dependencies</descriptorRef> -->
+<!-- 					    </descriptorRefs> -->
+<!-- 					    <finalName>Cmd2rdf</finalName> -->
+<!-- 					    <appendAssemblyId>false</appendAssemblyId> -->
+<!-- 				  	</configuration> -->
+<!-- 				  </execution>  -->
+<!-- 				    <execution> -->
+<!-- 				      <id>make-assembly WellFormedValidator</id> this is used for inheritance merges -->
+<!-- 				      <phase>package</phase> bind to the packaging phase -->
+<!-- 				      <goals> -->
+<!-- 				        <goal>single</goal> -->
+<!-- 				      </goals> -->
+<!-- 				      <configuration> -->
+<!-- 					    <archive> -->
+<!-- 					      <manifest> -->
+<!-- 					        <mainClass>nl.knaw.dans.clarin.cmd2rdf.util.WellFormedValidator</mainClass> -->
+<!-- 					      </manifest> -->
+<!-- 					    </archive> -->
+<!-- 					    <descriptorRefs> -->
+<!-- 					      <descriptorRef>jar-with-dependencies</descriptorRef> -->
+<!-- 					    </descriptorRefs> -->
+<!-- 					    <finalName>WellFormedValidator</finalName> -->
+<!-- 					    <appendAssemblyId>false</appendAssemblyId> -->
+<!-- 				  	</configuration> -->
+<!-- 				  	</execution> -->
+<!-- 				    <execution> -->
+<!-- 				      <id>make-assembly MTCmd2Rdf</id> this is used for inheritance merges -->
+<!-- 				      <phase>package</phase> bind to the packaging phase -->
+<!-- 				      <goals> -->
+<!-- 				        <goal>single</goal> -->
+<!-- 				      </goals> -->
+<!-- 				      <configuration> -->
+<!-- 					    <archive> -->
+<!-- 					      <manifest> -->
+<!-- 					        <mainClass>nl.knaw.dans.clarin.cmd2rdf.mt.ConverterThreadPool</mainClass> -->
+<!-- 					      </manifest> -->
+<!-- 					    </archive> -->
+<!-- 					    <descriptorRefs> -->
+<!-- 					      <descriptorRef>jar-with-dependencies</descriptorRef> -->
+<!-- 					    </descriptorRefs> -->
+<!-- 					    <finalName>MTCmd2Rdf</finalName> -->
+<!-- 					    <appendAssemblyId>false</appendAssemblyId> -->
+<!-- 				  	</configuration> -->
+				  
+<!-- 				  </execution>  -->
+				  
+<!-- 				  <execution> -->
+<!-- 				      <id>make-assembly Launcher</id> this is used for inheritance merges -->
+<!-- 				      <phase>package</phase> bind to the packaging phase -->
+<!-- 				      <goals> -->
+<!-- 				        <goal>single</goal> -->
+<!-- 				      </goals> -->
+<!-- 				      <configuration> -->
+<!-- 					    <archive> -->
+<!-- 					      <manifest> -->
+<!-- 					        <mainClass>nl.knaw.dans.clarin.cmd2rdf.batch.Launcher</mainClass> -->
+<!-- 					      </manifest> -->
+<!-- 					    </archive> -->
+<!-- 					    <descriptorRefs> -->
+<!-- 					      <descriptorRef>jar-with-dependencies</descriptorRef> -->
+<!-- 					    </descriptorRefs> -->
+<!-- 					    <finalName>Launcher</finalName> -->
+<!-- 					    <appendAssemblyId>false</appendAssemblyId> -->
+<!-- 				  	</configuration> -->
+				  
+				  
+				  <execution>
+				      <id>make-assembly Launcher</id> <!-- this is used for inheritance merges -->
+				      <phase>package</phase> <!-- bind to the packaging phase -->
+				      <goals>
+				        <goal>single</goal>
+				      </goals>
+				      <configuration>
+					    <archive>
+					      <manifest>
+					        <mainClass>nl.knaw.dans.clarin.cmd2rdf.batch.Launcher</mainClass>
+					      </manifest>
+					    </archive>
+					    <descriptorRefs>
+					      <descriptorRef>jar-with-dependencies</descriptorRef>
+					    </descriptorRefs>
+					    <finalName>Launcher</finalName>
+					    <appendAssemblyId>false</appendAssemblyId>
+				  	</configuration>
+				  
+				  </execution> 
+ 			 	</executions>
+			</plugin>	
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
-				<configuration>
-					<downloadSources>true</downloadSources>
-				</configuration>
-			</plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.1</version>
+    <configuration>
+        <source>1.7</source>
+        <target>1.7</target>
+        <compilerArgument>-proc:none</compilerArgument>
+    </configuration>
+</plugin>
 		</plugins>
 	</build>
-	<dependencies>
-		
-		<!--Testing-->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>1.9.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-module-junit4</artifactId>
-			<version>1.5.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-api-mockito</artifactId>
-			<version>1.5.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>xmlunit</groupId>
-			<artifactId>xmlunit</artifactId>
-			<version>1.5</version>
-		</dependency>
-		
-		<!-- Logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jul-to-slf4j</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>1.1.2</version>
-		</dependency>
-		
-		<!-- Common IO -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-collections4</artifactId>
-			<version>4.0</version>
-		</dependency>
-		
-		
-		<!-- joda-time -->
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>2.3</version>
-		</dependency>
-
-		
-		<!-- JAVA MAIL -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>javax.mail-api</artifactId>
-			<version>1.5.2</version>
-		</dependency>
-
-	</dependencies>
-	<modules>
-		<module>config</module>
-		<module>batch</module>
-		<module>conversion</module>
-		<module>rest</module>
-		<module>webui</module>
-	</modules>
+	<repositories>
+		<repository>
+      <id>Geomajas</id>
+      <name>Geomajas repository</name>
+      <url>http://maven.geomajas.org/</url>
+    </repository>
+	</repositories>
 </project>
