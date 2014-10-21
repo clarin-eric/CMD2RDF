@@ -97,6 +97,10 @@ public class MD5ChecksumDBAction implements IAction {
 			//db.process(xmlSourceDir, smallFiles);
 			
 			log.debug("Number of records after process: " + db.getTotalNumberOfRecords());
+			log.debug("Total nRecords: " + ChecksumDb.getnRecords());
+			log.debug("Total nInsert: " + ChecksumDb.getnInsert());
+			log.debug("Total nUpdate: " + ChecksumDb.getnUpdate());
+			log.debug("Total nSkip: " + ChecksumDb.getnSkip());
 			log.debug("Total Query DURATION: " + ChecksumDb.getTotalQueryDuration() + " milliseconds");
 			log.debug("Total MD5 HASHING DURATION: " + ChecksumDb.getTotalMD5GeneratedTime() + " milliseconds");
 			log.debug("Total DB PROCESSING DURATION: " + ChecksumDb.getTotalDbProcessingTime() + " milliseconds");
