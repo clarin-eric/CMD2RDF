@@ -406,6 +406,7 @@ public class ChecksumDb {
                 	if (nInsert%10000 ==0) {
                     	 totaldatabaseprocessingtime += commitRecords(
 								psInsert, nInsert, "Inserting 10.000");
+                    	 psInsert = conn.prepareStatement(INSERT_PREPARED_STATEMENT);
                     	 
                     }
             	} else {
@@ -417,6 +418,7 @@ public class ChecksumDb {
 		                    	 totaldatabaseprocessingtime += commitRecords(
 										psUpdate, nUpdate,
 										"Updating 10.000");
+		                    	 psUpdate = conn.prepareStatement(UPDATE_PREPARED_STATEMENT);
 		                    }
 	            		} else {
 	            			log.debug("SKIPPING " + file.getName());
@@ -426,7 +428,7 @@ public class ChecksumDb {
 	            				 totaldatabaseprocessingtime += commitRecords(
 										psUpdate, nUpdate,
 										"Skipping 10.000");
-	            				
+	            				 psSkip = conn.prepareStatement(SKIP_PREPARED_STATEMENT);
 	            			}
 	            		}
             	}
@@ -462,6 +464,7 @@ public class ChecksumDb {
     }
 
 	private long commitRecords(PreparedStatement ps, int nRecs, String msg) throws SQLException {
+		log.debug("Commiting records, msg: " + msg);
 		long t = System.currentTimeMillis();
 		 ps.executeBatch();
 		 conn.commit();
