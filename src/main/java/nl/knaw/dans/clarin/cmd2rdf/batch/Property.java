@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlValue;
  * @author akmi
  *
  */
-@SuppressWarnings("restriction")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Property {
 	@XmlAttribute

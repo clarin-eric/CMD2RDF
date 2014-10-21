@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
-@SuppressWarnings("restriction")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Action {
 	@XmlAttribute

@@ -17,7 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Eko Indarto
  *
  */
-@SuppressWarnings("restriction")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="prepare")
 public class Prepare {

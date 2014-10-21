@@ -15,7 +15,6 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-@SuppressWarnings("restriction")
 @XmlRootElement (name="class")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Clazz {
