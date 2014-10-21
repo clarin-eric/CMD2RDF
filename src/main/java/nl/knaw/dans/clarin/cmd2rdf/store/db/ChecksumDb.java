@@ -418,7 +418,7 @@ public class ChecksumDb {
 										"Updating 10.000");
 		                    }
 	            		} else {
-	            			System.out.println("<<<<< SKIP " + file.getName());
+	            			log.debug("<<<<< SKIP " + file.getName());
 	            			nSkip++;
 	            			setSkipRecord(psSkip, path, ActionStatus.NONE);
 	            			if (nSkip%10000==0){
