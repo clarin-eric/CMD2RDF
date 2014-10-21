@@ -2,6 +2,7 @@
 package nl.knaw.dans.clarin.cmd2rdf.util;
 
 import java.io.IOException;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.CloseableHttpClient;

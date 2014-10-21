@@ -25,11 +25,9 @@ import org.apache.jena.riot.RDFFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Node;
-
 //import virtuoso.jena.driver.VirtGraph;
 //import virtuoso.jena.driver.VirtuosoUpdateFactory;
 //import virtuoso.jena.driver.VirtuosoUpdateRequest;
-
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 

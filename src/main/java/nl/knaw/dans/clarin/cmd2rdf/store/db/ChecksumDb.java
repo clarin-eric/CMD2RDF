@@ -15,7 +15,6 @@ import java.util.Collection;
 import java.util.List;
 
 import nl.knaw.dans.clarin.cmd2rdf.util.ActionStatus;
-import nl.knaw.dans.clarin.cmd2rdf.util.Misc;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;

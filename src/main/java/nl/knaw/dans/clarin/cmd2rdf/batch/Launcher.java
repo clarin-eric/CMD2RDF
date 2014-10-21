@@ -13,7 +13,6 @@ import org.easybatch.core.impl.EasyBatchEngine;
 import org.easybatch.core.impl.EasyBatchEngineBuilder;
 import org.easybatch.xml.XmlRecordMapper;
 import org.easybatch.xml.XmlRecordReader;
-import org.javasimon.Manager;
 import org.javasimon.SimonManager;
 import org.javasimon.Split;
 import org.javasimon.Stopwatch;

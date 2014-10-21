@@ -1,7 +1,6 @@
 package nl.knaw.dans.clarin.cmd2rdf.mt;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 
 import javax.xml.transform.Source;
