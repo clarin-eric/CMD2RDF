@@ -92,23 +92,30 @@ public class MD5ChecksumDBAction implements IAction {
 		log.debug("===== Number of files TOTAL FILES : " + allFiles.size());
 		//log.debug("===== Number of files SMALL FILES : " + smallFiles.size());
 		try {
+			log.debug("==================================");
 			log.debug("Number of records before process: " + db.getTotalNumberOfRecords());
 			db.process(xmlSourceDir, allFiles);
 			//db.process(xmlSourceDir, smallFiles);
-			
 			log.debug("Number of records after process: " + db.getTotalNumberOfRecords());
-			log.debug("Total nRecords: " + ChecksumDb.getnRecords());
-			log.debug("Total nInsert: " + ChecksumDb.getnInsert());
-			log.debug("Total nUpdate: " + ChecksumDb.getnUpdate());
-			log.debug("Total nSkip: " + ChecksumDb.getnSkip());
+			log.debug("==================================");
+			log.debug("\n");
+			log.debug("---------- Counter reports ---------");
+			log.debug("Total processed records: " + ChecksumDb.getnRecords());
+			log.debug("Total inserted records: " + ChecksumDb.getnInsert());
+			log.debug("Total updated records: " + ChecksumDb.getnUpdate());
+			log.debug("Total skipped records: " + ChecksumDb.getnSkip());
 			log.debug("Total Query DURATION: " + ChecksumDb.getTotalQueryDuration() + " milliseconds");
 			log.debug("Total MD5 HASHING DURATION: " + ChecksumDb.getTotalMD5GeneratedTime() + " milliseconds");
 			log.debug("Total DB PROCESSING DURATION: " + ChecksumDb.getTotalDbProcessingTime() + " milliseconds");
+			log.debug("----------------------------------");
+			log.debug("\n");
+			log.debug("============= DB QUERY Reports ===============");
 			log.debug("Records with status NEW: " + db.getTotalNumberOfNewRecords());
 			log.debug("Records with status UPDATE: " + db.getTotalNumberOfUpdatedRecords());
 			log.debug("Records with status DONE: " + db.getTotalNumberOfDoneRecords());
 			log.debug("Records with status NONE: " + db.getTotalNumberOfNoneRecords());
 			log.debug("Records with status DELETE: " + db.getTotalNumberOfDeleteRecords());
+			log.debug("==================================");
 			
 			
 		} catch (SQLException e) {
