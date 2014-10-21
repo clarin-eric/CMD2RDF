@@ -426,7 +426,7 @@ public class ChecksumDb {
 	            			setSkipRecord(psSkip, path, ActionStatus.NONE);
 	            			if (nSkip%10000==0){
 	            				 totaldatabaseprocessingtime += commitRecords(
-										psUpdate, nUpdate,
+	            						 psSkip, nUpdate,
 										"Skipping 10.000");
 	            				 psSkip = conn.prepareStatement(SKIP_PREPARED_STATEMENT);
 	            			}
