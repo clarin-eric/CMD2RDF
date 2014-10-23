@@ -1723,7 +1723,7 @@
     </records>
 	<profiles>
 		<!-- convert all the profiles we encountered into RDF -->
-		<profile filter="{profilesCacheDir}/clarin.eu_cr1_p_*">
+		<profile  desc="Convert all the profiles we encountered into RDF" xmlSource="{profilesCacheDir}" filter="clarin.eu_cr1_p_*.xml">
 			<actions>
 				<action name="transform">
 					<class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
@@ -1746,7 +1746,7 @@
 	</profiles>
 	<components>
 		<!-- convert all the components we encountered into RDF -->
-		<component filter="{profilesCacheDir}/clarin.eu_cr1_c_*">
+		<component desc="Convert all the components we encountered into RDF"  xmlSource="{profilesCacheDir}" filter="clarin.eu_cr1_c_*.xml">
 			<actions>
 				<action name="transform">
 					<class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
@@ -1757,15 +1757,13 @@
 					</class>
 				</action>
 				<action>
-					<action>
-						<class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoClient">
-							<properties>
-								<property name="replacedPrefixBaseURI">{profilesCacheDir}</property>
-								<property name="prefixBaseURI">http://localhost:8000/DAV/component</property>
-								<property name="action">POST</property>
-							</properties>
-						</class>
-					</action>
+					<class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoClient">
+						<properties>
+							<property name="replacedPrefixBaseURI">{profilesCacheDir}</property>
+							<property name="prefixBaseURI">http://localhost:8000/DAV/component</property>
+							<property name="action">POST</property>
+						</properties>
+					</class>
 				</action>
 			</actions>
 		</component>
