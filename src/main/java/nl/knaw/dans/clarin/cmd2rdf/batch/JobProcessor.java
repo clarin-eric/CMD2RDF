@@ -16,10 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,11 +25,11 @@ import java.util.regex.Pattern;
 import nl.knaw.dans.clarin.cmd2rdf.exception.ActionException;
 import nl.knaw.dans.clarin.cmd2rdf.mt.IAction;
 import nl.knaw.dans.clarin.cmd2rdf.mt.WorkerCallable;
-import nl.knaw.dans.clarin.cmd2rdf.mt.WorkerThread;
 import nl.knaw.dans.clarin.cmd2rdf.store.db.ChecksumDb;
 import nl.knaw.dans.clarin.cmd2rdf.util.Misc;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.directmemory.DirectMemory;
 import org.apache.directmemory.cache.CacheService;
 import org.easybatch.core.api.AbstractRecordProcessor;
@@ -52,7 +50,63 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		doPrepare(job.getPrepare().actions);
 		doProcessRecord(job.records);
 		doCleanup(job.getCleanup().actions);
-		closeCacheService();	
+		doProcessProfile(job.profiles);
+		doProcessComponent(job.components);
+		closeCacheService();
+	}
+	private void doProcessComponent(List<Profile> components) throws ClassNotFoundException, InstantiationException,
+	IllegalAccessException, NoSuchFieldException,
+	NoSuchMethodException, InvocationTargetException, ActionException {
+		for (Profile component:Misc.emptyIfNull(components)) {
+			log.debug("###### PROCESSING OF Components : " + component.desc);
+			Collection<File> files = FileUtils.listFiles(new File( Misc.subtituteGlobalValue(GLOBAL_VARS, component.xmlSource))
+														,  new WildcardFileFilter(component.filter), null);
+			List<IAction> actions = new ArrayList<IAction>();
+			List<Action> list = component.actions;
+			for (Action act : list) {
+				IAction clazzAction = startUpAction(act);				
+				actions.add(clazzAction);
+			}
+			
+			for (File f:files) {
+				Object o = f;
+				for(IAction action : actions) {
+					 o =action.execute(f.getAbsolutePath(), o);
+				}
+			}
+	         
+			for(IAction action : actions) {
+				action.shutDown();
+			}
+		}
+		
+	}
+	private void doProcessProfile(List<Profile> profiles) throws ClassNotFoundException, InstantiationException,
+	IllegalAccessException, NoSuchFieldException,
+	NoSuchMethodException, InvocationTargetException, ActionException {
+		for (Profile profile:Misc.emptyIfNull(profiles)) {
+			log.debug("###### PROCESSING OF Profiles : " + profile.desc);
+			Collection<File> files = FileUtils.listFiles(new File( Misc.subtituteGlobalValue(GLOBAL_VARS, profile.xmlSource))
+														,  new WildcardFileFilter(profile.filter), null);
+			List<IAction> actions = new ArrayList<IAction>();
+			List<Action> list = profile.actions;
+			for (Action act : list) {
+				IAction clazzAction = startUpAction(act);				
+				actions.add(clazzAction);
+			}
+			
+			for (File f:files) {
+				Object o = f;
+				for(IAction action : actions) {
+					 o =action.execute(f.getAbsolutePath(), o);
+				}
+			}
+	         
+			for(IAction action : actions) {
+				action.shutDown();
+			}
+		}
+		
 	}
 	private void setupGlolbalConfiguration(Jobs job)
 			throws IntrospectionException, 
@@ -105,7 +159,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		
 		fillInCacheService();
 		
-		for(Record r:records) {
+		for(Record r: Misc.emptyIfNull(records)) {
 			log.debug("###### PROCESSING OF RECORD : " + r.desc);
 			List<String> paths = null;
 			if (r.xmlSource.contains(URL_DB)) {
@@ -207,32 +261,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		}
 	}
 	
-	private void doMultithreadingAction(Record r, List<String> paths,
-			List<IAction> actions) {
-		log.debug("Multithreading is on, number of threads: " + r.nThreads);
-		ExecutorService executor = Executors.newFixedThreadPool(r.nThreads);
-		log.info("Number of processed records files: " + paths.size() );
-		int i=0;
-		
-		for (String path : paths) {
-			i++;
-			System.out.println(":::::::::::::::::::: " + i);
-			 Runnable worker = new WorkerThread(path, actions);
-		     Future<?> future = executor.submit(worker, "XXXXXXXXdone: " + i);
-		     try {
-				System.out.println(future.get());
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		executor.shutdown();
-		while (!executor.isTerminated()) {}
-		log.info("===Finished all threads===");
-	}
+	
 	
 	
 	private void closeCacheService() {
@@ -248,10 +277,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		
 		String profilesCacheDir = GLOBAL_VARS.get("profilesCacheDir");
 		 Collection<File> profiles = FileUtils.listFiles(new File(profilesCacheDir),new String[] {"xml"}, true);
-		 int i = 0;
 		 for (File profile:profiles) {
-			 i++;
-			 //log.debug("i: " + i + " filename: " + profile.getName());
 			 loadFromFile(profile.getName(), profile);
 		 }
 		 
@@ -306,12 +332,14 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 	}
 
 	
+	@SuppressWarnings("rawtypes")
 	private IAction startUpAction(Action act)
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, NoSuchFieldException,
 			NoSuchMethodException, InvocationTargetException, ActionException {
 		log.debug("Startup of " + act.clazz.name);
 		log.debug("Description: " + act.name);
+		@SuppressWarnings("unchecked")
 		Class<IAction> clazz = (Class<IAction>) Class.forName(act.clazz.name);
 		Constructor[] constructors = clazz.getConstructors(); 
 		for (Constructor c:constructors) {
