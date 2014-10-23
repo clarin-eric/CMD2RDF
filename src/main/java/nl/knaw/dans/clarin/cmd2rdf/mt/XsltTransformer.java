@@ -89,7 +89,7 @@ public class XsltTransformer implements IAction{
 		Split split = null;
 		try {
 			
-			if (xsltSource.endsWith("CMDRecord2RDF.xsl"))
+			if (xsltSource.endsWith(".xsl"))
 				split = SimonManager.getStopwatch("stopwatch.trans1").start();
 			else 
 				split = SimonManager.getStopwatch("stopwatch.trans2").start();
