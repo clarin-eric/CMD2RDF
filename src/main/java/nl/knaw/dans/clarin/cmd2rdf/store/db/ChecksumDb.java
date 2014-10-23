@@ -1,8 +1,6 @@
 package nl.knaw.dans.clarin.cmd2rdf.store.db;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,7 +14,6 @@ import java.util.List;
 
 import nl.knaw.dans.clarin.cmd2rdf.util.ActionStatus;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -361,15 +358,15 @@ public class ChecksumDb {
         } 
     }
     
-    private String generateApacheMD5Checksum(File file) throws IOException {
-    	long t = System.currentTimeMillis();
-    	InputStream is = new FileInputStream(file);
-		String digest = DigestUtils.md5Hex(is);
-		is.close();
-		long duration = (System.currentTimeMillis()-t);
-		totalMD5GeneratedTime+=duration;
-		return digest;
-    }
+//    private String generateApacheMD5Checksum(File file) throws IOException {
+//    	long t = System.currentTimeMillis();
+//    	InputStream is = new FileInputStream(file);
+//		String digest = DigestUtils.md5Hex(is);
+//		is.close();
+//		long duration = (System.currentTimeMillis()-t);
+//		totalMD5GeneratedTime+=duration;
+//		return digest;
+//    }
     
     private String generateFastMD5Checksum(File file) throws IOException{
     	long t = System.currentTimeMillis();
