@@ -41,6 +41,8 @@ public class ClarinProfileResolver implements URIResolver {
 	private static final Logger log = LoggerFactory.getLogger(ClarinProfileResolver.class);
 	private String basePath;
 	private static CacheService<Object, Object> cacheService;
+	private static final String REPLACED_REGISTRY_PROFILES = "/rest/registry/profiles/";
+	private static final String REPLACED_REGISTRY_COMPONENTS = "/rest/registry/components/";
 	private String registry;
 	public ClarinProfileResolver(String basePath, String registry, CacheService<Object, Object> cacheService) throws ActionException {
 		createCacheTempIfAbsent(basePath);
@@ -82,7 +84,10 @@ public class ClarinProfileResolver implements URIResolver {
 		File file = null;
 		Object oHref =  getHrefAsURLorFile(href);
 		if (oHref instanceof URL) {
-			filename = href.replace(registry+"/rest/registry/profiles/", "");//TODO: Don't use hard coded!!!
+			if(href.contains(REPLACED_REGISTRY_PROFILES))
+				filename = href.replace(registry+REPLACED_REGISTRY_PROFILES, "");
+			else if (href.contains(REPLACED_REGISTRY_COMPONENTS))
+				filename = href.replace(registry+REPLACED_REGISTRY_COMPONENTS, "");
 			filename = filename.replace("/xml", ".xml");
 			filename = filename.replace(":", "_");
 			file = new File(basePath + "/" + filename);
