@@ -1,4 +1,4 @@
-package nl.knaw.dans.cmd2rdf.config;
+package nl.knaw.dans.cmd2rdf.batch;
 
 /**
  * @author Eko Indarto
@@ -22,6 +22,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import nl.knaw.dans.cmd2rdf.config.util.Misc;
+import nl.knaw.dans.cmd2rdf.config.xmlmapping.Action;
+import nl.knaw.dans.cmd2rdf.config.xmlmapping.Config;
+import nl.knaw.dans.cmd2rdf.config.xmlmapping.Jobs;
+import nl.knaw.dans.cmd2rdf.config.xmlmapping.Profile;
+import nl.knaw.dans.cmd2rdf.config.xmlmapping.Property;
+import nl.knaw.dans.cmd2rdf.config.xmlmapping.Record;
 import nl.knaw.dans.cmd2rdf.conversion.action.ActionException;
 import nl.knaw.dans.cmd2rdf.conversion.action.IAction;
 import nl.knaw.dans.cmd2rdf.conversion.action.WorkerCallable;
@@ -46,22 +53,22 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			throws Exception {
 		setupGlolbalConfiguration(job);
 		initiateCacheService();
-		doPrepare(job.getPrepare().actions);
-		doProcessRecord(job.records);
-		doCleanup(job.getCleanup().actions);
-		doProcessProfile(job.profiles);
-		doProcessComponent(job.components);
+		doPrepare(job.getPrepare().getActions());
+		doProcessRecord(job.getRecords());
+		doCleanup(job.getCleanup().getActions());
+		doProcessProfile(job.getProfiles());
+		doProcessComponent(job.getComponents());
 		closeCacheService();
 	}
 	private void doProcessComponent(List<Profile> components) throws ClassNotFoundException, InstantiationException,
 	IllegalAccessException, NoSuchFieldException,
 	NoSuchMethodException, InvocationTargetException, ActionException {
 		for (Profile component:Misc.emptyIfNull(components)) {
-			log.debug("###### PROCESSING OF Components : " + component.desc);
-			Collection<File> files = FileUtils.listFiles(new File( Misc.subtituteGlobalValue(GLOBAL_VARS, component.xmlSource))
-														,  new WildcardFileFilter(component.filter), null);
+			log.debug("###### PROCESSING OF Components : " + component.getDesc());
+			Collection<File> files = FileUtils.listFiles(new File( Misc.subtituteGlobalValue(GLOBAL_VARS, component.getXmlSource()))
+														,  new WildcardFileFilter(component.getFilter()), null);
 			List<IAction> actions = new ArrayList<IAction>();
-			List<Action> list = component.actions;
+			List<Action> list = component.getActions();
 			for (Action act : list) {
 				IAction clazzAction = startUpAction(act);				
 				actions.add(clazzAction);
@@ -84,11 +91,11 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 	IllegalAccessException, NoSuchFieldException,
 	NoSuchMethodException, InvocationTargetException, ActionException {
 		for (Profile profile:Misc.emptyIfNull(profiles)) {
-			log.debug("###### PROCESSING OF Profiles : " + profile.desc);
-			Collection<File> files = FileUtils.listFiles(new File( Misc.subtituteGlobalValue(GLOBAL_VARS, profile.xmlSource))
-														,  new WildcardFileFilter(profile.filter), null);
+			log.debug("###### PROCESSING OF Profiles : " + profile.getDesc());
+			Collection<File> files = FileUtils.listFiles(new File( Misc.subtituteGlobalValue(GLOBAL_VARS, profile.getXmlSource()))
+														,  new WildcardFileFilter(profile.getFilter()), null);
 			List<IAction> actions = new ArrayList<IAction>();
-			List<Action> list = profile.actions;
+			List<Action> list = profile.getActions();
 			for (Action act : list) {
 				IAction clazzAction = startUpAction(act);				
 				actions.add(clazzAction);
@@ -113,7 +120,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 					InvocationTargetException {
 		log.debug("Setup the global configuration");
 		Config c = job.getConfig();
-		List<Property> props = c.property;
+		List<Property> props = c.getProperty();
 		for (Property prop:props) {
 			GLOBAL_VARS.put(prop.name, prop.value);
 		}
@@ -159,38 +166,38 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		fillInCacheService();
 		
 		for(Record r: Misc.emptyIfNull(records)) {
-			log.debug("###### PROCESSING OF RECORD : " + r.desc);
+			log.debug("###### PROCESSING OF RECORD : " + r.getDesc());
 			List<String> paths = null;
-			if (r.xmlSource.contains(URL_DB)) {
-				String urlDB = subtituteGlobalValue(r.xmlSource);
+			if (r.getXmlSource().contains(URL_DB)) {
+				String urlDB = subtituteGlobalValue(r.getXmlSource());
 				ChecksumDb cdb = new ChecksumDb(urlDB);
-				if (r.xmlLimitSizeMin != null) {
+				if (r.getXmlLimitSizeMin() != null) {
 					try {
-						Integer.parseInt(r.xmlLimitSizeMin);
+						Integer.parseInt(r.getXmlLimitSizeMin());
 					} catch (NumberFormatException e) {
 						throw new IllegalArgumentException("ERROR: xmlLimitSizeMin value is not integer. " + e.getMessage());
 					}
 				}
 					
-				if (r.xmlLimitSizeMax != null) {
+				if (r.getXmlLimitSizeMax() != null) {
 					try {
-						Integer.parseInt(r.xmlLimitSizeMax);
+						Integer.parseInt(r.getXmlLimitSizeMax());
 					} catch (NumberFormatException e) {
 						throw new IllegalArgumentException("ERROR: xmlLimitSizeMax value is not integer. " + e.getMessage());
 					}
 				}
 				
-		    	paths = cdb.getRecords(Misc.convertToActionStatus(r.filter), r.xmlLimitSizeMin, r.xmlLimitSizeMax);
+		    	paths = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin(), r.getXmlLimitSizeMax());
 		    	cdb.closeDbConnection();
 			}
 			
 			List<IAction> actions = new ArrayList<IAction>();
-			List<Action> list = r.actions;
+			List<Action> list = r.getActions();
 			for (Action act : list) {
 				IAction clazzAction = startUpAction(act);				
 				actions.add(clazzAction);
 			}
-			if (r.nThreads>0) 
+			if (r.getnThreads()>0) 
 				doCallableAction(r, paths, actions);
 			else {
 				for(IAction action : actions) {
@@ -202,18 +209,18 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			for(IAction action : actions) {
 				action.shutDown();
 			}
-			if (r.cleanup != null && r.cleanup.actions != null)
-				doCleanup(r.cleanup.actions);
+			if (r.getCleanup() != null && r.getCleanup().getActions() != null)
+				doCleanup(r.getCleanup().getActions());
 		}
 	}
 	
 	
 	private void doCallableAction(Record r, List<String> paths,
 			List<IAction> actions) {
-		log.debug("Multithreading is on, number of threads: " + r.nThreads);
+		log.debug("Multithreading is on, number of threads: " + r.getnThreads());
 		int n=0;
 		int i=0;
-		List<List<String>> paths2 = Misc.split(paths, r.nThreads);
+		List<List<String>> paths2 = Misc.split(paths, r.getnThreads());
 		int totalfiles = paths.size();
 		log.debug("==============================================================");
 		log.debug("Numbers of files: " + totalfiles);
@@ -313,10 +320,10 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		log.debug("Execute cleanup part.");	
 		List<IAction> actions = new ArrayList<IAction>();
 		for (Action act : list) {
-			log.debug(act.name);
+			log.debug(act.getName());
 			IAction clazzAction = startUpAction(act);		
 			if (clazzAction == null)
-				log.error("FATAL ERROR: " + act.name + " is null.");
+				log.error("FATAL ERROR: " + act.getName() + " is null.");
 			else 
 				actions.add(clazzAction);
 		}
@@ -336,23 +343,23 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, NoSuchFieldException,
 			NoSuchMethodException, InvocationTargetException, ActionException {
-		log.debug("Startup of " + act.clazz.name);
-		log.debug("Description: " + act.name);
+		log.debug("Startup of " + act.getClazz().getName());
+		log.debug("Description: " + act.getName());
 		@SuppressWarnings("unchecked")
-		Class<IAction> clazz = (Class<IAction>) Class.forName(act.clazz.name);
+		Class<IAction> clazz = (Class<IAction>) Class.forName(act.getClazz().getName());
 		Constructor[] constructors = clazz.getConstructors(); 
 		for (Constructor c:constructors) {
 			Class[] parameterTypes = c.getParameterTypes();
 			if (parameterTypes.length == 0) {
 				IAction clazzAction = clazz.newInstance();
-				clazzAction.startUp(Misc.mergeVariables(JobProcessor.GLOBAL_VARS,act.clazz.property));
+				clazzAction.startUp(Misc.mergeVariables(JobProcessor.GLOBAL_VARS,act.getClazz().getProperty()));
 				return clazzAction;
 			} else if (parameterTypes.length == 1 && (parameterTypes[0].isInstance(cacheService))) {
 				log.debug("USING CACHE SERVICE - hashcode: " + cacheService.hashCode() + " ENTRIES: " + cacheService.entries());
 				Constructor<IAction> ctor = clazz.getDeclaredConstructor(CacheService.class);
 			    ctor.setAccessible(true);
 			    IAction clazzAction = ctor.newInstance(cacheService);
-				clazzAction.startUp(Misc.mergeVariables(JobProcessor.GLOBAL_VARS,act.clazz.property));
+				clazzAction.startUp(Misc.mergeVariables(JobProcessor.GLOBAL_VARS,act.getClazz().getProperty()));
 				return clazzAction;
 				
 			}

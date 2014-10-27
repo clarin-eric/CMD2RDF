@@ -1,4 +1,4 @@
-package nl.knaw.dans.cmd2rdf.config;
+package nl.knaw.dans.cmd2rdf.config.xmlmapping;
 
 /**
  * @author Eko Indarto
@@ -19,12 +19,34 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Clazz {
 	@XmlAttribute
+	private
 	String name;
 	
 	
 	@XmlElementWrapper(name = "properties")
 	@XmlElement(name="property")
+	private
 	List<Property> property;
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public List<Property> getProperty() {
+		return property;
+	}
+
+
+	public void setProperty(List<Property> property) {
+		this.property = property;
+	}
 	
 	
 	

@@ -1,4 +1,4 @@
-package nl.knaw.dans.cmd2rdf.config;
+package nl.knaw.dans.cmd2rdf.config.xmlmapping;
 
 /**
  * @author Eko Indarto

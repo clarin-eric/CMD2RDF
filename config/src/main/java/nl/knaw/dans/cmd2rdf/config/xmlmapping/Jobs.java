@@ -1,4 +1,4 @@
-package nl.knaw.dans.cmd2rdf.config;
+package nl.knaw.dans.cmd2rdf.config.xmlmapping;
 
 /**
  * @author Eko Indarto
@@ -19,14 +19,16 @@ public class Jobs {
 	private Cleanup cleanup;
 	@XmlElementWrapper(name = "records")
 	@XmlElement(name="record")
-	List<Record> records;
+	private List<Record> records;
 	
 	@XmlElementWrapper(name = "profiles")
 	@XmlElement(name="profile")
+	private
 	List<Profile> profiles;
 	
 	@XmlElementWrapper(name = "components")
 	@XmlElement(name="component")
+	private
 	List<Profile> components;
 	
 	public void setConfig(Config config) {
@@ -46,5 +48,23 @@ public class Jobs {
 	}
 	public void setCleanup(Cleanup cleanup) {
 		this.cleanup = cleanup;
+	}
+	public List<Record> getRecords() {
+		return records;
+	}
+	public void setRecords(List<Record> records) {
+		this.records = records;
+	}
+	public List<Profile> getProfiles() {
+		return profiles;
+	}
+	public void setProfiles(List<Profile> profiles) {
+		this.profiles = profiles;
+	}
+	public List<Profile> getComponents() {
+		return components;
+	}
+	public void setComponents(List<Profile> components) {
+		this.components = components;
 	}
 }

@@ -14,10 +14,17 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
+    <!-- modules dependencies -->
     <dependency>
-    	<groupId>${project.groupId}</groupId>
-    	<artifactId>config</artifactId>
-    	<version>${project.version}</version>
+   		<groupId>${project.groupId}</groupId>
+   		<artifactId>config</artifactId>
+   		<version>${project.version}</version>
+    </dependency>
+    <!-- modules dependencies -->
+    <dependency>
+   		<groupId>${project.groupId}</groupId>
+   		<artifactId>conversion</artifactId>
+   		<version>${project.version}</version>
     </dependency>
   </dependencies>
 </project>

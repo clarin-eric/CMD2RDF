@@ -1,4 +1,4 @@
-package nl.knaw.dans.cmd2rdf.config;
+package nl.knaw.dans.cmd2rdf.config.xmlmapping;
 
 /**
  * @author Eko Indarto
@@ -22,5 +22,14 @@ public class Config {
 	
 	@XmlElementWrapper(name = "properties")
 	@XmlElement(name="property")
+	private
 	List<Property> property;
+
+	public List<Property> getProperty() {
+		return property;
+	}
+
+	public void setProperty(List<Property> property) {
+		this.property = property;
+	}
 }

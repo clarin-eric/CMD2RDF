@@ -1,7 +1,7 @@
 /**
  * 
  */
-package nl.knaw.dans.cmd2rdf.config;
+package nl.knaw.dans.cmd2rdf.config.util;
 
 /**
  * @author Eko Indarto
@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import nl.knaw.dans.cmd2rdf.config.xmlmapping.Property;
 import nl.knaw.dans.cmd2rdf.conversion.action.ActionException;
 import nl.knaw.dans.cmd2rdf.conversion.action.ActionStatus;
 
