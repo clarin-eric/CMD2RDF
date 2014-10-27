@@ -7,11 +7,9 @@
     <artifactId>cmd2rdf</artifactId>
     <version>0.5-SNAPSHOT</version>
   </parent>
-  <groupId>nl.knaw.dans.cmd2rdf</groupId>
   <artifactId>webui</artifactId>
-  <version>0.5-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>quickstart</name>
+  <name>webui</name>
   <description></description>
   <licenses>
     <license>
