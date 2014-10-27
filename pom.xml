@@ -161,6 +161,6 @@
 		<module>conversion</module>
 		<module>rest</module>
 		<module>webui</module>
-    <module>utils</module>
+    
   </modules>
 </project>
