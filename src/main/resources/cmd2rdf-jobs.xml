@@ -1750,7 +1750,7 @@
                     <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoClient">
                         <properties>
                             <property name="replacedPrefixBaseURI">{profilesCacheDir}</property>
-                            <property name="prefixBaseURI">http://localhost:8000/DAV/component</property>
+                            <property name="prefixBaseURI">http://localhost:8890/DAV/component</property>
                             <property name="action">POST</property>
                         </properties>
                     </class>
