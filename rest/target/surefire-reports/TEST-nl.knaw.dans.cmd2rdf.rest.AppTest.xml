@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.01" errors="0" skipped="0" tests="1" name="nl.knaw.dans.cmd2rdf.rest.AppTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib"/>
+    <property name="java.vm.version" value="24.51-b03"/>
+    <property name="user.country.format" value="NL"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/akmi/git/mpi-CMD2RDF/rest"/>
+    <property name="java.runtime.version" value="1.7.0_51-b13"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="basedir" value="/Users/akmi/git/mpi-CMD2RDF/rest"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="surefire.real.class.path" value="/Users/akmi/git/mpi-CMD2RDF/rest/target/surefire/surefirebooter8117655456879806135.jar"/>
+    <property name="java.io.tmpdir" value="/var/folders/ll/dh7x8mdn18b0wwlry3gxb8zm0000gn/T/"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/akmi/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="surefire.test.class.path" value="/Users/akmi/git/mpi-CMD2RDF/rest/target/test-classes:/Users/akmi/git/mpi-CMD2RDF/rest/target/classes:/Users/akmi/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/akmi/.m2/repository/org/mockito/mockito-core/1.9.5/mockito-core-1.9.5.jar:/Users/akmi/.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar:/Users/akmi/.m2/repository/org/objenesis/objenesis/1.0/objenesis-1.0.jar:/Users/akmi/.m2/repository/org/powermock/powermock-module-junit4/1.5.5/powermock-module-junit4-1.5.5.jar:/Users/akmi/.m2/repository/org/powermock/powermock-module-junit4-common/1.5.5/powermock-module-junit4-common-1.5.5.jar:/Users/akmi/.m2/repository/org/powermock/powermock-core/1.5.5/powermock-core-1.5.5.jar:/Users/akmi/.m2/repository/org/javassist/javassist/3.18.2-GA/javassist-3.18.2-GA.jar:/Users/akmi/.m2/repository/org/powermock/powermock-reflect/1.5.5/powermock-reflect-1.5.5.jar:/Users/akmi/.m2/repository/org/powermock/powermock-api-mockito/1.5.5/powermock-api-mockito-1.5.5.jar:/Users/akmi/.m2/repository/org/mockito/mockito-all/1.9.5/mockito-all-1.9.5.jar:/Users/akmi/.m2/repository/org/powermock/powermock-api-support/1.5.5/powermock-api-support-1.5.5.jar:/Users/akmi/.m2/repository/xmlunit/xmlunit/1.5/xmlunit-1.5.jar:/Users/akmi/.m2/repository/org/slf4j/jul-to-slf4j/1.7.2/jul-to-slf4j-1.7.2.jar:/Users/akmi/.m2/repository/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2.jar:/Users/akmi/.m2/repository/ch/qos/logback/logback-classic/1.1.2/logback-classic-1.1.2.jar:/Users/akmi/.m2/repository/ch/qos/logback/logback-core/1.1.2/logback-core-1.1.2.jar:/Users/akmi/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar:/Users/akmi/.m2/repository/org/apache/commons/commons-collections4/4.0/commons-collections4-4.0.jar:/Users/akmi/.m2/repository/joda-time/joda-time/2.3/joda-time-2.3.jar:/Users/akmi/.m2/repository/org/apache/directmemory/directmemory-cache/0.2/directmemory-cache-0.2.jar:/Users/akmi/.m2/repository/com/google/guava/guava/r09/guava-r09.jar:/Users/akmi/.m2/repository/javax/mail/javax.mail-api/1.5.2/javax.mail-api-1.5.2.jar:/Users/akmi/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.8.5"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/akmi"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="US-ASCII"/>
+    <property name="user.name" value="akmi"/>
+    <property name="java.class.path" value="/Users/akmi/git/mpi-CMD2RDF/rest/target/test-classes:/Users/akmi/git/mpi-CMD2RDF/rest/target/classes:/Users/akmi/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/akmi/.m2/repository/org/mockito/mockito-core/1.9.5/mockito-core-1.9.5.jar:/Users/akmi/.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar:/Users/akmi/.m2/repository/org/objenesis/objenesis/1.0/objenesis-1.0.jar:/Users/akmi/.m2/repository/org/powermock/powermock-module-junit4/1.5.5/powermock-module-junit4-1.5.5.jar:/Users/akmi/.m2/repository/org/powermock/powermock-module-junit4-common/1.5.5/powermock-module-junit4-common-1.5.5.jar:/Users/akmi/.m2/repository/org/powermock/powermock-core/1.5.5/powermock-core-1.5.5.jar:/Users/akmi/.m2/repository/org/javassist/javassist/3.18.2-GA/javassist-3.18.2-GA.jar:/Users/akmi/.m2/repository/org/powermock/powermock-reflect/1.5.5/powermock-reflect-1.5.5.jar:/Users/akmi/.m2/repository/org/powermock/powermock-api-mockito/1.5.5/powermock-api-mockito-1.5.5.jar:/Users/akmi/.m2/repository/org/mockito/mockito-all/1.9.5/mockito-all-1.9.5.jar:/Users/akmi/.m2/repository/org/powermock/powermock-api-support/1.5.5/powermock-api-support-1.5.5.jar:/Users/akmi/.m2/repository/xmlunit/xmlunit/1.5/xmlunit-1.5.jar:/Users/akmi/.m2/repository/org/slf4j/jul-to-slf4j/1.7.2/jul-to-slf4j-1.7.2.jar:/Users/akmi/.m2/repository/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2.jar:/Users/akmi/.m2/repository/ch/qos/logback/logback-classic/1.1.2/logback-classic-1.1.2.jar:/Users/akmi/.m2/repository/ch/qos/logback/logback-core/1.1.2/logback-core-1.1.2.jar:/Users/akmi/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar:/Users/akmi/.m2/repository/org/apache/commons/commons-collections4/4.0/commons-collections4-4.0.jar:/Users/akmi/.m2/repository/joda-time/joda-time/2.3/joda-time-2.3.jar:/Users/akmi/.m2/repository/org/apache/directmemory/directmemory-cache/0.2/directmemory-cache-0.2.jar:/Users/akmi/.m2/repository/com/google/guava/guava/r09/guava-r09.jar:/Users/akmi/.m2/repository/javax/mail/javax.mail-api/1.5.2/javax.mail-api-1.5.2.jar:/Users/akmi/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre"/>
+    <property name="sun.java.command" value="/Users/akmi/git/mpi-CMD2RDF/rest/target/surefire/surefirebooter8117655456879806135.jar /Users/akmi/git/mpi-CMD2RDF/rest/target/surefire/surefire6448625403573563272tmp /Users/akmi/git/mpi-CMD2RDF/rest/target/surefire/surefire1322166103195106426tmp"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.7.0_51"/>
+    <property name="java.ext.dirs" value="/Users/akmi/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="localRepository" value="/Users/akmi/.m2/repository"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase time="0.002" classname="nl.knaw.dans.cmd2rdf.rest.AppTest" name="testApp"/>
+</testsuite>
