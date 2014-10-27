@@ -26,6 +26,16 @@
                     </properties>
                 </class>
             </action>
+            <action name="fetch">
+                <class name="nl.knaw.dans.clarin.cmd2rdf.harvester.OaipmhHarvester">
+                    <properties>
+                        <property name="oaipmhBaseURL">https://openskos.meertens.knaw.nl/oai-pmh</property>
+                        <property name="prefix">oai_rdf</property>
+                        <property name="set">meertens:VLO-orgs</property>
+                        <property name="outputFile">{harvestedProfilesDir}/meertens-VLO-orgs.rdf</property>
+                    </properties>
+                </class>
+            </action>
             <action>
                 <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumDBAction">
                     <properties>
