@@ -6,6 +6,7 @@ package nl.knaw.dans.cmd2rdf.conversion.action;
 import java.util.Map;
 
 import nl.knaw.dans.cmd2rdf.conversion.db.ChecksumDb;
+import nl.knaw.dans.cmd2rdf.conversion.util.Misc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

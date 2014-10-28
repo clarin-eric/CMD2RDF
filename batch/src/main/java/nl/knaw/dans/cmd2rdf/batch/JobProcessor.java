@@ -22,7 +22,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import nl.knaw.dans.cmd2rdf.config.util.Misc;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Action;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Config;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Jobs;
@@ -33,6 +32,7 @@ import nl.knaw.dans.cmd2rdf.conversion.action.ActionException;
 import nl.knaw.dans.cmd2rdf.conversion.action.IAction;
 import nl.knaw.dans.cmd2rdf.conversion.action.WorkerCallable;
 import nl.knaw.dans.cmd2rdf.conversion.db.ChecksumDb;
+import nl.knaw.dans.cmd2rdf.conversion.util.Misc;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
@@ -352,14 +352,14 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			Class[] parameterTypes = c.getParameterTypes();
 			if (parameterTypes.length == 0) {
 				IAction clazzAction = clazz.newInstance();
-				clazzAction.startUp(Misc.mergeVariables(JobProcessor.GLOBAL_VARS,act.getClazz().getProperty()));
+				clazzAction.startUp(nl.knaw.dans.cmd2rdf.config.util.Misc.mergeVariables(JobProcessor.GLOBAL_VARS,act.getClazz().getProperty()));
 				return clazzAction;
 			} else if (parameterTypes.length == 1 && (parameterTypes[0].isInstance(cacheService))) {
 				log.debug("USING CACHE SERVICE - hashcode: " + cacheService.hashCode() + " ENTRIES: " + cacheService.entries());
 				Constructor<IAction> ctor = clazz.getDeclaredConstructor(CacheService.class);
 			    ctor.setAccessible(true);
 			    IAction clazzAction = ctor.newInstance(cacheService);
-				clazzAction.startUp(Misc.mergeVariables(JobProcessor.GLOBAL_VARS,act.getClazz().getProperty()));
+				clazzAction.startUp(nl.knaw.dans.cmd2rdf.config.util.Misc.mergeVariables(JobProcessor.GLOBAL_VARS,act.getClazz().getProperty()));
 				return clazzAction;
 				
 			}

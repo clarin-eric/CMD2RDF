@@ -1,7 +1,7 @@
 /**
  * 
  */
-package nl.knaw.dans.cmd2rdf.conversion.action;
+package nl.knaw.dans.cmd2rdf.conversion.util;
 
 /**
  * @author Eko Indarto
@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import nl.knaw.dans.cmd2rdf.conversion.action.ActionException;
+import nl.knaw.dans.cmd2rdf.conversion.action.ActionStatus;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -14,12 +14,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-  	<!-- modules dependencies -->
-    <dependency>
-    		<groupId>${project.groupId}</groupId>
-    		<artifactId>conversion</artifactId>
-    		<version>${project.version}</version>
-    	</dependency>
+  
     <!-- EasyBatch -->
 	<dependency>
     	<groupId>org.easybatch</groupId>

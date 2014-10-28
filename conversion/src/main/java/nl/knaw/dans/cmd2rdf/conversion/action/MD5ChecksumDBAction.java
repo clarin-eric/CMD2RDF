@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import nl.knaw.dans.cmd2rdf.conversion.db.ChecksumDb;
+import nl.knaw.dans.cmd2rdf.conversion.util.Misc;
 
 import org.apache.commons.io.FileUtils;
 import org.javasimon.SimonManager;

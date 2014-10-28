@@ -17,8 +17,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Property;
-import nl.knaw.dans.cmd2rdf.conversion.action.ActionException;
-import nl.knaw.dans.cmd2rdf.conversion.action.ActionStatus;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,28 +57,7 @@ public class Misc {
 		return vars;
 	}
 
-	public static ActionStatus convertToActionStatus(String words)
-			throws ActionException {
-		log.debug("Convert a word(s) to Enum value of ActionStatus.");
-		String[] w = words.trim().split(" ");
-		int len = w.length;
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < len; i++) {
-			if (w[i].length() > 0) {
-				sb.append(w[i]);
-				if (i < len - 1)
-					sb.append("_");
-			}
-		}
-		try {
-			ActionStatus s = Enum.valueOf(ActionStatus.class, sb.toString());
-			return s;
-		} catch (IllegalArgumentException e) {
-			throw new ActionException(
-					"ERROR: IllegalArgumentException, no enum constant of '"
-							+ words + "'.");
-		}
-	}
+	
 	
 	public static <T> List<List<T>> split(List<T> list, final int length) {
 		List<List<T>> parts = new ArrayList<List<T>>();
