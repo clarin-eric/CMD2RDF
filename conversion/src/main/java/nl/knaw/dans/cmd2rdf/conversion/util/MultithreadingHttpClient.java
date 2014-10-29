@@ -1,4 +1,4 @@
-package nl.knaw.dans.cmd2rdf.conversion.action;
+package nl.knaw.dans.cmd2rdf.conversion.util;
 
 public class MultithreadingHttpClient {
 

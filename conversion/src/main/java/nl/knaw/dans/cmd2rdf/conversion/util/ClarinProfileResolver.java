@@ -1,7 +1,7 @@
 /**
  * 
  */
-package nl.knaw.dans.cmd2rdf.conversion.action;
+package nl.knaw.dans.cmd2rdf.conversion.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -18,6 +18,8 @@ import javax.xml.transform.Source;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamSource;
+
+import nl.knaw.dans.cmd2rdf.conversion.action.ActionException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.directmemory.cache.CacheService;

@@ -19,17 +19,15 @@ public class Jobs {
 	private Cleanup cleanup;
 	@XmlElementWrapper(name = "records")
 	@XmlElement(name="record")
-	private List<Record> records;
+	public List<Record> records;
 	
 	@XmlElementWrapper(name = "profiles")
 	@XmlElement(name="profile")
-	private
-	List<Profile> profiles;
+	public List<Profile> profiles;
 	
 	@XmlElementWrapper(name = "components")
 	@XmlElement(name="component")
-	private
-	List<Profile> components;
+	public List<Profile> components;
 	
 	public void setConfig(Config config) {
 		this.config = config;
@@ -49,22 +47,12 @@ public class Jobs {
 	public void setCleanup(Cleanup cleanup) {
 		this.cleanup = cleanup;
 	}
-	public List<Record> getRecords() {
-		return records;
-	}
-	public void setRecords(List<Record> records) {
-		this.records = records;
-	}
-	public List<Profile> getProfiles() {
-		return profiles;
-	}
-	public void setProfiles(List<Profile> profiles) {
-		this.profiles = profiles;
-	}
-	public List<Profile> getComponents() {
-		return components;
-	}
-	public void setComponents(List<Profile> components) {
-		this.components = components;
-	}
+	
+	 
+//	public List<Profile> getComponents() {
+//		return components;
+//	}
+//	public void setComponents(List<Profile> components) {
+//		this.components = components;
+//	}
 }

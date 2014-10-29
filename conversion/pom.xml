@@ -38,6 +38,35 @@
 		<version>4.0.2</version>
 	</dependency>
 	
+	<!-- OAI-PMH library -->
+	<dependency>
+		<groupId>se.kb</groupId>
+		<artifactId>oai4j</artifactId>
+		<version>0.6b1</version>
+	</dependency>	
+	
+	<!-- Jersey REST Client -->
+  	<dependency>
+    	<groupId>org.glassfish.jersey.core</groupId>
+    	<artifactId>jersey-client</artifactId>
+    	<version>2.9</version>
+	</dependency>
+	<dependency>
+		<groupId>org.glassfish.jersey.connectors</groupId>
+		<artifactId>jersey-apache-connector</artifactId>
+		<version>2.9.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.glassfish.jersey.connectors</groupId>
+		<artifactId>jersey-grizzly-connector</artifactId>
+		<version>2.9.1</version>
+	</dependency>
+	<!-- HSQLDB -->
+	<dependency>
+		<groupId>org.hsqldb</groupId>
+		<artifactId>hsqldb</artifactId>
+		<version>2.3.2</version>
+	</dependency>
   </dependencies>
   <repositories>
 		<repository>

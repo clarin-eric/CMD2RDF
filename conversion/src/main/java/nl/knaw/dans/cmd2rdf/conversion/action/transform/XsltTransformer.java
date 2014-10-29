@@ -1,4 +1,4 @@
-package nl.knaw.dans.cmd2rdf.conversion.action;
+package nl.knaw.dans.cmd2rdf.conversion.action.transform;
 
 import java.io.File;
 import java.util.Map;
@@ -13,6 +13,10 @@ import javax.xml.transform.URIResolver;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamSource;
+
+import nl.knaw.dans.cmd2rdf.conversion.action.ActionException;
+import nl.knaw.dans.cmd2rdf.conversion.action.IAction;
+import nl.knaw.dans.cmd2rdf.conversion.util.ClarinProfileResolver;
 
 import org.apache.directmemory.cache.CacheService;
 import org.javasimon.SimonManager;

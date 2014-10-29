@@ -54,10 +54,10 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		setupGlolbalConfiguration(job);
 		initiateCacheService();
 		doPrepare(job.getPrepare().getActions());
-		doProcessRecord(job.getRecords());
+		doProcessRecord(job.records);
 		doCleanup(job.getCleanup().getActions());
-		doProcessProfile(job.getProfiles());
-		doProcessComponent(job.getComponents());
+		doProcessProfile(job.profiles);
+		doProcessComponent(job.components);
 		closeCacheService();
 	}
 	private void doProcessComponent(List<Profile> components) throws ClassNotFoundException, InstantiationException,
