@@ -26,5 +26,11 @@
    		<artifactId>conversion</artifactId>
    		<version>${project.version}</version>
     </dependency>
+    <!-- JAVA MAIL -->
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>javax.mail-api</artifactId>
+		<version>1.5.2</version>
+	</dependency>
   </dependencies>
 </project>

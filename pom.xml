@@ -36,6 +36,30 @@
 		</testResources>
 		<plugins>
 			<plugin>
+  				<artifactId>maven-assembly-plugin</artifactId>
+  				<executions>
+					<execution>
+				      <id>make-assembly Launcher</id> <!-- this is used for inheritance merges -->
+				      <phase>package</phase> <!-- bind to the packaging phase -->
+				      <goals>
+				        <goal>single</goal>
+				      </goals>
+				      <configuration>
+					    <archive>
+					      <manifest>
+					        <mainClass>nl.knaw.dans.cmd2rdf.batch.Launcher</mainClass>
+					      </manifest>
+					    </archive>
+					    <descriptorRefs>
+					      <descriptorRef>jar-with-dependencies</descriptorRef>
+					    </descriptorRefs>
+					    <finalName>Cmd2rdf</finalName>
+					    <appendAssemblyId>false</appendAssemblyId>
+				  	</configuration>
+				  </execution> 
+ 			 	</executions>
+			</plugin>	
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
@@ -133,11 +157,11 @@
 			<version>2.3</version>
 		</dependency>
 
-	        <!-- Caching -->
+	    <!-- Caching -->
 		<dependency>
-    			<groupId>org.apache.directmemory</groupId>
-    			<artifactId>directmemory-cache</artifactId>
-		<!--     	<version>0.3-SNAPSHOT</version> -->
+    		<groupId>org.apache.directmemory</groupId>
+    		<artifactId>directmemory-cache</artifactId>
+		<!--<version>0.3-SNAPSHOT</version> -->
 			<version>0.2</version>
   		</dependency> 
   		
@@ -147,12 +171,7 @@
 			<artifactId>javasimon-core</artifactId>
 			<version>3.5.1</version>
 		</dependency>	
-		<!-- JAVA MAIL -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>javax.mail-api</artifactId>
-			<version>1.5.2</version>
-		</dependency>
+		
 
 	</dependencies>
 	<modules>
