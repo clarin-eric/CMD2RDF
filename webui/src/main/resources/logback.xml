@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false"> 
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+<!-- appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level (%file:%line\) - %message%n</pattern>
+    </encoder>
+</appender -->
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>/tmp/ersi.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ERROR-EXCEPTION-FILE" class="ch.qos.logback.core.FileAppender">
+        <file>/tmp/error-exception.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <!-- additivity=false ensures analytics data only goes to the analytics log -->
+    <logger name="error" level="DEBUG" additivity="false">
+        <appender-ref ref="ERROR-EXCEPTION-FILE"/>
+    </logger>
+    
+    <root level="info">
+    	<appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
