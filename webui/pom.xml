@@ -60,10 +60,6 @@
 		</dependency>
 		-->
 
-		<!-- LOGGING DEPENDENCIES - LOG4J -->
-
-		<!--  JUNIT DEPENDENCY FOR TESTING -->
-
 		<!--  JETTY DEPENDENCIES FOR TESTING  -->
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
