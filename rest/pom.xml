@@ -52,7 +52,6 @@
 		<version>2.13</version>
 </dependency>
    
-   
    <!-- Servlet 2.5  -->
    <dependency>
 		<groupId>javax.servlet</groupId>
@@ -60,8 +59,6 @@
 		<version>2.5</version>
 	</dependency>
 	
-	
-   
   </dependencies>
   <packaging>war</packaging>
 </project>
