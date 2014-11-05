@@ -33,7 +33,7 @@ public class JerseyClientGet {
 
 			int status = response.getStatus();
 
-			if (response.getStatus() != 200) {
+			if (status != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
 						+ response.getStatus());
 
