@@ -17,7 +17,7 @@ public class WicketApplication extends WebApplication
 	@Override
 	public Class<? extends WebPage> getHomePage()
 	{
-		return HomePage.class;
+		return nl.knaw.dans.cmd2rdf.webui.pages.HomePage.class;
 	}
 
 	/**
