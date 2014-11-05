@@ -33,6 +33,7 @@ public class Query {
 	@Path("/sparql")
 	public Response addUser(@Context HttpHeaders headers,
 			@Context UriInfo uriInfo) {
+		
 		String query = uriInfo.getRequestUri().getQuery();
 		MultivaluedMap<String, String> mm = headers.getRequestHeaders();
 		Iterator<String> it = mm.keySet().iterator();
