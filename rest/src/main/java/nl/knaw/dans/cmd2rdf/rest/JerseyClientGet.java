@@ -21,7 +21,7 @@ public class JerseyClientGet {
 			Client client = ClientBuilder.newClient().register(
 					JacksonFeature.class);
 			UriBuilder uriBuilder = UriBuilder.fromUri(new URI(
-					"http://localhost:8890"));
+					"http://zandbak01.dans.knaw.nl:8000"));
 			uriBuilder.path("sparql");
 			uriBuilder.queryParam("query", UriComponent.encode(
 					"select distinct ?Concept where {[] a ?Concept} LIMIT 100",
