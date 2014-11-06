@@ -13,18 +13,8 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-  <servlet>
-  	<servlet-name>EkoF</servlet-name>
-  	<display-name>EkoF</display-name>
-  	<description></description>
-  	<servlet-class>nl.knaw.dans.cmd2rdf.rest.EkoForward</servlet-class>
-  </servlet>
     <servlet-mapping>
         <servlet-name>Jersey REST Service</servlet-name>
         <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-    	<servlet-name>EkoF</servlet-name>
-    	<url-pattern>/tai</url-pattern>
     </servlet-mapping>
 </web-app>
