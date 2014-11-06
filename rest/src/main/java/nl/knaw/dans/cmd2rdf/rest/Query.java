@@ -92,9 +92,16 @@ public class Query {
 	@POST
 	@Path("/sparql")
 	@Produces("application/xml,application/json,application/sparql-results+xml,text/rdf+n3,text/rdf+ttl,text/rdf+turtle"
-			+ ",text/turtle,text/n3,application/turtle,application/x-turtle,application/x-nice-turtle,text/rdf+nt,text/plain")
+			+ ",text/turtle,text/n3,application/turtle,application/x-turtle,application/x-nice-turtle,text/rdf+nt"
+			+ ",text/plain,text/ntriples,application/x-trig,application/rdf+xml,application/soap+xml"
+			+ ",application/soap+xml;11,text/html,text/md+html,text/microdata+html,text/x-html+ul,text/x-html+tr"
+			+ ",application/vnd.ms-excel,text/csv,text/tab-separated-values,application/javascript,application/json"
+			+ ",application/sparql-results+json,application/odata+json,application/microdata+json,application/rdf+json"
+			+ ",application/x-rdf+json,application/x-json+ld,application/ld+json,text/cxml,text/cxml+qrcode"
+			+ ",application/atom+xml,application/xhtml+xml")
 	public Response forwardPostRequest(@Context HttpHeaders headers, MultivaluedMap<String, String> formParams) {
 		Form form = new Form();
+		form.param("format", headers.getRequestHeader("Accept").get(0));
 		Iterator<String> it = formParams.keySet().iterator();
 		while (it.hasNext()) {
 			String name = it.next();
@@ -105,11 +112,9 @@ public class Query {
 		}
 		
 		try {
-			Response r = getSparqlPostQueryResult(form);
-			return r;
+			return getSparqlPostQueryResult(form);
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("ERROR, caused by " + e.getMessage());
 		}
 		return Response.status(400).build();
 	}
@@ -120,8 +125,9 @@ public class Query {
 		UriBuilder uriBuilder = UriBuilder.fromUri(new URI(VIRTUOSO_HOST));
 		uriBuilder.path("sparql");
 		WebTarget target = client.target(uriBuilder);
-
-		return target.request().post(Entity.entity(form, MediaType.APPLICATION_JSON_TYPE));
+		Response response = target.request()
+			    .post(Entity.entity(form,MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+		return response;
 	}
 	
 	private Response getSparqlGetQueryResult(String query) throws IOException, URISyntaxException {
