@@ -51,7 +51,7 @@ public class Query {
 	 *         response.
 	 */
 	@GET
-	@Path("/eko")
+	@Path("/sparql")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String sayPlainTextHelloGet() {
 		return "Hello GET!";
@@ -67,6 +67,7 @@ public class Query {
 	 *         response.
 	 */
 	@POST
+	@Path("/sparql")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String sayPlainTextHelloPost() {
 		return "Hello POST!";
