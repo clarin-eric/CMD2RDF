@@ -35,7 +35,7 @@ import org.glassfish.jersey.uri.UriComponent.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Path("/")
+@Path("/sparql")
 public class Query {
 	private static final Logger log = LoggerFactory.getLogger(Query.class);
 	private static final String VIRTUOSO_HOST = virtuosoHost();
@@ -51,7 +51,7 @@ public class Query {
 	 *         response.
 	 */
 	@GET
-	@Path("/sparql")
+	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String sayPlainTextHelloGet() {
 		return "Hello GET!";
@@ -67,7 +67,7 @@ public class Query {
 	 *         response.
 	 */
 	@POST
-	@Path("/sparql")
+	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String sayPlainTextHelloPost() {
 		return "Hello POST!";
@@ -76,7 +76,6 @@ public class Query {
 	
 	//curl -G "http://localhost:8080/cmd2rdf/rest/sparql" --data-urlencode "query=SELECT count(*) {?s ?p ?o}"
 	@GET
-	@Path("/sparql")
 	public Response forwardGetRequest(@Context HttpHeaders headers,
 			@Context UriInfo uriInfo) {
 		String query = uriInfo.getRequestUri().getQuery();
@@ -91,11 +90,10 @@ public class Query {
 	
 	//curl -v "http://localhost:8080/cmd2rdf/rest/sparql" -d "query=SELECT count(*) {?s ?p ?o}" -H "Accept: text/n3"
 	@POST
-	@Path("/sparql")
 	@Produces("application/xml,application/json,application/sparql-results+xml,text/rdf+n3,text/rdf+ttl,text/rdf+turtle"
 			+ ",text/turtle,text/n3,application/turtle,application/x-turtle,application/x-nice-turtle,text/rdf+nt"
 			+ ",text/plain,text/ntriples,application/x-trig,application/rdf+xml,application/soap+xml"
-			+ ",application/soap+xml;11,text/html,text/md+html,text/microdata+html,text/x-html+ul,text/x-html+tr"
+			+ ",text/html,text/md+html,text/microdata+html,text/x-html+ul,text/x-html+tr"
 			+ ",application/vnd.ms-excel,text/csv,text/tab-separated-values,application/javascript,application/json"
 			+ ",application/sparql-results+json,application/odata+json,application/microdata+json,application/rdf+json"
 			+ ",application/x-rdf+json,application/x-json+ld,application/ld+json,text/cxml,text/cxml+qrcode"
