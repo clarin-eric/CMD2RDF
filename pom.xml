@@ -179,6 +179,6 @@
 		<module>conversion</module>
 		<module>rest</module>
 		<module>webui</module>
-    
-  </modules>
+		<module>sparql</module>
+	</modules>
 </project>
