@@ -2,6 +2,7 @@ package nl.knaw.dans.cmd2rdf.webui;
 
 import nl.knaw.dans.cmd2rdf.webui.pages.ApiPage;
 import nl.knaw.dans.cmd2rdf.webui.pages.ContactPage;
+import nl.knaw.dans.cmd2rdf.webui.pages.HomePage;
 import nl.knaw.dans.cmd2rdf.webui.pages.HowItWorkPage;
 
 import org.apache.wicket.markup.html.WebPage;
@@ -31,10 +32,10 @@ public final class Cmd2RdfPageHeader extends Panel {
 	public Cmd2RdfPageHeader(String id, WebPage page) {
 		super(id);
 		add(new BookmarkablePageLink<HomePage>("home", HomePage.class).add(new Cmd2RdfNavigationLabel("homeLabel", "Home")));
-		//add(new BookmarkablePageLink<AdminPage>("admin", AdminPage.class).add(new Cmd2RdfNavigationLabel("adminLabel", "Admin")));
+//		//add(new BookmarkablePageLink<AdminPage>("admin", AdminPage.class).add(new Cmd2RdfNavigationLabel("adminLabel", "Admin")));
 		add(new BookmarkablePageLink<HowItWorkPage>("how", HowItWorkPage.class).add(new Cmd2RdfNavigationLabel("howLabel", "How it works")));
 		add(new BookmarkablePageLink<ApiPage>("api", ApiPage.class).add(new Cmd2RdfNavigationLabel("apiLabel", "API")));
-		//add(new BookmarkablePageLink<PublicationPage>("pub",PublicationPage.class).add(new Cmd2RdfNavigationLabel("pubLabel", "Publications")));
+//		//add(new BookmarkablePageLink<PublicationPage>("pub",PublicationPage.class).add(new Cmd2RdfNavigationLabel("pubLabel", "Publications")));
 		add(new BookmarkablePageLink<ContactPage>("contact", ContactPage.class).add(new Cmd2RdfNavigationLabel("contactLabel", "Contact")));
 	}
 }

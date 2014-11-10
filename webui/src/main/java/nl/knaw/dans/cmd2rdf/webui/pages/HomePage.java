@@ -11,9 +11,5 @@ public class HomePage extends Cmd2RdfBasePage {
 	public HomePage(final PageParameters parameters) {
 		super();
 
-		add(new Label("version", getApplication().getFrameworkSettings().getVersion()));
-
-		// TODO Add your page's components here
-
     }
 }

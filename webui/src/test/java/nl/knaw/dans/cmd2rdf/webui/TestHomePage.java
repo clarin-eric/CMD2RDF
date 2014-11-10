@@ -1,7 +1,6 @@
 package nl.knaw.dans.cmd2rdf.webui;
 
-import nl.knaw.dans.cmd2rdf.webui.HomePage;
-import nl.knaw.dans.cmd2rdf.webui.WicketApplication;
+import nl.knaw.dans.cmd2rdf.webui.pages.HomePage;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
