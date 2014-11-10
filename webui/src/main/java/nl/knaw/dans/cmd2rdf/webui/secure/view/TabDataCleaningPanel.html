@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+<font color="red"><span wicket:id="currentStatus"/></font><br/>
+<font color="red"><span wicket:id="lastStatus"/></font><br/>
+<br/>
+<table>
+<tr><td>Stemming algorithm:</td><td>Potter stemming</td></tr>
+<tr><td>Min word length:</td><td><span wicket:id="minWordLength"/></td></tr>
+<tr><td>Words to skip:</td><td><span wicket:id="skipWord"/></td></tr>
+<tr><td>Min support:</td><td><span wicket:id="minSupport"/></td></tr>
+<tr><td>Min Df:</td><td><span wicket:id="minDf"/></td></tr>
+<tr><td>Max Df Percent:</td><td><span wicket:id="maxDfPrecent"/></td></tr>
+<tr><td>Max N-Gram size:</td><td><span wicket:id="maxNGramSize"/></td></tr>
+<tr><td>Min LLR Value:</td><td><span wicket:id="minLLRValue"/></td></tr>
+<tr><td>Reduce Tasks:</td><td><span wicket:id="reduceTasks"/></td></tr>
+<tr><td>ChuckSize:</td><td><span wicket:id="chuckSize"/></td></tr>
+<tr><td>Norm:</td><td><span wicket:id="norm"/></td></tr>
+</table>
+<br/>
+<form wicket:id="form"><font color="red"><span wicket:id="executeNotAllowed"/></font>
+<input type="submit" value="EXECUTE" wicket:id="ajax-button"/>
+</form>
+</wicket:panel>
+</html>

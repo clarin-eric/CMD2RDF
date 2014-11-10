@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+<font color="red"><span wicket:id="currentStatus"/></font><br/>
+<font color="red"><span wicket:id="lastStatus"/></font><br/>
+<br/>
+<table>
+<tr><td>Input Vectors Path:</td><td><span wicket:id="inputPath"/></td></tr>
+<tr><td>Output Result Path:</td><td><span wicket:id="outputPath"/></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td>Canopy:</td><td></td></tr>
+<tr><td>Distance Measure:</td><td><span wicket:id="canopyDistanceMeasure"/></td></tr>
+<tr><td>Distance Metric T1:</td><td><span wicket:id="canopyDmT1"/></td></tr>
+<tr><td>Distance Metric T2:</td><td><span wicket:id="canopyDmT2"/></td></tr>
+<tr><td>Classification Threshold:</td><td><span wicket:id="canopyTreshold"/></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td>KMeans:</td><td></td></tr>
+<tr><td>Distance Measure:</td><td><span wicket:id="kmeansDistanceMeasure"/></td></tr>
+<tr><td>Convergent Delta:</td><td><span wicket:id="kmeandConvDelta"/></td></tr>
+<tr><td>Maximum Iteration:</td><td><span wicket:id="kmeansMaxIteration"/></td></tr>
+<tr><td>Classification Threshold:</td><td><span wicket:id="kmeansThreshold"/></td></tr>
+</table>
+<br/>
+<form wicket:id="form"><font color="red"><span wicket:id="executeNotAllowed"/></font>
+<input type="submit" value="EXECUTE" wicket:id="ajax-button"/>
+</form>
+</wicket:panel>
+</html>

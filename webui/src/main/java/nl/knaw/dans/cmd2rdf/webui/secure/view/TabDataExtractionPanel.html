@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+<font color="red"><span wicket:id="currentStatus"/></font><br/>
+<font color="red"><span wicket:id="lastStatus"/></font><br/><br/>
+Extract Data From OAI-PHM Repository
+
+<table>
+<tr><td>Base URL: </td><td><span wicket:id="baseUrl"/></td></tr>
+<tr><td>Metadata Prefix: </td><td><span wicket:id="metadataPrefix"/></td></tr>
+<tr><td>Sets: </td><td><span wicket:id="sets"/></td></tr>
+<tr><td>OAI-PMH Verb: </td><td><span wicket:id="verb"/></td></tr>
+<tr><td>Selected Fields: </td><td>dc:title, dc:description, dc:subject, dc:coverage</td></tr>
+</table>
+<br/>
+<form wicket:id="form"><font color="red"><span wicket:id="executeNotAllowed"/></font>
+<input type="submit" value="EXECUTE" wicket:id="ajax-button"/>
+</form>
+</wicket:panel>
+</html>

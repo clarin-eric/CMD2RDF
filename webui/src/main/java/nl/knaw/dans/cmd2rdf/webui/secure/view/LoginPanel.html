@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<head>
+    <title>Wicket Examples - sample panel</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+ 
+ Everything outside of the &lt;wicket:panel&gt; tags will be ignored.
+ Might be handy as preview code.
+ 
+ <wicket:panel>
+ 
+	    <div id="panel">
+                <form wicket:id="form" class="form-horizontal">
+                    <div class="control-group">
+                        <div wicket:id="feedback"></div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="login">Login</label>
+                        <div class="controls">
+                            <input type="text" id="login" wicket:id="login" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="password">Password</label>
+                        <div class="controls">
+                            <input type="password" id="password" wicket:id="password" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <label class="checkbox">
+                                <input type="checkbox" wicket:id="rememberMe"> Remember me on this computer
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <input type="submit" wicket:id="submit" value="Login" title="Login" class="btn btn-primary"/>
+                    </div>
+                </form>
+
+
+	</div>
+  		
+ </wicket:panel>
+    </body>
+</html>
