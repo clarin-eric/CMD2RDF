@@ -178,7 +178,6 @@
 		<module>batch</module>
 		<module>conversion</module>
 		<module>rest</module>
-		<module>webui</module>
-		<module>sparql</module>
-	</modules>
+    	<module>webapps</module>
+  </modules>
 </project>
