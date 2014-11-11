@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>nl.knaw.dans.cmd2rdf</groupId>
+    <artifactId>cmd2rdf</artifactId>
+    <version>0.5-SNAPSHOT</version>
+  </parent>
+  <artifactId>webapps</artifactId>
+  <packaging>war</packaging>
+  <name>webapps Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+		<wicket.version>6.18.0</wicket.version>
+		<jetty.version>7.6.13.v20130916</jetty.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- allowed values: R7, 1.0, 1.5, 2.0 or none -->
+		<wtp.version>none</wtp.version>
+	</properties>
+  <dependencies>
+  <!-- Jersey REST Client -->
+  	<dependency>
+    	<groupId>org.glassfish.jersey.core</groupId>
+    	<artifactId>jersey-client</artifactId>
+    	<version>2.9</version>
+	</dependency>
+	<dependency>
+		<groupId>org.glassfish.jersey.connectors</groupId>
+		<artifactId>jersey-apache-connector</artifactId>
+		<version>2.9.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.glassfish.jersey.connectors</groupId>
+		<artifactId>jersey-grizzly-connector</artifactId>
+		<version>2.9.1</version>
+	</dependency>
+	<dependency>
+        <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        <artifactId>jackson-jaxrs-json-provider</artifactId>
+        <version>2.4.3</version>
+   </dependency>
+   <dependency>
+	<groupId>org.glassfish.jersey.media</groupId>
+	<artifactId>jersey-media-json-jackson</artifactId>
+	<version>2.5</version>
+</dependency>
+  <dependency> 
+		<groupId>org.glassfish.jersey.media</groupId>
+		<artifactId>jersey-media-json-jackson</artifactId>
+		<version>2.5</version>
+   </dependency>
+   
+   <dependency>
+		<groupId>org.glassfish.jersey.containers</groupId>
+		<artifactId>jersey-container-servlet-core</artifactId>
+		<version>2.13</version>
+</dependency>
+   
+   <!-- Servlet 2.5  -->
+   <dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>2.5</version>
+		<scope>provided</scope>
+	</dependency>
+	
+	<!--  WICKET DEPENDENCIES -->
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-core</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<!-- OPTIONAL DEPENDENCY -->
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-extensions</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+	
+  </dependencies>
+  <build>
+	<finalName>cmd2rdf</finalName>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<version>2.3</version>
+			<configuration>
+				<warName>cmd2rdf</warName>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
+</project>
