@@ -177,7 +177,6 @@
 		<module>config</module>
 		<module>batch</module>
 		<module>conversion</module>
-		<module>rest</module>
     	<module>webapps</module>
   </modules>
 </project>
