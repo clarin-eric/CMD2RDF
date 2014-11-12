@@ -1,13 +1,16 @@
-package nl.knaw.dans.cmd2rdf.webapps.sparqlendpoint;
+package nl.knaw.dans.cmd2rdf.webapps.rest.graph;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -21,8 +24,8 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
@@ -71,7 +74,7 @@ public class Query {
 	}
 	
 	
-	//curl -G "http://localhost:8080/sparql" --data-urlencode "query=SELECT count(*) {?s ?p ?o}"
+	//curl -G "http://localhost:8080/cmd2rdf/rest/sparql" --data-urlencode "query=SELECT count(*) {?s ?p ?o}"
 	@GET
 	public Response forwardGetRequest(@Context HttpHeaders headers,
 			@Context UriInfo uriInfo) {
@@ -84,8 +87,8 @@ public class Query {
 		return Response.status(400).build();
 	}
 	
-	//curl -v "http://localhost:8080/cmd2rdf/sparql" -d "query=SELECT count(*) {?s ?p ?o}" -H "Accept: application/rdf+xml"
-	//curl -v "http://localhost:8080/cmd2rdf/sparql" -d "query=SELECT count(*) {?s ?p ?o}" -H "Accept: text/n3"
+	
+	//curl -v "http://localhost:8080/cmd2rdf/rest/sparql" -d "query=SELECT count(*) {?s ?p ?o}" -H "Accept: text/n3"
 	@POST
 	@Produces("application/xml,application/json,application/sparql-results+xml,text/rdf+n3,text/rdf+ttl,text/rdf+turtle"
 			+ ",text/turtle,text/n3,application/turtle,application/x-turtle,application/x-nice-turtle,text/rdf+nt"
@@ -129,9 +132,6 @@ public class Query {
 	private Response getSparqlGetQueryResult(String query) throws IOException, URISyntaxException {
 		Client client = ClientBuilder.newClient().register(
 				JacksonFeature.class);
-		if (query == null || query.isEmpty()) 
-			return Response.status(Status.BAD_REQUEST).build();
-		
 		UriBuilder uriBuilder = UriBuilder.fromUri(new URI(VIRTUOSO_HOST));
 		uriBuilder.path("sparql");
 		uriBuilder.replaceQuery(UriComponent.encode(query, Type.QUERY));

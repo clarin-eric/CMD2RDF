@@ -1,4 +1,4 @@
-package nl.knaw.dans.cmd2rdf.webapps.sparqlendpoint;
+package nl.knaw.dans.cmd2rdf.webapps.rest.sparql;
 
 import java.io.InputStream;
 import java.net.URI;
