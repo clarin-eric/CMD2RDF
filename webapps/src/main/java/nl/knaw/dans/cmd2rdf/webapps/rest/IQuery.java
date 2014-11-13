@@ -3,9 +3,10 @@
  */
 package nl.knaw.dans.cmd2rdf.webapps.rest;
 
-import static nl.knaw.dans.cmd2rdf.webapps.misc.Constants.SUPPORTED_RESPONSE_FORMATS;
+import static nl.knaw.dans.cmd2rdf.webapps.util.Constants.SUPPORTED_RESPONSE_FORMATS;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -38,6 +39,6 @@ public interface IQuery {
 
 	@POST
 	@Produces(SUPPORTED_RESPONSE_FORMATS)
-	public Response localTripleStorePOSTRequest(@Context HttpHeaders headers,
+	public Response localTripleStorePOSTRequest(@HeaderParam("Accept") String headerParam,
 			MultivaluedMap<String, String> formParams);
 }

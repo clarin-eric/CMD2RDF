@@ -1,7 +1,7 @@
 /**
  * 
  */
-package nl.knaw.dans.cmd2rdf.webapps.misc;
+package nl.knaw.dans.cmd2rdf.webapps.util;
 
 /**
  * @author akmi
