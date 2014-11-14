@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import nl.knaw.dans.cmd2rdf.webapps.ui.secure.Cmd2RdfSecureApplication;
 import nl.knaw.dans.cmd2rdf.webapps.util.Misc;
 
 import org.apache.commons.io.FileUtils;
@@ -28,27 +29,15 @@ public class TabConfigurationPanel extends Panel {
 
 	public TabConfigurationPanel(String id, final String cmd2rdfHome) {
 		super(id);
-		String xmlConfig = "";
-		String fileLastMod="";
-		File file = new File(Misc.getEnvValue("job_xml_path"));
-		SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
-		 
-		fileLastMod = sdf.format(file.lastModified());
-		try {
-			xmlConfig = FileUtils.readFileToString(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        
 		
 		Form<Void> form = new Form<Void>("form");
         add(form);
-        final TextArea<String> confTextArea = new TextArea<String>("confTextArea", new Model<String>(xmlConfig));
+        final TextArea<String> confTextArea = new TextArea<String>("confTextArea", new Model<String>(Cmd2RdfSecureApplication.cofigReader.getRawXmlContent()));
         confTextArea.setEscapeModelStrings(false);
         form.add(confTextArea);
       
         
-        final Label xmlLastMod = new Label("xmlLastMod", new Model<String>(fileLastMod));
+        final Label xmlLastMod = new Label("xmlLastMod", new Model<String>(Cmd2RdfSecureApplication.cofigReader.getConfigFileLastModifiedDate()));
         xmlLastMod.setOutputMarkupId(true);
         form.add(xmlLastMod);
         

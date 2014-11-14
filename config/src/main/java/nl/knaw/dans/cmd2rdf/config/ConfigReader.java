@@ -5,6 +5,7 @@ package nl.knaw.dans.cmd2rdf.config;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import nl.knaw.dans.cmd2rdf.config.exeception.ConfigException;
@@ -23,6 +24,7 @@ import org.easybatch.xml.XmlRecordReader;
 public class ConfigReader {
 	
 	private File xmlFile;
+	private String rawXmlContent;
 	private String serverHost;
 	private String username;
 	private String password;
@@ -52,6 +54,7 @@ public class ConfigReader {
 			boolean b = xrr.hasNextRecord();
 	    	if (b) {
 		    	Record<String> r = xrr.readNextRecord();
+		    	rawXmlContent = r.getRawContent();
 		    	XmlRecordMapper<Jobs> xrm = new XmlRecordMapper<Jobs>(Jobs.class);
 		    	Jobs j = xrm.mapRecord(r);
 		    	fetchConfigProperties(j.getConfig().getProperty());
@@ -87,4 +90,14 @@ public class ConfigReader {
 	public String getTripleStorePassword(){
 		return password;
 	}
+	
+	public String getConfigFileLastModifiedDate(){
+		SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
+		return sdf.format(xmlFile.lastModified());
+	}
+	
+	public String getRawXmlContent() {
+		return rawXmlContent;
+	}
+	
 }
