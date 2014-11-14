@@ -19,6 +19,12 @@
 		<wtp.version>none</wtp.version>
 	</properties>
   <dependencies>
+   <!-- modules dependencies -->
+    <dependency>
+   		<groupId>${project.groupId}</groupId>
+   		<artifactId>config</artifactId>
+   		<version>${project.version}</version>
+    </dependency>
   <!-- Jersey REST Client -->
   	<dependency>
     	<groupId>org.glassfish.jersey.core</groupId>

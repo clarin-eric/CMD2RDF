@@ -1,5 +1,7 @@
 package nl.knaw.dans.cmd2rdf.webapps.ui.secure;
 
+import nl.knaw.dans.cmd2rdf.config.ConfigReader;
+import nl.knaw.dans.cmd2rdf.config.exeception.ConfigException;
 import nl.knaw.dans.cmd2rdf.webapps.ui.ExceptionPage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.ApiPage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.ContactPage;
@@ -10,6 +12,7 @@ import nl.knaw.dans.cmd2rdf.webapps.ui.secure.view.AdminPage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.service.CookieService;
 import nl.knaw.dans.cmd2rdf.webapps.ui.service.SessionProvider;
 import nl.knaw.dans.cmd2rdf.webapps.ui.service.UserService;
+import nl.knaw.dans.cmd2rdf.webapps.util.Misc;
 
 import org.apache.wicket.Session;
 import org.apache.wicket.core.request.handler.PageProvider;
@@ -20,13 +23,16 @@ import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 import org.apache.wicket.request.cycle.AbstractRequestCycleListener;
 import org.apache.wicket.request.cycle.RequestCycle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Cmd2RdfSecureApplication extends WebApplication {
-
+	private static final Logger LOG = LoggerFactory.getLogger(Cmd2RdfSecureApplication.class);
     private UserService userService = new UserService();
     private CookieService cookieService = new CookieService();
     private SessionProvider sessionProvider = new SessionProvider(userService, cookieService);
-
+    
+    public static ConfigReader cofigReader;
     public Cmd2RdfSecureApplication() {
     	 // In case of unhandled exception redirect it to a custom page
 		  this.getRequestCycleListeners().add(new AbstractRequestCycleListener() {
@@ -45,7 +51,11 @@ public class Cmd2RdfSecureApplication extends WebApplication {
     @Override
     public void init() {
         super.init();
-
+        try {
+			cofigReader = new ConfigReader(Misc.getEnvValue("job_xml_path"));
+		} catch (ConfigException e) {
+			LOG.error(e.getMessage());
+		}
         mountPage("/admin", AdminPage.class);
         mountPage("/how", HowItWorkPage.class);
         mountPage("/api", ApiPage.class);

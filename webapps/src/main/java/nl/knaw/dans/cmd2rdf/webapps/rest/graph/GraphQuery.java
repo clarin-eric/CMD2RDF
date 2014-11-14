@@ -44,7 +44,7 @@ public class GraphQuery extends JerseyRestClient implements IQuery {
 		super();
 		ClientConfig clientConfig = new ClientConfig();
 		clientConfig.connectorProvider(new ApacheConnectorProvider());
-		HttpAuthenticationFeature authFeature = HttpAuthenticationFeature.digest("dba", "dba");
+		HttpAuthenticationFeature authFeature = HttpAuthenticationFeature.digest(VIRTUOSO_USERNAME, VIRTUOSO_PASSWORD);
 		register(authFeature);
 	}
 

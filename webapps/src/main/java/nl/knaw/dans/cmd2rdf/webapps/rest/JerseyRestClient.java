@@ -10,6 +10,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.UriBuilder;
 
+import nl.knaw.dans.cmd2rdf.webapps.ui.secure.Cmd2RdfSecureApplication;
 import nl.knaw.dans.cmd2rdf.webapps.util.Misc;
 
 import org.slf4j.Logger;
@@ -21,7 +22,9 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class JerseyRestClient {
 	private static final Logger LOG = LoggerFactory.getLogger(JerseyRestClient.class);
-	protected static final String VIRTUOSO_HOST = virtuosoHost();
+	protected static final String VIRTUOSO_HOST = Cmd2RdfSecureApplication.cofigReader.getTripleStoreServerHost();
+	protected static final String VIRTUOSO_USERNAME = Cmd2RdfSecureApplication.cofigReader.getTripleStoreUsername();
+	protected static final String VIRTUOSO_PASSWORD = Cmd2RdfSecureApplication.cofigReader.getTripleStorePassword();
 	protected UriBuilder uriBuilder;
 	
 	protected Client client;
@@ -31,8 +34,7 @@ public abstract class JerseyRestClient {
 		try {
 			uriBuilder = UriBuilder.fromUri(new URI(VIRTUOSO_HOST));
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.error(e.getMessage());
 		}
 	}
 	
@@ -42,7 +44,4 @@ public abstract class JerseyRestClient {
 		
 	}
 	
-	private static String virtuosoHost() {
-		return Misc.getEnvValue("virtuoso_host", "http://localhost:8890");
-	}
 }

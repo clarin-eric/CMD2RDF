@@ -47,12 +47,6 @@
 		<servlet-name>Jersey REST Service GRAPH</servlet-name>
 		<url-pattern>/graph/*</url-pattern>
 	</servlet-mapping>
-
-	<env-entry>
-		<env-entry-name>virtuoso_host</env-entry-name>
-		<env-entry-value>http://zandbak01.dans.knaw.nl:8000</env-entry-value>
-		<env-entry-type>java.lang.String</env-entry-type>
-	</env-entry>
 	
 	<env-entry>
 		<env-entry-name>job_xml_path</env-entry-name>
