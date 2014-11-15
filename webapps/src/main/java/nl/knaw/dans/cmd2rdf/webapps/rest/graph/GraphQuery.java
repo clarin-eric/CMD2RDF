@@ -145,5 +145,26 @@ public class GraphQuery extends JerseyRestClient implements IQuery {
 
 		return target.request().get();
 	}
+	
+	/*
+	 * TODO:
+	 select ?s ?p ?v {
+  graph ?g {?s ?p ?v} 
+. filter(strStarts(str(?g), "http://localhost:8000/DAV/PARENT/"))
+}
+
+The most efficient approach I guess  is to explicitly state in your data that
+
+<http://localhost:8000/DAV/PARENT> :hasChild <http://localhost:8000/DAV/PARENT/A.rdf> .
+<http://localhost:8000/DAV/PARENT> :hasChild <http://localhost:8000/DAV/PARENT/B.rdf> .
+<http://localhost:8000/DAV/PARENT> :hasChild <http://localhost:8000/DAV/PARENT/C.rdf> .
+
+and then query 
+
+select * {
+  <http://localhost:8000/DAV/PARENT> :hasChild ?child .
+  graph ?child {?s ?p ?v} 
+}
+	 */
 
 }
