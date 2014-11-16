@@ -41,7 +41,7 @@ public class ConfigReader {
 		xmlFile = new File(xmlSrcFilePath);
 		if (xmlFile == null || xmlSrcFilePath.isEmpty() || !xmlFile.exists() 
 				|| !xmlFile.isFile() || !xmlSrcFilePath.endsWith(".xml"))
-			throw new ConfigException("The given xml file does not exist or not a xml file.");
+			throw new ConfigException("'" + xmlSrcFilePath + "'. The given xml file does not exist or not a xml file.");
 	
 		init();
 	}
