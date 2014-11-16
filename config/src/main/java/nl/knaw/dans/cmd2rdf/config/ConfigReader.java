@@ -26,6 +26,7 @@ public class ConfigReader {
 	private String serverHost;
 	private String username;
 	private String password;
+	private String prefixBaseURI;
 
 	/**
 	 * @param args
@@ -73,6 +74,8 @@ public class ConfigReader {
 				username = p.value;
 			else if (p.name.equals("password"))
 				password = p.value;
+			else if (p.name.equals("prefixBaseURI"))
+				prefixBaseURI = p.value;
 		}
 		
 	}
@@ -96,6 +99,10 @@ public class ConfigReader {
 	
 	public String getRawXmlContent() {
 		return rawXmlContent;
+	}
+	
+	public String getPrefixBaseURI() {
+		return prefixBaseURI;
 	}
 	
 }

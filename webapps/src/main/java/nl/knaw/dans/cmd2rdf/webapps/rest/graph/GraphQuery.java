@@ -21,8 +21,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
+import nl.knaw.dans.cmd2rdf.config.ConfigReader;
 import nl.knaw.dans.cmd2rdf.webapps.rest.IQuery;
 import nl.knaw.dans.cmd2rdf.webapps.rest.JerseyRestClient;
+import nl.knaw.dans.cmd2rdf.webapps.ui.secure.Cmd2RdfSecureApplication;
 
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientConfig;
@@ -101,7 +103,10 @@ public class GraphQuery extends JerseyRestClient implements IQuery {
 	@Path("/{query:.+}")
 	@Produces("application/rdf+xml,application/json")
 	public Response localTripleStoreGETRequest(@PathParam("query") String query, @Context UriInfo uriInfo, @HeaderParam("format")/*Accept*/ String headerParam) {
-		query = "http://localhost:8000/DAV/" + query;
+		String prefixBaseURI = Cmd2RdfSecureApplication.cofigReader.getPrefixBaseURI();
+		if (!prefixBaseURI.endsWith("/"))
+			prefixBaseURI += "/";
+		query = prefixBaseURI + query;
 		String query2 = uriInfo.getRequestUri().getQuery();
 		String headerFormat = null;
 		if (headerParam != null && !headerParam.isEmpty())
