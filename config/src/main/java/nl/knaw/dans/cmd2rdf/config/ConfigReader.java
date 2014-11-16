@@ -4,12 +4,10 @@
 package nl.knaw.dans.cmd2rdf.config;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import nl.knaw.dans.cmd2rdf.config.exeception.ConfigException;
-import nl.knaw.dans.cmd2rdf.config.xmlmapping.Config;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Jobs;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Property;
 
