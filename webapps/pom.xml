@@ -9,7 +9,7 @@
   </parent>
   <artifactId>webapps</artifactId>
   <packaging>war</packaging>
-  <name>webapps Maven Webapp</name>
+  <name>webapps</name>
   <url>http://maven.apache.org</url>
   <properties>
 		<wicket.version>6.18.0</wicket.version>
