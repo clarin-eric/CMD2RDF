@@ -40,8 +40,6 @@ public abstract class JerseyRestClient {
 	
 	protected void register(Object object) {
 		client = ClientBuilder.newClient().register(object);
-				//.register(JacksonFeature.class);
-		
 	}
 	
 }

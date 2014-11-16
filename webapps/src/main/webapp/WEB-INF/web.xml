@@ -50,7 +50,7 @@
 	
 	<env-entry>
 		<env-entry-name>job_xml_path</env-entry-name>
-		<env-entry-value>/Users/akmi/eko-cmdi-test/conf/cmd2rdf-jobs-mpi-profiles-components.xml</env-entry-value>
+		<env-entry-value>/Users/akmi/DANS/eko-cmdi-test/conf/cmd2rdf-jobs-mpi-profiles-components.xml</env-entry-value>
 		<env-entry-type>java.lang.String</env-entry-type>
 	</env-entry>
 

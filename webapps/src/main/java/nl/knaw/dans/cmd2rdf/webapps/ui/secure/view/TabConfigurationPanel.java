@@ -1,13 +1,7 @@
 package nl.knaw.dans.cmd2rdf.webapps.ui.secure.view;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-
 import nl.knaw.dans.cmd2rdf.webapps.ui.secure.Cmd2RdfSecureApplication;
-import nl.knaw.dans.cmd2rdf.webapps.util.Misc;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.basic.Label;

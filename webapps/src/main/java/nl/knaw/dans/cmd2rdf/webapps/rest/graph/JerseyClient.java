@@ -17,12 +17,16 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.uri.UriComponent;
 import org.glassfish.jersey.uri.UriComponent.Type;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+
 public class JerseyClient {
 	public static void main(String[] args) {
-		//getRequest();
+		getRequest();
 		
 		
-		postRequest();
+		//postRequest();
 	}
 	
 	//curl -v "http://localhost:8080/sparql" --data-urlencode "query=SELECT count(*) {?s ?p ?o}" -H "Accept: application/json"
@@ -76,9 +80,9 @@ public class JerseyClient {
 					"http://zandbak01.dans.knaw.nl:8000"));
 			uriBuilder.path("sparql");
 			uriBuilder.queryParam("query", UriComponent.encode(
-					"select distinct ?Concept where {[] a ?Concept} LIMIT 100",
+					"select count(*) {?s <http://www.w3.org/ns/oa#hasBody> ?o}",
 					Type.QUERY));
-			uriBuilder.queryParam("format", "applicationjson");
+			uriBuilder.queryParam("format", "application/json");
 			WebTarget target = client.target(uriBuilder);
 
 			Response response = target.request().get();
@@ -91,6 +95,20 @@ public class JerseyClient {
 
 			} else {
 				InputStream in = response.readEntity(InputStream.class);
+				
+				JsonFactory jfactory = new JsonFactory();
+				JsonParser jp = jfactory.createParser(in);
+				jp.nextToken();
+				while (jp.nextToken() != JsonToken.END_OBJECT) {
+					String fieldname = jp.getCurrentName();
+					String text = jp.getText();
+					String value = jp.getValueAsString();
+					System.out.println("fieldname: " + fieldname + "\ttext: " + text + "\tvalue: " + value );
+					jp.nextToken();
+//					if ("name".equals(fieldname)) {
+//						
+//					}
+				}
 				String theString = IOUtils.toString(in, "UTF-8");
 				System.out.println(theString);
 			}
