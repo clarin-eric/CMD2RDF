@@ -5,7 +5,11 @@ package nl.knaw.dans.cmd2rdf.config;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import nl.knaw.dans.cmd2rdf.config.exeception.ConfigException;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Jobs;
@@ -23,10 +27,8 @@ public class ConfigReader {
 	
 	private File xmlFile;
 	private String rawXmlContent;
-	private String serverHost;
-	private String username;
-	private String password;
-	private String prefixBaseURI;
+	private final Pattern pattern = Pattern.compile("\\{(.*?)\\}");
+	private Map<String, String> GLOBAL_VARS = new HashMap<String, String>();
 
 	/**
 	 * @param args
@@ -68,28 +70,32 @@ public class ConfigReader {
 	
 	private void fetchConfigProperties(List<Property> configPropertyList) {
 		for (Property p : configPropertyList) {
-			if (p.name.equals("serverHost")) 
-				serverHost = p.value;
-			else if (p.name.equals("username")) 
-				username = p.value;
-			else if (p.name.equals("password"))
-				password = p.value;
-			else if (p.name.equals("prefixBaseURI"))
-				prefixBaseURI = p.value;
+			GLOBAL_VARS.put(p.name, p.value);
 		}
-		
+		//iterate through map, find whether map values contain {val}
+		for (Map.Entry<String, String> e : GLOBAL_VARS.entrySet()) {
+			String pVal = e.getValue();
+			Matcher m = pattern.matcher(pVal);
+			if (m.find()) {
+				String globalVar = m.group(1);
+				if (GLOBAL_VARS.containsKey(globalVar)) {
+					pVal = pVal.replace(m.group(0), GLOBAL_VARS.get(globalVar));
+					GLOBAL_VARS.put(e.getKey(), pVal);
+				}
+			}
+		}
 	}
 
 	public String getTripleStoreServerHost(){
-		return serverHost;
+		return GLOBAL_VARS.get("serverHost");
 	}
 
 	public String getTripleStoreUsername(){
-		return username;
+		return GLOBAL_VARS.get("username");
 	}
 	
 	public String getTripleStorePassword(){
-		return password;
+		return GLOBAL_VARS.get("password");
 	}
 	
 	public String getConfigFileLastModifiedDate(){
@@ -102,7 +108,7 @@ public class ConfigReader {
 	}
 	
 	public String getPrefixBaseURI() {
-		return prefixBaseURI;
+		return GLOBAL_VARS.get("prefixBaseURI");
 	}
 	
 }
