@@ -10,9 +10,11 @@
             <property name="urlDB">{homedir}/db7/DB_CMD_CHECKSUM</property>
             <property name="profilesCacheDir">{homedir}/profiles-cache</property>
             <property name="registry">http://catalog.clarin.eu/ds/ComponentRegistry</property>
-            <property name="serverURL">http://localhost:8890/sparql-graph-crud-auth?</property>
+            <property name="serverHost">http://localhost:8890</property>
+            <property name="serverURL">{serverHost}/sparql-graph-crud-auth?</property>
             <property name="username">dba</property>
             <property name="password">dba</property>
+            <property name="baseURIParam">{serverHost}/DAV</property>
         </properties>
     </config>
     <prepare>
