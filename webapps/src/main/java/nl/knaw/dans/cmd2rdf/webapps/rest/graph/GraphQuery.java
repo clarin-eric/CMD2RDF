@@ -21,7 +21,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
-import nl.knaw.dans.cmd2rdf.config.ConfigReader;
 import nl.knaw.dans.cmd2rdf.webapps.rest.IQuery;
 import nl.knaw.dans.cmd2rdf.webapps.rest.JerseyRestClient;
 import nl.knaw.dans.cmd2rdf.webapps.ui.secure.Cmd2RdfSecureApplication;
