@@ -9,7 +9,7 @@
                 >/lat/apache/htdocs/oai-harvester/clarin/results/cmdi,/lat/apache/htdocs/oai-harvester/others/results/cmdi</property>
             <property name="urlDB">{homedir}/db7/DB_CMD_CHECKSUM</property>
             <property name="profilesCacheDir">{homedir}/profiles-cache</property>
-            <property name="registry">http://catalog.clarin.eu/ds/ComponentRegistry</property>
+            <property name="registry">http://catalog.eu/ds/ComponentRegistry</property>
             <property name="serverHost">http://localhost:8890</property>
             <property name="serverURL">{serverHost}/sparql-graph-crud-auth?</property>
             <property name="username">dba</property>
@@ -20,7 +20,7 @@
     <prepare>
         <actions>
             <action name="checksum">
-                <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumDBAction">
+                <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumDBAction">
                     <properties>
                         <property name="xmlSourceDir">{xmlSourceDir}</property>
                         <property name="urlDB">{urlDB}</property>
@@ -29,7 +29,7 @@
                 </class>
             </action>
             <action name="fetch">
-                <class name="nl.knaw.dans.clarin.cmd2rdf.harvester.OaipmhHarvester">
+                <class name="nl.knaw.dans.cmd2rdf.harvester.OaipmhHarvester">
                     <properties>
                         <property name="oaipmhBaseURL">https://openskos.meertens.knaw.nl/oai-pmh</property>
                         <property name="prefix">oai_rdf</property>
@@ -39,7 +39,7 @@
                 </class>
             </action>
             <action>
-                <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumDBAction">
+                <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumDBAction">
                     <properties>
                         <property name="urlDB">{urlDB}</property>
                         <property name="action">DELETE</property>
@@ -54,7 +54,7 @@
             nThreads="32" xmlLimitSizeMax="10240" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -63,7 +63,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -73,7 +73,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoClient">
+                    <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoClient">
                         <properties>
                             <property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
                             <property name="prefixBaseURI">http://localhost:8890/DAV</property>
@@ -82,7 +82,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -97,7 +97,7 @@
             nThreads="16" xmlLimitSizeMin="10241" xmlLimitSizeMax="102400" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -106,7 +106,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -116,7 +116,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoClient">
+                    <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoClient">
                         <properties>
                             <property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
                             <property name="prefixBaseURI">http://localhost:8890/DAV</property>
@@ -125,7 +125,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -140,7 +140,7 @@
             nThreads="8" xmlLimitSizeMin="102401" xmlLimitSizeMax="256000" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -149,7 +149,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -159,7 +159,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/100K-250K</property>
@@ -169,7 +169,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -181,7 +181,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 100K - 250K">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -194,7 +194,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 100K-250K">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/100K-250K</property>
@@ -209,7 +209,7 @@
             nThreads="6" xmlLimitSizeMin="256001" xmlLimitSizeMax="512000" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -218,7 +218,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -228,7 +228,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/250K-500K</property>
@@ -238,7 +238,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -250,7 +250,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 250K - 500K">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -263,7 +263,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 250K-500K">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/250K-500K</property>
@@ -278,7 +278,7 @@
             nThreads="4" xmlLimitSizeMin="512001" xmlLimitSizeMax="768000" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -287,7 +287,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -297,7 +297,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/500K-750K</property>
@@ -307,7 +307,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -319,7 +319,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 500K - 750K">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -332,7 +332,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 500K-750K">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/500K-750K</property>
@@ -347,7 +347,7 @@
             nThreads="2" xmlLimitSizeMin="768001" xmlLimitSizeMax="1048576" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -356,7 +356,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -366,7 +366,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/750K-1M</property>
@@ -376,7 +376,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -388,7 +388,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 750K-1M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -401,7 +401,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 750K-1M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/250K-500K</property>
@@ -416,7 +416,7 @@
             nThreads="2" xmlLimitSizeMin="1048577" xmlLimitSizeMax="1310720" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -425,7 +425,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -435,7 +435,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1M-1.25M</property>
@@ -445,7 +445,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -457,7 +457,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 1M-1.25M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -470,7 +470,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 1M-1.25M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/1M-1.25M</property>
@@ -485,7 +485,7 @@
             nThreads="2" xmlLimitSizeMin="1310721" xmlLimitSizeMax="1572864" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -494,7 +494,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -504,7 +504,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1.25M-1.5M</property>
@@ -514,7 +514,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -526,7 +526,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 1.25M-1.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -539,7 +539,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 1.25M-1.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/1.25M-1.5M</property>
@@ -554,7 +554,7 @@
             nThreads="1" xmlLimitSizeMin="1572865" xmlLimitSizeMax="2097152" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -563,7 +563,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -573,7 +573,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1.5M-2M</property>
@@ -583,7 +583,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -595,7 +595,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 1.5M-2M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -608,7 +608,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 1.5M-2M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/1.5M-2M</property>
@@ -623,7 +623,7 @@
             nThreads="1" xmlLimitSizeMin="2097151" xmlLimitSizeMax="5242880" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -632,7 +632,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -642,7 +642,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/2M-5M</property>
@@ -652,7 +652,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -664,7 +664,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 2M-5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -677,7 +677,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 250K-500K">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/2M-5M</property>
@@ -692,7 +692,7 @@
             nThreads="1" xmlLimitSizeMin="5242881" xmlLimitSizeMax="7864320" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -701,7 +701,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -711,7 +711,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/5M-7.5M</property>
@@ -721,7 +721,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -733,7 +733,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 5M-7.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -746,7 +746,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 5M-7.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/5M-7.5M</property>
@@ -761,7 +761,7 @@
             nThreads="1" xmlLimitSizeMin="7864321" xmlLimitSizeMax="10485760" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -770,7 +770,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -780,7 +780,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/7.5M-10M</property>
@@ -790,7 +790,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -802,7 +802,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 7.5M-10M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -815,7 +815,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 7.5M-10M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/7.5M-10M</property>
@@ -830,7 +830,7 @@
             nThreads="1" xmlLimitSizeMin="10485761" xmlLimitSizeMax="13107200" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -839,7 +839,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -849,7 +849,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/10M-12.5M</property>
@@ -859,7 +859,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -871,7 +871,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 10M-12.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -884,7 +884,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 10M-12.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/10M-12.5M</property>
@@ -899,7 +899,7 @@
             nThreads="1" xmlLimitSizeMin="13107201" xmlLimitSizeMax="15728640" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -908,7 +908,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -918,7 +918,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/12.5-15M</property>
@@ -928,7 +928,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -940,7 +940,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 12.5-15M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -953,7 +953,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 12.5-15M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/12.5-15M</property>
@@ -968,7 +968,7 @@
             nThreads="1" xmlLimitSizeMin="15728641" xmlLimitSizeMax="18350080" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -977,7 +977,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -987,7 +987,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/15M-17.5M</property>
@@ -997,7 +997,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -1009,7 +1009,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 15M-17.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -1022,7 +1022,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 15M-17.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/15M-17.5M</property>
@@ -1037,7 +1037,7 @@
             nThreads="1" xmlLimitSizeMin="18350081" xmlLimitSizeMax="20971520" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -1046,7 +1046,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -1056,7 +1056,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/17.5M-20M</property>
@@ -1066,7 +1066,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -1078,7 +1078,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 17.5M-20M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -1091,7 +1091,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 17.5M-20M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/17.5M-20M</property>
@@ -1106,7 +1106,7 @@
             nThreads="1" xmlLimitSizeMin="20971521" xmlLimitSizeMax="23592960" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -1115,7 +1115,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -1125,7 +1125,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/20M-22.5M</property>
@@ -1135,7 +1135,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -1147,7 +1147,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 20M-22.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -1160,7 +1160,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 20M-22.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/20M-22.5M</property>
@@ -1175,7 +1175,7 @@
             nThreads="1" xmlLimitSizeMin="23592961" xmlLimitSizeMax="26214400" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -1184,7 +1184,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -1194,7 +1194,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/22.5M-25M</property>
@@ -1204,7 +1204,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -1216,7 +1216,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 22.5M-25M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -1229,7 +1229,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 22.5M-25M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/22.5M-25M</property>
@@ -1244,7 +1244,7 @@
             nThreads="1" xmlLimitSizeMin="26214401" xmlLimitSizeMax="28835840" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -1253,7 +1253,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -1263,7 +1263,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/25M-27.5M</property>
@@ -1273,7 +1273,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -1285,7 +1285,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 25M-27.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -1298,7 +1298,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 25M-27.5M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/25M-27.5M</property>
@@ -1313,7 +1313,7 @@
             nThreads="1" xmlLimitSizeMin="28835841" xmlLimitSizeMax="31457280" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -1322,7 +1322,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -1332,7 +1332,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/27.5M-30M</property>
@@ -1342,7 +1342,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -1354,7 +1354,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 27.5M-30M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -1367,7 +1367,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 27.5M-30M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/27.5M-30M</property>
@@ -1382,7 +1382,7 @@
             nThreads="1" xmlLimitSizeMin="31457281" xmlLimitSizeMax="36700160" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -1391,7 +1391,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -1401,7 +1401,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/30M-35M</property>
@@ -1411,7 +1411,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -1423,7 +1423,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 30M-35M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -1436,7 +1436,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 30M-35M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/30M-35M</property>
@@ -1451,7 +1451,7 @@
             nThreads="1" xmlLimitSizeMin="36700161" xmlLimitSizeMax="41943040" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -1460,7 +1460,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -1470,7 +1470,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/35M-40M</property>
@@ -1480,7 +1480,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -1492,7 +1492,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 35M-40M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -1505,7 +1505,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 35M-40M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/35M-40M</property>
@@ -1520,7 +1520,7 @@
             nThreads="1" xmlLimitSizeMin="41943041" xmlLimitSizeMax="52428800" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -1529,7 +1529,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -1539,7 +1539,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/40M-50M</property>
@@ -1549,7 +1549,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -1561,7 +1561,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT 40M-50M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -1574,7 +1574,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file 40M-50M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/40M-50M</property>
@@ -1589,7 +1589,7 @@
             nThreads="1" xmlLimitSizeMin="52428801" xmlLimitSizeMax="104857600" xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -1598,7 +1598,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -1608,7 +1608,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/50M-100M</property>
@@ -1618,7 +1618,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -1630,7 +1630,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT >50M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -1643,7 +1643,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file >50M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/50M-100M</property>
@@ -1658,7 +1658,7 @@
             nThreads="1" xmlLimitSizeMin="104857601"  xmlSource="{urlDB}">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
                             <property name="baseStripParam">{xmlSourceDir}</property>
@@ -1667,7 +1667,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource"
                                 >{xsltSourceDir}/addOrganisationEntity.xsl</property>
@@ -1677,7 +1677,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.FileStore">
+                    <class name="nl.knaw.dans.cmd2rdf.store.FileStore">
                         <properties>
                             <property name="xmlSourceDir">{xmlSourceDir}</property>
                             <property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/>100M</property>
@@ -1687,7 +1687,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumRecordStatus">
+                    <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumRecordStatus">
                         <properties>
                             <property name="urlDB">{urlDB}</property>
                             <property name="action">UPDATE</property>
@@ -1699,7 +1699,7 @@
             <cleanup>
                 <actions>
                     <action name="EXECUTE BULK IMPORT >50M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoBulkImporter">
+                        <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
                             <properties>
                                 <property name="bulkImportShellPath"
                                     >/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
@@ -1712,7 +1712,7 @@
                         </class>
                     </action>
                     <action name="Deleting rdf output file >50M">
-                        <class name="nl.knaw.dans.clarin.cmd2rdf.store.RemoveDirectory">
+                        <class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
                             <properties>
                                 <property name="directoryToRemove"
                                     >/lat/tools/cmd2rdf/rdf-output/>100M</property>
@@ -1728,14 +1728,14 @@
         <profile  desc="Convert all the profiles we encountered into RDF" xmlSource="{profilesCacheDir}" filter="clarin.eu_cr1_p_*.xml">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/Component2RDF.xsl</property>
                         </properties>
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoClient">
+                    <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoClient">
                         <properties>
                             <property name="replacedPrefixBaseURI">{profilesCacheDir}</property>
                             <property name="prefixBaseURI">http://localhost:8000/DAV/profile</property>
@@ -1751,7 +1751,7 @@
         <component desc="Convert all the components we encountered into RDF"  xmlSource="{profilesCacheDir}" filter="clarin.eu_cr1_c_*.xml">
             <actions>
                 <action name="transform">
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.mt.XsltTransformer">
+                    <class name="nl.knaw.dans.cmd2rdf.mt.XsltTransformer">
                         <properties>
                             <property name="xsltSource">{xsltSourceDir}/Component2RDF.xsl</property>
                             <property name="fetch_components">false</property>
@@ -1759,7 +1759,7 @@
                     </class>
                 </action>
                 <action>
-                    <class name="nl.knaw.dans.clarin.cmd2rdf.store.VirtuosoClient">
+                    <class name="nl.knaw.dans.cmd2rdf.store.VirtuosoClient">
                         <properties>
                             <property name="replacedPrefixBaseURI">{profilesCacheDir}</property>
                             <property name="prefixBaseURI">http://localhost:8890/DAV/component</property>
@@ -1773,7 +1773,7 @@
     <cleanup>
         <actions>
             <action>
-                <class name="nl.knaw.dans.clarin.cmd2rdf.store.db.MD5ChecksumDBAction">
+                <class name="nl.knaw.dans.cmd2rdf.store.db.MD5ChecksumDBAction">
                     <properties>
                         <property name="urlDB">{urlDB}</property>
                         <property name="action">CLEANUP</property>
