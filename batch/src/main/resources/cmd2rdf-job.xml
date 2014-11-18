@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+	<action name="transform">
+		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
+			<properties>
+				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
+			</properties>
+		</class>
+	</action>
+	<!--<action>
+		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
+			<properties>
+				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+				<property name="teeOutputDir">{homedir}/tee/xml</property>
+			</properties>
+		</class>
+	</action>-->
+	<action name="transform">
+		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
+			<properties>
+				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
+				<property name="base_strip">file:{xmlSourceDir}</property>
+				<property name="base_add">http://localhost:8890/DAV</property>
+			</properties>
+		</class>
+	</action>
+	<action>
+		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
+			<properties>
+				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
+				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
+			</properties>
+		</class>
+	</action>
+	<action>
+		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
+			<properties>
+				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
+			</properties>
+		</class>
+	</action>
+	<!--<action>
+		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
+			<properties>
+				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+				<property name="teeOutputDir">{homedir}/tee/rdf</property>
+			</properties>
+		</class>
+	</action>-->
+	<action>
+		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
+			<properties>
+				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+				<property name="action">POST</property>
+			</properties>
+		</class>
+	</action>
+	<action>
+		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+			<properties>
+				<property name="urlDB">{urlDB}</property>
+				<property name="action">UPDATE</property>
+				<property name="status">DONE</property>
+			</properties>
+		</class>
+	</action>
+</actions>

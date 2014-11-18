@@ -6,15 +6,17 @@
     <!ENTITY cmdm 'http://www.clarin.eu/cmd/general.rdf#'>
     <!ENTITY oa 'http://www.w3.org/ns/oa#'>
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:dcr="http://www.isocat.org/ns/dcr.rdf#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:cmd="http://www.clarin.eu/cmd/" xmlns:cmdm="http://www.clarin.eu/cmd/general.rdf#" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:oa="http://www.w3.org/ns/oa#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:dcr="http://www.isocat.org/ns/dcr.rdf#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:cmd="http://www.clarin.eu/cmd/" xmlns:cmdm="http://www.clarin.eu/cmd/general.rdf#" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:oa="http://www.w3.org/ns/oa#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vlo="http://www.clarin.eu/vlo/"  xmlns:cmdi="http://www.clarin.eu/cmdi/">
 
     <xsl:output method="xml" encoding="UTF-8"/>
 
+	<xsl:param name="base" select="if (exists(/*/@xml:base)) then (/*/@xml:base) else (base-uri())"/>
+	
     <!-- allow to rewrite the urls -->
-    <xsl:param name="base_strip" select="base-uri()"/>
+	<xsl:param name="base_strip" select="$base"/>
     <xsl:param name="base_add" select="''"/>
 
-    <xsl:variable name="about" select="replace(if ($base_strip=base-uri()) then base-uri() else replace(base-uri(), $base_strip, $base_add),'([./])(xml|cmdi)$','$1rdf')"/>
+    <xsl:variable name="about" select="replace(if ($base_strip=$base) then $base else replace($base, $base_strip, $base_add),'([./])(xml|cmdi)$','$1rdf')"/>
 
     <xsl:include href="CMD2RDF.xsl"/>
 
@@ -23,6 +25,9 @@
     <!-- let's create some RDF -->
     <xsl:template match="/cmd:CMD">
         <rdf:RDF xml:base="{$about}">
+        	<rdf:Description rdf:about="{$about}">
+        		<cmdi:inRepository rdf:resource="{replace($about,'(.*/).*','$1')}"/>
+        	</rdf:Description>
             <!-- The CMDI is seen as OA Annotation of a (set of) resource(s) -->
             <oa:Annotation rdf:about="{$about}">
                 <xsl:apply-templates select="cmd:Resources" mode="resources"/>
@@ -30,6 +35,7 @@
                     <xsl:apply-templates select="cmd:Components">
                         <xsl:with-param name="context" tunnel="yes" select="''"/>
                     </xsl:apply-templates>
+                	<xsl:apply-templates select="vlo:*"/>
                 </oa:hasBody>
                 <oa:motivatedBy rdf:resource="&oa;describing"/>
                 <xsl:apply-templates select="cmd:Resources" mode="other"/>
@@ -290,5 +296,16 @@
             </cmdm:containsAttribute>
         </xsl:for-each>
     </xsl:template>
+	
+	<!-- a VLO facet -->
+	<xsl:template match="vlo:*">
+		<xsl:element name="vlo:{local-name()}">
+			<xsl:attribute name="rdf:about" select="concat('#',generate-id(.))"/>
+			<xsl:element name="vlo:{local-name()}ElementValue">
+				<xsl:attribute name="rdf:datatype" select="'&xsd;string'"/>
+				<xsl:value-of select="."/>
+			</xsl:element>
+		</xsl:element>
+	</xsl:template>
 
 </xsl:stylesheet>

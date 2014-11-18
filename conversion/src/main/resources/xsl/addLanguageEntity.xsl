@@ -7,8 +7,6 @@
     exclude-result-prefixes="xs"
     version="2.0">
     
-    <xsl:param name="VLO-orgs"/>
-    
     <!-- identity copy -->
     <xsl:template match="@*|node()">
         <xsl:copy>
@@ -16,17 +14,16 @@
         </xsl:copy>
     </xsl:template>
     
-	<xsl:template match="vlo:hasFacetOrganisationElementValue" priority="1">
+	<xsl:template match="vlo:hasFacetISO6393ElementValue" priority="1">
         <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
-        <xsl:if test="normalize-space()!=''">
-            <!-- found an organisation name -->
-            <!-- see if there is a CLAVAS concept with a matching label -->
-            <xsl:variable name="cc" select="document($VLO-orgs)//*[(skos:prefLabel|skos:altLabel)/normalize-space()=normalize-space(current())]"/>
-        	<xsl:if test="exists($cc)">
-        		<vlo:hasFacetOrganisationElementEntity rdf:resource="{$cc/@rdf:about}"/>
-        	</xsl:if>
+        <xsl:if test="not(normalize-space()=('','und'))">
+            <!-- found a ISO 639-3 code -->
+        	<!-- link to dbpedia -->
+        	<vlo:hasFacetISO6393ElementEntity rdf:resource="http://dbpedia.org/resource/ISO_639:{normalize-space(.)}"/>
+        	<!-- link to lexvo -->
+        	<vlo:hasFacetISO6393ElementEntity rdf:resource="http://lexvo.org/id/iso639-3/{normalize-space(.)}"/>
         </xsl:if>
     </xsl:template>
 

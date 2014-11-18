@@ -65,6 +65,7 @@ public class ClarinProfileResolver implements URIResolver {
 
 	  
 	public Source resolve(String href,String base) throws TransformerException {
+            try {
 		if (href.contains("p_1360230992133")) {
 			log.info("href: " + href);
 			log.info("href size: " + href.length());
@@ -87,6 +88,10 @@ public class ClarinProfileResolver implements URIResolver {
 				filename = href.replace(registry+REPLACED_REGISTRY_PROFILES, "");
 			else if (href.contains(REPLACED_REGISTRY_COMPONENTS))
 				filename = href.replace(registry+REPLACED_REGISTRY_COMPONENTS, "");
+                        else {
+                            log.debug("Non profile/component URI: "+href);
+                            filename = href.replace("/","_");
+                        }
 			filename = filename.replace("/xml", ".xml");
 			filename = filename.replace(":", "_");
 			file = new File(basePath + "/" + filename);
@@ -100,19 +105,25 @@ public class ClarinProfileResolver implements URIResolver {
 		synchronized (cacheService) {
 			b = (byte[]) cacheService.retrieveByteArray(filename);
 		}
-	    if (b != null) {
-	    	log.debug("Using profile from the cache service. Key: " + filename + "\tValue: " + href);
-	    	
-	    	 InputStream is = new ByteArrayInputStream(b);
-	    	 return new StreamSource(is);
-	    } else {
-	    	log.debug(filename + " is not in the cache service.");
-	    	if (file.exists()) {
-		    	return loadFromFile(filename, file);
-		    } else {
-		    	return fetchAndWriteToCache(href, filename);
-		    }
-	    }
+                if (b != null) {
+                    log.debug("Using profile from the cache service. Key: " + filename + "\tValue: " + href);
+
+                     InputStream is = new ByteArrayInputStream(b);
+                     return new StreamSource(is);
+                } else {
+                    log.debug(filename + " is not in the cache service.");
+                    if (file.exists()) {
+                            return loadFromFile(filename, file);
+                        } else {
+                            return fetchAndWriteToCache(href, filename);
+                        }
+                }
+            } catch(Exception e) {
+                log.debug("ClarinProfileResolver.resolve("+href+","+base+") Exception["+e+"]");
+                System.err.println("ERR: ClarinProfileResolver.resolve("+href+","+base+") Exception["+e+"]");
+                e.printStackTrace();
+                throw e;
+            }
 	}
 
 	private StreamSource fetchAndWriteToCache(String href, String filename) {

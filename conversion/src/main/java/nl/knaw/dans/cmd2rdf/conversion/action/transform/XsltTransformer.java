@@ -55,6 +55,11 @@ public class XsltTransformer implements IAction{
 		checkRequiredVariables();
 		//startUpCacheService();
 		TransformerFactory transFact = new net.sf.saxon.TransformerFactoryImpl();
+		try {
+                        ExtensionFunctions.registerAll(transFact);
+		} catch (Exception e) {
+			log.error("ERROR: Exception, caused by: " + e.getMessage());
+		}
 		Source src = new StreamSource(xsltSource);
 		try {
 			this.cachedXSLT = transFact.newTemplates(src);
