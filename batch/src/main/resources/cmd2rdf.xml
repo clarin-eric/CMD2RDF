@@ -51,23 +51,13 @@
 		<!-- xml size > 0 and <= 10K -->
 		<record desc="xml size greater than 0 and smaller or equals 10K" filter="NEW UPDATE" nThreads="32" xmlLimitSizeMax="10240" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -75,71 +65,50 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
+						<properties>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="action">POST</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 		</record>
 		<!-- xml size > 10K and <= 100K -->
 		<record desc="xml size greater than 10 and smaller or equals 100K" filter="NEW UPDATE" nThreads="16" xmlLimitSizeMin="10241" xmlLimitSizeMax="102400" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -147,71 +116,50 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
+						<properties>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="action">POST</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 		</record>
 		<!-- xml size > 100K and <= 250K -->
 		<record desc="xml size greater than 100 and smaller or equals 250K" filter="NEW UPDATE" nThreads="8" xmlLimitSizeMin="102401" xmlLimitSizeMax="256000" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -219,54 +167,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/100K-250K</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 100K - 250K">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -278,7 +216,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 100K-250K">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.RemoveDirectory">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/100K-250K</property>
 							</properties>
@@ -290,23 +228,13 @@
 		<!-- xml size > 250K and smaller than 500K -->
 		<record desc="xml size greater than 250K and smaller or equals 500K" filter="NEW UPDATE" nThreads="6" xmlLimitSizeMin="256001" xmlLimitSizeMax="512000" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -314,54 +242,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/250K-500K</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 250K - 500K">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -373,7 +291,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 250K-500K">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/250K-500K</property>
 							</properties>
@@ -385,23 +303,13 @@
 		<!-- xml size > 500K and smaller than 750K -->
 		<record desc="xml size greater than 500K and smaller or equals 750K" filter="NEW UPDATE" nThreads="4" xmlLimitSizeMin="512001" xmlLimitSizeMax="768000" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -409,54 +317,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/500K-750K</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 500K - 750K">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -468,7 +366,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 500K-750K">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/500K-750K</property>
 							</properties>
@@ -480,23 +378,13 @@
 		<!-- xml size 750K-1M -->
 		<record desc="xml size greater than 750K and smaller or equals 1M" filter="NEW UPDATE" nThreads="2" xmlLimitSizeMin="768001" xmlLimitSizeMax="1048576" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -504,54 +392,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/750K-1M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 750K-1M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -563,7 +441,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 750K-1M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/250K-500K</property>
 							</properties>
@@ -575,23 +453,13 @@
 		<!-- xml size > 1M-1.25M -->
 		<record desc="xml size 1M-1.25M" filter="NEW UPDATE" nThreads="2" xmlLimitSizeMin="1048577" xmlLimitSizeMax="1310720" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -599,54 +467,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1M-1.25M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 1M-1.25M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -658,7 +516,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 1M-1.25M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/1M-1.25M</property>
 							</properties>
@@ -670,23 +528,13 @@
 		<!-- xml size 1.25M-1.5M -->
 		<record desc="xml size greater than 250K and smaller or equals 500K" filter="NEW UPDATE" nThreads="2" xmlLimitSizeMin="1310721" xmlLimitSizeMax="1572864" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -694,54 +542,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1.25M-1.5M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 1.25M-1.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -753,7 +591,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 1.25M-1.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/1.25M-1.5M</property>
 							</properties>
@@ -765,23 +603,13 @@
 		<!-- xml size 1.5M-2M -->
 		<record desc="xml size 1.5M-2M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="1572865" xmlLimitSizeMax="2097152" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -789,54 +617,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1.5M-2M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 1.5M-2M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -848,7 +666,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 1.5M-2M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/1.5M-2M</property>
 							</properties>
@@ -860,23 +678,13 @@
 		<!-- xml size 2M-5M -->
 		<record desc="xml size 2M-5M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="2097151" xmlLimitSizeMax="5242880" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -884,54 +692,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/2M-5M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 2M-5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -943,7 +741,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 250K-500K">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/2M-5M</property>
 							</properties>
@@ -955,23 +753,13 @@
 		<!-- xml size 5M-7.5M -->
 		<record desc="xml size 5M-7.5M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="5242881" xmlLimitSizeMax="7864320" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -979,54 +767,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/5M-7.5M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 5M-7.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -1038,7 +816,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 5M-7.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/5M-7.5M</property>
 							</properties>
@@ -1050,23 +828,13 @@
 		<!-- xml size 7.5M-10M -->
 		<record desc="xml size 7.5M-10M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="7864321" xmlLimitSizeMax="10485760" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -1074,54 +842,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/7.5M-10M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 7.5M-10M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -1133,7 +891,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 7.5M-10M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/7.5M-10M</property>
 							</properties>
@@ -1145,23 +903,13 @@
 		<!-- xml size 10M-12.5M -->
 		<record desc="xml size 10M-12.5M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="10485761" xmlLimitSizeMax="13107200" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -1169,54 +917,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/10M-12.5M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 10M-12.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -1228,7 +966,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 10M-12.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/10M-12.5M</property>
 							</properties>
@@ -1240,23 +978,13 @@
 		<!-- xml size 12.5-15M -->
 		<record desc="xml size 12.5-15M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="13107201" xmlLimitSizeMax="15728640" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -1264,54 +992,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/12.5-15M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 12.5-15M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -1323,7 +1041,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 12.5-15M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/12.5-15M</property>
 							</properties>
@@ -1335,23 +1053,13 @@
 		<!-- xml size 15M-17.5M -->
 		<record desc="xml size 15M-17.5M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="15728641" xmlLimitSizeMax="18350080" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -1359,54 +1067,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/15M-17.5M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 15M-17.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -1418,7 +1116,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 15M-17.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/15M-17.5M</property>
 							</properties>
@@ -1430,23 +1128,13 @@
 		<!-- xml size 17.5M-20M -->
 		<record desc="xml size 17.5M-20M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="18350081" xmlLimitSizeMax="20971520" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -1454,54 +1142,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/17.5M-20M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 17.5M-20M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -1513,7 +1191,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 17.5M-20M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/17.5M-20M</property>
 							</properties>
@@ -1525,23 +1203,13 @@
 		<!-- xml size 20M-22.5M -->
 		<record desc="xml size 20M-22.5M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="20971521" xmlLimitSizeMax="23592960" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -1549,54 +1217,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/20M-22.5M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 20M-22.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -1608,7 +1266,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 20M-22.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/20M-22.5M</property>
 							</properties>
@@ -1620,23 +1278,13 @@
 		<!-- xml size 22.5M-25M -->
 		<record desc="xml size 22.5M-25M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="23592961" xmlLimitSizeMax="26214400" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -1644,54 +1292,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/22.5M-25M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 22.5M-25M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -1703,7 +1341,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 22.5M-25M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/22.5M-25M</property>
 							</properties>
@@ -1715,23 +1353,13 @@
 		<!-- xml size 25M-27.5M -->
 		<record desc="xml size 25M-27.5M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="26214401" xmlLimitSizeMax="28835840" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -1739,54 +1367,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/25M-27.5M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 25M-27.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -1798,7 +1416,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 25M-27.5M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/25M-27.5M</property>
 							</properties>
@@ -1810,23 +1428,13 @@
 		<!-- xml size 27.5M-30M -->
 		<record desc="xml size 27.5M-30M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="28835841" xmlLimitSizeMax="31457280" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -1834,54 +1442,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/27.5M-30M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 27.5M-30M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -1893,7 +1491,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 27.5M-30M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/27.5M-30M</property>
 							</properties>
@@ -1905,23 +1503,13 @@
 		<!-- xml size 30M-35M -->
 		<record desc="xml size 30M-35M " filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="31457281" xmlLimitSizeMax="36700160" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -1929,54 +1517,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/30M-35M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 30M-35M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -1988,7 +1566,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 30M-35M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/30M-35M</property>
 							</properties>
@@ -2000,23 +1578,13 @@
 		<!-- xml size 35M-40M -->
 		<record desc="xml size 35M-40M " filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="36700161" xmlLimitSizeMax="41943040" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -2024,54 +1592,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/35M-40M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 35M-40M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -2083,7 +1641,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 35M-40M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/35M-40M</property>
 							</properties>
@@ -2095,23 +1653,13 @@
 		<!-- xml size 40M-50M -->
 		<record desc="xml size 40M-50M " filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="41943041" xmlLimitSizeMax="52428800" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -2119,54 +1667,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/40M-50M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT 40M-50M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -2178,7 +1716,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file 40M-50M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/40M-50M</property>
 							</properties>
@@ -2190,23 +1728,13 @@
 		<!-- xml size 50M-100M -->
 		<record desc="xml size 50M-100M " filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="52428801" xmlLimitSizeMax="104857600" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -2214,54 +1742,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/50M-100M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT &gt;50M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -2273,7 +1791,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file &gt;50M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/50M-100M</property>
 							</properties>
@@ -2285,23 +1803,13 @@
 		<!-- xml size >100M -->
 		<record desc="xml size &gt;100M " filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="104857601" xmlSource="{urlDB}">
 			<actions>
-	<action name="transform">
+				<action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 			</properties>
 		</class>
-	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/xml</property>
-			</properties>
-		</class>
-	</action>-->
-	<action name="transform">
+	</action><action name="transform">
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -2309,54 +1817,44 @@
 				<property name="base_add">http://localhost:8890/DAV</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
-	</action>
-	<action>
+	</action><action>
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 			</properties>
 		</class>
 	</action>
-	<!--<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="teeOutputDir">{homedir}/tee/rdf</property>
-			</properties>
-		</class>
-	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
-</actions>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
+						<properties>
+							<property name="xmlSourceDir">{xmlSourceDir}</property>
+							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/&gt;100M</property>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
+						<properties>
+							<property name="urlDB">{urlDB}</property>
+							<property name="action">UPDATE</property>
+							<property name="status">DONE</property>
+						</properties>
+					</class>
+				</action>
+			</actions>
 			<cleanup>
 				<actions>
 					<action name="EXECUTE BULK IMPORT &gt;50M">
-						<class name="nl.knaw.dans.cmd2rdf.store.VirtuosoBulkImporter">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
 								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
@@ -2368,7 +1866,7 @@
 						</class>
 					</action>
 					<action name="Deleting rdf output file &gt;50M">
-						<class name="nl.knaw.dans.cmd2rdf.store.RemoveDirectory">
+						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
 								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/&gt;100M</property>
 							</properties>

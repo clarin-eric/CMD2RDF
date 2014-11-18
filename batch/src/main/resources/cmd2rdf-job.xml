@@ -49,22 +49,4 @@
 			</properties>
 		</class>
 	</action>-->
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
-			<properties>
-				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
-				<property name="action">POST</property>
-			</properties>
-		</class>
-	</action>
-	<action>
-		<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
-			<properties>
-				<property name="urlDB">{urlDB}</property>
-				<property name="action">UPDATE</property>
-				<property name="status">DONE</property>
-			</properties>
-		</class>
-	</action>
 </actions>
