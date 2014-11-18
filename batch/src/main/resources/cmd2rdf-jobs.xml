@@ -10,12 +10,15 @@
 			<property name="xmlSourceDir">/lat/apache/htdocs/oai-harvester/clarin/results/cmdi,/lat/apache/htdocs/oai-harvester/others/results/cmdi</property>
 			<property name="urlDB">{workspace}/db/DB_CMD_CHECKSUM</property>
 			<property name="profilesCacheDir">{workspace}/profiles-cache</property>
-			<property name="registry">http://catalog.eu/ds/ComponentRegistry</property>
+			<property name="registry">http://catalog.clarin.eu/ds/ComponentRegistry</property>
+			<property name="virtuosoHome">/lat/tools/virtuoso</property>
 			<property name="serverHost">http://localhost:8890</property>
 			<property name="serverURL">{serverHost}/sparql-graph-crud-auth?</property>
 			<property name="username">dba</property>
 			<property name="password">dba</property>
 			<property name="prefixBaseURI">https://catalog.clarin.eu/ds/cmd2rdf/graph</property>
+			<property name="shScriptPath">{gitrepo}/CMD2RDF/batch/src/main/resources</property>
+			<property name="tmpOutDir">{workspace}/rdf-output</property>
 		</properties>
 	</config>
 	<prepare>
@@ -106,7 +109,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/100K-250K</property>
+							<property name="rdfDir">{tmpOutDir}/100K-250K</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -127,19 +130,19 @@
 					<action name="EXECUTE BULK IMPORT 100K - 250K">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{shScriptPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/100K-250K</property>
+								<property name="rdfDir">{tmpOutDir}/100K-250K</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 100K-250K">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.RemoveDirectory">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/100K-250K</property>
+								<property name="directoryToRemove">{tmpOutDir}/100K-250K</property>
 							</properties>
 						</class>
 					</action>
@@ -154,7 +157,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/250K-500K</property>
+							<property name="rdfDir">{tmpOutDir}/250K-500K</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -175,19 +178,19 @@
 					<action name="EXECUTE BULK IMPORT 250K - 500K">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/250K-500K</property>
+								<property name="rdfDir">{tmpOutDir}/250K-500K</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 250K-500K">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/250K-500K</property>
+								<property name="directoryToRemove">{tmpOutDir}/250K-500K</property>
 							</properties>
 						</class>
 					</action>
@@ -202,7 +205,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/500K-750K</property>
+							<property name="rdfDir">{tmpOutDir}/500K-750K</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -223,19 +226,19 @@
 					<action name="EXECUTE BULK IMPORT 500K - 750K">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/500K-750K</property>
+								<property name="rdfDir">{tmpOutDir}/500K-750K</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 500K-750K">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/500K-750K</property>
+								<property name="directoryToRemove">{tmpOutDir}/500K-750K</property>
 							</properties>
 						</class>
 					</action>
@@ -250,7 +253,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/750K-1M</property>
+							<property name="rdfDir">{tmpOutDir}/750K-1M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -271,19 +274,19 @@
 					<action name="EXECUTE BULK IMPORT 750K-1M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/750K-1M</property>
+								<property name="rdfDir">{tmpOutDir}/750K-1M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 750K-1M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/250K-500K</property>
+								<property name="directoryToRemove">{tmpOutDir}/250K-500K</property>
 							</properties>
 						</class>
 					</action>
@@ -298,7 +301,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1M-1.25M</property>
+							<property name="rdfDir">{tmpOutDir}/1M-1.25M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -319,19 +322,19 @@
 					<action name="EXECUTE BULK IMPORT 1M-1.25M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/1M-1.25M</property>
+								<property name="rdfDir">{tmpOutDir}/1M-1.25M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 1M-1.25M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/1M-1.25M</property>
+								<property name="directoryToRemove">{tmpOutDir}/1M-1.25M</property>
 							</properties>
 						</class>
 					</action>
@@ -346,7 +349,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1.25M-1.5M</property>
+							<property name="rdfDir">{tmpOutDir}/1.25M-1.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -367,19 +370,19 @@
 					<action name="EXECUTE BULK IMPORT 1.25M-1.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/1.25M-1.5M</property>
+								<property name="rdfDir">{tmpOutDir}/1.25M-1.5M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 1.25M-1.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/1.25M-1.5M</property>
+								<property name="directoryToRemove">{tmpOutDir}/1.25M-1.5M</property>
 							</properties>
 						</class>
 					</action>
@@ -394,7 +397,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1.5M-2M</property>
+							<property name="rdfDir">{tmpOutDir}/1.5M-2M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -415,19 +418,19 @@
 					<action name="EXECUTE BULK IMPORT 1.5M-2M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/1.5M-2M</property>
+								<property name="rdfDir">{tmpOutDir}/1.5M-2M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 1.5M-2M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/1.5M-2M</property>
+								<property name="directoryToRemove">{tmpOutDir}/1.5M-2M</property>
 							</properties>
 						</class>
 					</action>
@@ -442,7 +445,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/2M-5M</property>
+							<property name="rdfDir">{tmpOutDir}/2M-5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -463,19 +466,19 @@
 					<action name="EXECUTE BULK IMPORT 2M-5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/2M-5M</property>
+								<property name="rdfDir">{tmpOutDir}/2M-5M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 250K-500K">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/2M-5M</property>
+								<property name="directoryToRemove">{tmpOutDir}/2M-5M</property>
 							</properties>
 						</class>
 					</action>
@@ -490,7 +493,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/5M-7.5M</property>
+							<property name="rdfDir">{tmpOutDir}/5M-7.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -511,19 +514,19 @@
 					<action name="EXECUTE BULK IMPORT 5M-7.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/5M-7.5M</property>
+								<property name="rdfDir">{tmpOutDir}/5M-7.5M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 5M-7.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/5M-7.5M</property>
+								<property name="directoryToRemove">{tmpOutDir}/5M-7.5M</property>
 							</properties>
 						</class>
 					</action>
@@ -538,7 +541,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/7.5M-10M</property>
+							<property name="rdfDir">{tmpOutDir}/7.5M-10M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -559,19 +562,19 @@
 					<action name="EXECUTE BULK IMPORT 7.5M-10M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/7.5M-10M</property>
+								<property name="rdfDir">{tmpOutDir}/7.5M-10M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 7.5M-10M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/7.5M-10M</property>
+								<property name="directoryToRemove">{tmpOutDir}/7.5M-10M</property>
 							</properties>
 						</class>
 					</action>
@@ -586,7 +589,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/10M-12.5M</property>
+							<property name="rdfDir">{tmpOutDir}/10M-12.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -607,19 +610,19 @@
 					<action name="EXECUTE BULK IMPORT 10M-12.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/10M-12.5M</property>
+								<property name="rdfDir">{tmpOutDir}/10M-12.5M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 10M-12.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/10M-12.5M</property>
+								<property name="directoryToRemove">{tmpOutDir}/10M-12.5M</property>
 							</properties>
 						</class>
 					</action>
@@ -634,7 +637,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/12.5-15M</property>
+							<property name="rdfDir">{tmpOutDir}/12.5-15M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -655,19 +658,19 @@
 					<action name="EXECUTE BULK IMPORT 12.5-15M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/12.5-15M</property>
+								<property name="rdfDir">{tmpOutDir}/12.5-15M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 12.5-15M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/12.5-15M</property>
+								<property name="directoryToRemove">{tmpOutDir}/12.5-15M</property>
 							</properties>
 						</class>
 					</action>
@@ -682,7 +685,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/15M-17.5M</property>
+							<property name="rdfDir">{tmpOutDir}/15M-17.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -703,19 +706,19 @@
 					<action name="EXECUTE BULK IMPORT 15M-17.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/15M-17.5M</property>
+								<property name="rdfDir">{tmpOutDir}/15M-17.5M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 15M-17.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/15M-17.5M</property>
+								<property name="directoryToRemove">{tmpOutDir}/15M-17.5M</property>
 							</properties>
 						</class>
 					</action>
@@ -730,7 +733,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/17.5M-20M</property>
+							<property name="rdfDir">{tmpOutDir}/17.5M-20M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -751,19 +754,19 @@
 					<action name="EXECUTE BULK IMPORT 17.5M-20M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/17.5M-20M</property>
+								<property name="rdfDir">{tmpOutDir}/17.5M-20M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 17.5M-20M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/17.5M-20M</property>
+								<property name="directoryToRemove">{tmpOutDir}/17.5M-20M</property>
 							</properties>
 						</class>
 					</action>
@@ -778,7 +781,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/20M-22.5M</property>
+							<property name="rdfDir">{tmpOutDir}/20M-22.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -799,19 +802,19 @@
 					<action name="EXECUTE BULK IMPORT 20M-22.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/20M-22.5M</property>
+								<property name="rdfDir">{tmpOutDir}/20M-22.5M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 20M-22.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/20M-22.5M</property>
+								<property name="directoryToRemove">{tmpOutDir}/20M-22.5M</property>
 							</properties>
 						</class>
 					</action>
@@ -826,7 +829,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/22.5M-25M</property>
+							<property name="rdfDir">{tmpOutDir}/22.5M-25M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -847,19 +850,19 @@
 					<action name="EXECUTE BULK IMPORT 22.5M-25M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/22.5M-25M</property>
+								<property name="rdfDir">{tmpOutDir}/22.5M-25M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 22.5M-25M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/22.5M-25M</property>
+								<property name="directoryToRemove">{tmpOutDir}/22.5M-25M</property>
 							</properties>
 						</class>
 					</action>
@@ -874,7 +877,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/25M-27.5M</property>
+							<property name="rdfDir">{tmpOutDir}/25M-27.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -895,19 +898,19 @@
 					<action name="EXECUTE BULK IMPORT 25M-27.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/25M-27.5M</property>
+								<property name="rdfDir">{tmpOutDir}/25M-27.5M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 25M-27.5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/25M-27.5M</property>
+								<property name="directoryToRemove">{tmpOutDir}/25M-27.5M</property>
 							</properties>
 						</class>
 					</action>
@@ -922,7 +925,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/27.5M-30M</property>
+							<property name="rdfDir">{tmpOutDir}/27.5M-30M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -943,19 +946,19 @@
 					<action name="EXECUTE BULK IMPORT 27.5M-30M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/27.5M-30M</property>
+								<property name="rdfDir">{tmpOutDir}/27.5M-30M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 27.5M-30M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/27.5M-30M</property>
+								<property name="directoryToRemove">{tmpOutDir}/27.5M-30M</property>
 							</properties>
 						</class>
 					</action>
@@ -970,7 +973,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/30M-35M</property>
+							<property name="rdfDir">{tmpOutDir}/30M-35M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -991,19 +994,19 @@
 					<action name="EXECUTE BULK IMPORT 30M-35M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/30M-35M</property>
+								<property name="rdfDir">{tmpOutDir}/30M-35M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 30M-35M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/30M-35M</property>
+								<property name="directoryToRemove">{tmpOutDir}/30M-35M</property>
 							</properties>
 						</class>
 					</action>
@@ -1018,7 +1021,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/35M-40M</property>
+							<property name="rdfDir">{tmpOutDir}/35M-40M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -1039,19 +1042,19 @@
 					<action name="EXECUTE BULK IMPORT 35M-40M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/35M-40M</property>
+								<property name="rdfDir">{tmpOutDir}/35M-40M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 35M-40M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/35M-40M</property>
+								<property name="directoryToRemove">{tmpOutDir}/35M-40M</property>
 							</properties>
 						</class>
 					</action>
@@ -1066,7 +1069,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/40M-50M</property>
+							<property name="rdfDir">{tmpOutDir}/40M-50M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -1087,19 +1090,19 @@
 					<action name="EXECUTE BULK IMPORT 40M-50M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/40M-50M</property>
+								<property name="rdfDir">{tmpOutDir}/40M-50M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file 40M-50M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/40M-50M</property>
+								<property name="directoryToRemove">{tmpOutDir}/40M-50M</property>
 							</properties>
 						</class>
 					</action>
@@ -1114,7 +1117,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/50M-100M</property>
+							<property name="rdfDir">{tmpOutDir}/50M-100M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -1135,19 +1138,19 @@
 					<action name="EXECUTE BULK IMPORT >50M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/50M-100M</property>
+								<property name="rdfDir">{tmpOutDir}/50M-100M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file >50M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/50M-100M</property>
+								<property name="directoryToRemove">{tmpOutDir}/50M-100M</property>
 							</properties>
 						</class>
 					</action>
@@ -1162,7 +1165,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
-							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/>100M</property>
+							<property name="rdfDir">{tmpOutDir}/>100M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
 							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
@@ -1183,19 +1186,19 @@
 					<action name="EXECUTE BULK IMPORT >100M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
-								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
-								<property name="virtuosoHomeDir">/lat/tools/virtuoso</property>
+								<property name="bulkImportShellPath">{bulkImportShellPath}</property>
+								<property name="virtuosoHomeDir">{virtuosoHome}</property>
 								<property name="port">1111</property>
 								<property name="username">{username}</property>
 								<property name="password">{password}</property>
-								<property name="rdfDir">/lat/tools/cmd2rdf/rdf-output/>100M</property>
+								<property name="rdfDir">{tmpOutDir}/>100M</property>
 							</properties>
 						</class>
 					</action>
 					<action name="Deleting rdf output file >50M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store">
 							<properties>
-								<property name="directoryToRemove">/lat/tools/cmd2rdf/rdf-output/>100M</property>
+								<property name="directoryToRemove">{tmpOutDir}/>100M</property>
 							</properties>
 						</class>
 					</action>
