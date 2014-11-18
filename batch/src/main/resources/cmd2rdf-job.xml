@@ -29,7 +29,7 @@
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
-				<property name="VLO-orgs">{homedir}/harvester/meertens-VLO-orgs.rdf</property>
+				<property name="VLO-orgs">{harvestedProfilesDir}/meertens-VLO-orgs.rdf</property>
 			</properties>
 		</class>
 	</action>
