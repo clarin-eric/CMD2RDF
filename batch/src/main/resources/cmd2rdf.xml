@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- !!!!!!!!!!!!!!!!!!!!!
-     Don't edit this file!
-     regenerate by: xmllint -X-xinclude cmd2rdf-jobs.xml > cmd2rdf.xml
-     (remove X to make it work!)
-     and readd this comment!
-     !!!!!!!!!!!!!!!!!!!!!!! -->
 <CMD2RDF xmlns:xi="http://www.w3.org/2003/XInclude">
 	<config version="1.0">
 		<properties>
@@ -2399,7 +2393,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
 						<properties>
 							<property name="replacedPrefixBaseURI">{profilesCacheDir}</property>
-							<property name="prefixBaseURI">http://localhost:8000/DAV/profile</property>
+							<property name="prefixBaseURI">https://catalog.clarin.eu/ds/cmd2rdf/graph/profile</property>
 							<property name="action">POST</property>
 						</properties>
 					</class>
@@ -2423,7 +2417,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
 						<properties>
 							<property name="replacedPrefixBaseURI">{profilesCacheDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV/component</property>
+							<property name="prefixBaseURI">https://catalog.clarin.eu/ds/cmd2rdf/graph/component</property>
 							<property name="action">POST</property>
 						</properties>
 					</class>

@@ -693,7 +693,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
 						<properties>
 							<property name="replacedPrefixBaseURI">{profilesCacheDir}</property>
-							<property name="prefixBaseURI">http://localhost:8000/DAV/profile</property>
+							<property name="prefixBaseURI">https://catalog.clarin.eu/ds/cmd2rdf/graph/profile</property>
 							<property name="action">POST</property>
 						</properties>
 					</class>
@@ -717,7 +717,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
 						<properties>
 							<property name="replacedPrefixBaseURI">{profilesCacheDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV/component</property>
+							<property name="prefixBaseURI">https://catalog.clarin.eu/ds/cmd2rdf/graph/component</property>
 							<property name="action">POST</property>
 						</properties>
 					</class>
