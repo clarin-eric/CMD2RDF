@@ -435,7 +435,7 @@
 			</cleanup>
 		</record>
 		<!-- xml size 2M-5M -->
-		<record desc="xml size 2M-5M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="2097151" xmlLimitSizeMax="5242880" xmlSource="{urlDB}">
+		<record desc="xml size 2M-5M" filter="NEW UPDATE" nThreads="1" xmlLimitSizeMin="2097153" xmlLimitSizeMax="5242880" xmlSource="{urlDB}">
 			<actions>
 				<xi:include href="cmd2rdf-job.xml" xpointer="xpointer(/actions/action)"/>
 				<action>
@@ -1180,7 +1180,7 @@
 			</actions>
 			<cleanup>
 				<actions>
-					<action name="EXECUTE BULK IMPORT >50M">
+					<action name="EXECUTE BULK IMPORT >100M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoBulkImporter">
 							<properties>
 								<property name="bulkImportShellPath">/lat/tools/cmd2rdf/git/cmd2rdf/src/main/resources</property>
