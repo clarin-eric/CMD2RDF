@@ -11,7 +11,7 @@
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
 			<properties>
 				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+				<property name="prefixBaseURI">{prefixBaseURI}</property>
 				<property name="teeOutputDir">{homedir}/tee/xml</property>
 			</properties>
 		</class>
@@ -21,7 +21,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action>
@@ -44,7 +44,7 @@
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
 			<properties>
 				<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-				<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+				<property name="prefixBaseURI">{prefixBaseURI}</property>
 				<property name="teeOutputDir">{homedir}/tee/rdf</property>
 			</properties>
 		</class>

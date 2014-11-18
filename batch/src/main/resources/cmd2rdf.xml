@@ -62,7 +62,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -113,7 +113,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -164,7 +164,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -239,7 +239,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -314,7 +314,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -389,7 +389,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -464,7 +464,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -539,7 +539,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -614,7 +614,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -689,7 +689,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -764,7 +764,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -839,7 +839,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -914,7 +914,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -989,7 +989,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -1064,7 +1064,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -1139,7 +1139,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -1214,7 +1214,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -1289,7 +1289,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -1364,7 +1364,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -1439,7 +1439,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -1514,7 +1514,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -1589,7 +1589,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -1664,7 +1664,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -1739,7 +1739,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
@@ -1814,7 +1814,7 @@
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
 				<property name="base_strip">file:{xmlSourceDir}</property>
-				<property name="base_add">http://localhost:8890/DAV</property>
+				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>
 	</action><action>
