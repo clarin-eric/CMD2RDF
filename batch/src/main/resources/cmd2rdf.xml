@@ -83,7 +83,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
 						<properties>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 							<property name="action">POST</property>
 						</properties>
 					</class>
@@ -134,7 +134,7 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
 						<properties>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 							<property name="action">POST</property>
 						</properties>
 					</class>
@@ -187,7 +187,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/100K-250K</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -262,7 +262,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/250K-500K</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -337,7 +337,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/500K-750K</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -412,7 +412,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/750K-1M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -487,7 +487,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1M-1.25M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -562,7 +562,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1.25M-1.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -637,7 +637,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/1.5M-2M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -712,7 +712,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/2M-5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -787,7 +787,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/5M-7.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -862,7 +862,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/7.5M-10M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -937,7 +937,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/10M-12.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1012,7 +1012,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/12.5-15M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1087,7 +1087,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/15M-17.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1162,7 +1162,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/17.5M-20M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1237,7 +1237,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/20M-22.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1312,7 +1312,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/22.5M-25M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1387,7 +1387,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/25M-27.5M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1462,7 +1462,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/27.5M-30M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1537,7 +1537,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/30M-35M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1612,7 +1612,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/35M-40M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1687,7 +1687,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/40M-50M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1762,7 +1762,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/50M-100M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
@@ -1837,7 +1837,7 @@
 							<property name="xmlSourceDir">{xmlSourceDir}</property>
 							<property name="rdfOutputDir">/lat/tools/cmd2rdf/rdf-output/&gt;100M</property>
 							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
-							<property name="prefixBaseURI">http://localhost:8890/DAV</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
 						</properties>
 					</class>
 				</action>
