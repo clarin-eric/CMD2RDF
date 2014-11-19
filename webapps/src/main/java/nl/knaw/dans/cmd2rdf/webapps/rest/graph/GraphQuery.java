@@ -40,8 +40,6 @@ import org.apache.commons.io.IOUtils;
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-import org.glassfish.jersey.uri.UriComponent;
-import org.glassfish.jersey.uri.UriComponent.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
