@@ -32,7 +32,7 @@ public class FileStore implements IAction{
 	private static final Logger log = LoggerFactory.getLogger(FileStore.class);
 	private static final Logger errLog = LoggerFactory.getLogger("errorlog");
 	private String xmlSourceDir;
-	private String rdfOutputDir;
+	private String rdfDir;
 	private List<String> replacedPrefixBaseURI = new ArrayList<String>();
 	private String prefixBaseURI;
 
@@ -42,7 +42,7 @@ public class FileStore implements IAction{
 	public void startUp(Map<String, String> vars)
 			throws ActionException {
 		xmlSourceDir = vars.get("xmlSourceDir");
-		rdfOutputDir = vars.get("rdfOutputDir");
+		rdfDir = vars.get("rdfDir");
 		String replacedPrefixBaseURIVar = vars.get("replacedPrefixBaseURI");
 		prefixBaseURI = vars.get("prefixBaseURI");
 		if (replacedPrefixBaseURIVar == null || replacedPrefixBaseURIVar.isEmpty())
@@ -52,15 +52,15 @@ public class FileStore implements IAction{
 		if (xmlSourceDir == null || xmlSourceDir.isEmpty())
 			throw new ActionException("xmlSourceDir is null or empty");
 		
-		if (rdfOutputDir == null || rdfOutputDir.isEmpty())
-			throw new ActionException("rdfOutputDir is null or empty");
+		if (rdfDir == null || rdfDir.isEmpty())
+			throw new ActionException("rdfDir is null or empty");
 		String replacedPrefixBaseURIVars[] = replacedPrefixBaseURIVar.split(",");
 		for (String s:replacedPrefixBaseURIVars) {
 			if (!s.trim().isEmpty())
 				replacedPrefixBaseURI.add(s.trim());
 		}
 	
-		log.debug("Save the RDF files to " + rdfOutputDir);
+		log.debug("Save the RDF files to " + rdfDir);
 	}
 
 	public Object execute(String path, Object object) throws ActionException {
@@ -92,7 +92,7 @@ private boolean saveRdfToFileSystem(String path, Object object)
 		try {
 			long l = System.currentTimeMillis();
 			String gIRI = getGIRI(path);
-			String rdfFileOutputName = gIRI.replace(prefixBaseURI,  rdfOutputDir).replace(".xml", ".rdf");
+			String rdfFileOutputName = gIRI.replace(prefixBaseURI,  rdfDir).replace(".xml", ".rdf");
 			log.debug("Saving " + rdfFileOutputName);
 			File rdfFile = new File(rdfFileOutputName);
 			TransformerFactory.newInstance().newTransformer().transform(source,new StreamResult(rdfFile));

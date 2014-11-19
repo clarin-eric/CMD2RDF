@@ -13,6 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -45,7 +46,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 	private static final Logger log = LoggerFactory.getLogger(JobProcessor.class);
 	private final Pattern pattern = Pattern.compile("\\{(.*?)\\}");
 	private static final String URL_DB = "urlDB";
-	private static volatile Map<String, String> GLOBAL_VARS = new HashMap<String, String>();
+	private static volatile Map<String, String> GLOBAL_VARS = new LinkedHashMap<String, String>();
 	private static volatile CacheService<Object, Object> cacheService;
 	
 
@@ -131,7 +132,9 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			if (m.find()) {
 				String globalVar = m.group(1);
 				if (GLOBAL_VARS.containsKey(globalVar)) {
+					log.debug("pKey: " + e.getKey() + "\tpVal: " + pVal);
 					pVal = pVal.replace(m.group(0), GLOBAL_VARS.get(globalVar));
+					log.debug("pKey: " + e.getKey() + "\tnew pVal: " + pVal);
 					GLOBAL_VARS.put(e.getKey(), pVal);
 				}
 			}
@@ -190,27 +193,36 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		    	paths = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin(), r.getXmlLimitSizeMax());
 		    	cdb.closeDbConnection();
 			}
-			
-			List<IAction> actions = new ArrayList<IAction>();
-			List<Action> list = r.getActions();
-			for (Action act : list) {
-				IAction clazzAction = startUpAction(act);				
-				actions.add(clazzAction);
-			}
-			if (r.getnThreads()>0) 
-				doCallableAction(r, paths, actions);
-			else {
-				for(IAction action : actions) {
-					for (String path:paths)
-						action.execute(path,null);
+			if (paths != null && !paths.isEmpty()) {
+				List<IAction> actions = new ArrayList<IAction>();
+				List<Action> list = r.getActions();
+				//Start Action
+				for (Action act : list) {
+					IAction clazzAction = startUpAction(act);				
+					actions.add(clazzAction);
 				}
+				
+				//Execute Action
+				if (r.getnThreads()>0) 
+					doCallableAction(r, paths, actions);
+				else {
+					for(IAction action : actions) {
+						for (String path:paths)
+							action.execute(path,null);
+					}
+				}
+		         
+				//Shutdown Action
+				for(IAction action : actions) {
+					action.shutDown();
+				}
+				if (r.getCleanup() != null && r.getCleanup().getActions() != null)
+					doCleanup(r.getCleanup().getActions());
+			
+			} else {
+				//Skip record
+				log.debug("###### SKIPPED: '" +  r.getDesc() + "'");
 			}
-	         
-			for(IAction action : actions) {
-				action.shutDown();
-			}
-			if (r.getCleanup() != null && r.getCleanup().getActions() != null)
-				doCleanup(r.getCleanup().getActions());
 		}
 	}
 	
@@ -280,7 +292,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		}
 	}
 	private void fillInCacheService() {
-		
+		log.debug("fillInCacheService");
 		String profilesCacheDir = GLOBAL_VARS.get("profilesCacheDir");
 		 Collection<File> profiles = FileUtils.listFiles(new File(profilesCacheDir),new String[] {"xml"}, true);
 		 for (File profile:profiles) {

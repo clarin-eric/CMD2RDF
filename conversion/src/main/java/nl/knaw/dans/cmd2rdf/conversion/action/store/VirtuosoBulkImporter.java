@@ -1,6 +1,7 @@
 package nl.knaw.dans.cmd2rdf.conversion.action.store;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ public class VirtuosoBulkImporter implements IAction{
 	private static final Logger errLog = LoggerFactory.getLogger("errorlog");
 	private static final Logger log = LoggerFactory.getLogger(VirtuosoBulkImporter.class);
 	private static final String VIRTUOSO_BULK_IMPORT_SH = "/virtuoso_bulk_import.sh";
+	private boolean skip;
 	private String[] virtuosoBulkImport;
 	public VirtuosoBulkImporter(){
 	}
@@ -43,20 +45,28 @@ public class VirtuosoBulkImporter implements IAction{
 			throw new ActionException("username is null or empty");
 		if (rdfDir == null || rdfDir.isEmpty())
 			throw new ActionException("rdfDir is null or empty");
+		
+		File file = new File(rdfDir);
+		if (!file.exists() || !file.isDirectory())
+			skip=true;
 		//"/data/cmdi2rdf/virtuoso/bin/isql 1111  dba dba exec="ld_dir_all('/data/cmdi2rdf/BIG-files/rdf-output/','*.rdf','http://eko.indarto/tst.rdf');"
 		
-		virtuosoBulkImport = new String[]{bulkImportShellPath + VIRTUOSO_BULK_IMPORT_SH, virtuosoHomeDir, port, username, password, rdfDir};
+		if(!skip)
+			virtuosoBulkImport = new String[]{bulkImportShellPath + VIRTUOSO_BULK_IMPORT_SH, virtuosoHomeDir, port, username, password, rdfDir};
 	}
 
 	public Object execute(String path, Object object) throws ActionException {
-		Split split = SimonManager.getStopwatch("stopwatch.bulkimport").start();
-		boolean status = excuteBulkImport();
-		split.stop();
-		if (!status) {
-			errLog.debug("FATAL ERROR, THE BULK IMPORT IS FAILED ---> SYSTEM TERMINATED.");
-			System.exit(1);
-		}
-		return status;
+		if (!skip) {
+			Split split = SimonManager.getStopwatch("stopwatch.bulkimport").start();
+			boolean status = excuteBulkImport();
+			split.stop();
+			if (!status) {
+				errLog.debug("FATAL ERROR, THE BULK IMPORT IS FAILED ---> SYSTEM TERMINATED.");
+				System.exit(1);
+			}
+			return status;
+		} 
+		return skip;
 	}
 
 
