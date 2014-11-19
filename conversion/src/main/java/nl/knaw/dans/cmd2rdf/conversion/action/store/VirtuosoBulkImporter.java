@@ -19,9 +19,9 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class VirtuosoBulkImporter implements IAction{
-	private static final Logger errLog = LoggerFactory.getLogger("errorlog");
+	private static final Logger ERROR_LOG = LoggerFactory.getLogger("errorlog");
 	private static final Logger log = LoggerFactory.getLogger(VirtuosoBulkImporter.class);
-	private static final String VIRTUOSO_BULK_IMPORT_SH = "/virtuoso_bulk_import.sh";
+	private static String VIRTUOSO_BULK_IMPORT_SH = "/virtuoso_bulk_import.sh";
 	private boolean skip;
 	private String[] virtuosoBulkImport;
 	public VirtuosoBulkImporter(){
@@ -36,23 +36,34 @@ public class VirtuosoBulkImporter implements IAction{
 		String password = vars.get("password");
 		String rdfDir = vars.get("rdfDir");
 		if (bulkImportShellPath == null || bulkImportShellPath.isEmpty())
-			throw new ActionException("bulkImportShellPath is null or empty");
+			throw new ActionException(this.name() + ": bulkImportShellPath is null or empty");
+		else {
+			VIRTUOSO_BULK_IMPORT_SH = bulkImportShellPath + VIRTUOSO_BULK_IMPORT_SH;
+			//Check whether the virtuoso_bulk_import.sh is executable or not.
+			File file = new File(VIRTUOSO_BULK_IMPORT_SH);
+			if (!file.exists() || !file.isFile())
+				throw new ActionException(this.name() + "'" + VIRTUOSO_BULK_IMPORT_SH + "' doesn't exist or not a file.");
+			if (!file.canExecute())
+				throw new ActionException(this.name() + "'" + VIRTUOSO_BULK_IMPORT_SH + "' is not executeable file. Try: chmod a+x to the file.");
+		}
 		if (virtuosoHomeDir == null || virtuosoHomeDir.isEmpty())
-			throw new ActionException("virtuosoHomeDir is null or empty");
+			throw new ActionException(this.name() + ": virtuosoHomeDir is null or empty");
 		if (port == null || port.isEmpty())
-			throw new ActionException("port is null or empty");
+			throw new ActionException(this.name() + ": port is null or empty");
 		if (username == null || username.isEmpty())
-			throw new ActionException("username is null or empty");
+			throw new ActionException(this.name() + ": username is null or empty");
 		if (rdfDir == null || rdfDir.isEmpty())
-			throw new ActionException("rdfDir is null or empty");
+			throw new ActionException(this.name() + ": rdfDir is null or empty");
 		
 		File file = new File(rdfDir);
-		if (!file.exists() || !file.isDirectory())
+		if (!file.exists() || !file.isDirectory()) {
 			skip=true;
+			ERROR_LOG.error("Directory '" + rdfDir + "' doen't exist.");
+		}
 		//"/data/cmdi2rdf/virtuoso/bin/isql 1111  dba dba exec="ld_dir_all('/data/cmdi2rdf/BIG-files/rdf-output/','*.rdf','http://eko.indarto/tst.rdf');"
 		
 		if(!skip)
-			virtuosoBulkImport = new String[]{bulkImportShellPath + VIRTUOSO_BULK_IMPORT_SH, virtuosoHomeDir, port, username, password, rdfDir};
+			virtuosoBulkImport = new String[]{VIRTUOSO_BULK_IMPORT_SH, virtuosoHomeDir, port, username, password, rdfDir};
 	}
 
 	public Object execute(String path, Object object) throws ActionException {
@@ -61,7 +72,7 @@ public class VirtuosoBulkImporter implements IAction{
 			boolean status = excuteBulkImport();
 			split.stop();
 			if (!status) {
-				errLog.debug("FATAL ERROR, THE BULK IMPORT IS FAILED ---> SYSTEM TERMINATED.");
+				ERROR_LOG.debug("FATAL ERROR, THE BULK IMPORT IS FAILED ---> SYSTEM TERMINATED.");
 				System.exit(1);
 			}
 			return status;
@@ -81,7 +92,7 @@ private boolean excuteBulkImport() throws ActionException {
 		ok = executeIsql(virtuosoBulkImport);
 		
 		if (!ok)
-			errLog.error("ERROR>>>>> BULK IMPORT EXECUTION IS FAILED");
+			ERROR_LOG.error("ERROR>>>>> BULK IMPORT EXECUTION IS FAILED");
 		
 		long duration = System.currentTimeMillis() - start;
 		Period p = new Period(duration);
@@ -110,7 +121,7 @@ private boolean executeIsql(String[] args) throws ActionException {
 		ok = outputstr.contains("Done.") && outputstr.contains("msec.");
  
 	} catch (Exception e) {
-		errLog.error("ERROR: " + e.getMessage(), e);
+		ERROR_LOG.error("ERROR: " + e.getMessage(), e);
 		throw new ActionException("ERROR: " + e.getMessage());
 	}
 	return ok;
