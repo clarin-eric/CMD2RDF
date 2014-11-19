@@ -1,19 +1,29 @@
 <html xmlns:wicket="http://wicket.apache.org">
-<head>
-<meta charset="UTF-8">
-<title>Home Page</title>
-</head>
-<body>
-<!-- start wrapper -->
-	<div class="wrapper">
-	    <!--start container-->
-	    <div id="container">
-		    <!--start header-->
-		     <span wicket:id="header"/>
-		    <!--end header-->
-<!-- 		    <span wicket:id="content"/> -->
-	   	</div>
-	   <!--end container-->
-   </div>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Home Page</title>
+	</head>
+	<body>
+		<!-- start wrapper -->
+		<div class="wrapper">
+			<!--start container-->
+			<div id="container">
+				<!--start header-->
+				<span wicket:id="header"></span>
+				<!--end header-->
+				<div id="panel">
+					<p>A pillar of the <a href="http://www.clarin.eu/">European CLARIN Research Infrastructure project</a> is its Component Metadata Infrastructure (<a href="http://www.clarin.eu/cmdi/">CMDI</a>). CMDI is based on a flexible use of <a href="http://www.w3.org/XML/">XML</a> technologies, e.g., <a href="http://www.w3.org/Style/XSL/">XSL</a> and <a href="http://www.w3.org/XML/Schema">XSD</a>, to create metadata profiles and records tailored to the specifics of a (collection of) linguistic resource(s).</p>
+					<p>In the Semantic Web (<a href="http://www.w3.org/standards/semanticweb/">SW</a>) and Linked (Open) Data (<a href="http://www.w3.org/standards/semanticweb/data">L(O)D</a>) communities a cloud of resources is constructed based on <a href="http://www.w3.org/RDF/">RDF</a>, also for linguistic resources (see <a href="http://linguistics.okfn.org/resources/llod/">the LLOD cloud</a>).</p>
+					<p>The <a href="http://www.clarin.nl/">CLARIN-NL</a> CMD2RDF project aims to offer the CLARIN CMD records as RDF thus enabling integration of these records into the (L)LOD cloud. It does so by offering 3 interfaces:</p>
+					<ol>
+						<li>a browser for the RDF representation of the CMD record collection,</li>
+						<li>a <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</a> interface to access the RDF representation of individual records or all the records from a CLARIN repository, and</li>
+						<li>a <a href="http://www.w3.org/sparql/">SPARQL</a> endpoint to query the RDF representation of the CMD record collection.</li>
+					</ol>
+					<p>Except for maybe the browser these services are mainly interesting for a technical audience, who can build new services, including a nice user interface, on these basic services. As case studies the CMD2RDF project enriched the records with the <a href="http://www.clarin.eu/vlo/">VLO</a> facets, which are further enriched with links to organisations in <a href="https://openskos.meertens.knaw.nl/clavas/">CLAVAS</a> and language information in <a href="http://www.lexvo.org/">Lexvo.org</a> and <a href="http://www.dbpedia.org/">DBpedia</a>. Especially the latter two are important hubs in the (L)LOD cloud.</p>
+				</div>
+			</div>
+			<!--end container-->
+		</div>
+	</body>
 </html>
