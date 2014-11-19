@@ -35,7 +35,6 @@
                     <xsl:apply-templates select="cmd:Components">
                         <xsl:with-param name="context" tunnel="yes" select="''"/>
                     </xsl:apply-templates>
-                	<xsl:apply-templates select="vlo:*"/>
                 </oa:hasBody>
                 <oa:motivatedBy rdf:resource="&oa;describing"/>
                 <xsl:apply-templates select="cmd:Resources" mode="other"/>
@@ -51,6 +50,9 @@
                 </ore:ResourceMap>
             </xsl:if>
             <xsl:apply-templates select="cmd:Header"/>
+        	<rdf:Description rdf:about="{$about}">
+        		<xsl:apply-templates select="vlo:*"/>
+        	</rdf:Description>
         </rdf:RDF>
     </xsl:template>
 
@@ -299,12 +301,9 @@
 	
 	<!-- a VLO facet -->
 	<xsl:template match="vlo:*">
-		<xsl:element name="vlo:{local-name()}">
-			<xsl:attribute name="rdf:about" select="concat('#',generate-id(.))"/>
-			<xsl:element name="vlo:{local-name()}ElementValue">
-				<xsl:attribute name="rdf:datatype" select="'&xsd;string'"/>
-				<xsl:value-of select="."/>
-			</xsl:element>
+		<xsl:element name="vlo:{local-name()}ElementValue">
+			<xsl:attribute name="rdf:datatype" select="'&xsd;string'"/>
+			<xsl:value-of select="."/>
 		</xsl:element>
 	</xsl:template>
 
