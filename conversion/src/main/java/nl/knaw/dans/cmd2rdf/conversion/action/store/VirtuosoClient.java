@@ -138,7 +138,7 @@ private boolean deleteRdfFromVirtuoso(String path) {
 			log.debug("[" + n + "] is DELETED.");
 			return true;	
 		} else {
-			log.error(">>>>>>>>>> ERROR: " + status);
+			errLog.error(">>>>>>>>>> ERROR: " + status + "\t" + path);
 		}
 	} catch (URISyntaxException e) {
 		errLog.error("ERROR: URISyntaxException, caused by " + e.getMessage(), e);
