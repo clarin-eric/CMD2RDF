@@ -88,6 +88,7 @@ public class SparqlQuery extends JerseyRestClient implements IQuery {
 	public Response localTripleStoreGETRequest(HttpHeaders headers,
 			UriInfo uriInfo) {
 		String query = uriInfo.getRequestUri().getQuery();
+		log.debug("SPARQL query: " + query);
 		try {
 			return getSparqlGetQueryResult(query);
 		} catch (IOException | URISyntaxException e) {

@@ -122,3 +122,8 @@ public class JerseyClient {
 //		.status(200)
 //		.entity("addUser is called, userAgent : " + userAgent
 //				+ "\n========\n" + query).build();
+
+/*
+ String query = "select ?s ?p ?o { graph ?g {?s ?p ?o} . filter(strStarts(str(?g), \"https://catalog.clarin.eu/ds/cmd2rdf/graph/FOLDERX/\"))} limit 5";
+		
+*/
