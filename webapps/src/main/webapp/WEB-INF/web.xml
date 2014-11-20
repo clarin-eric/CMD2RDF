@@ -50,7 +50,7 @@
 	
 	<env-entry>
 		<env-entry-name>job_xml_path</env-entry-name>
-		<env-entry-value>/Users/akmi/DANS/eko-cmdi-test/workspace/log/cmd2rdf.xml</env-entry-value>
+		<env-entry-value>/lat/tools/cmd2rdf/git/CMD2RDF/batch/src/main/resources/cmd2rdf.xml</env-entry-value>
 		<env-entry-type>java.lang.String</env-entry-type>
 	</env-entry>
 
