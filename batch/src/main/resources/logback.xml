@@ -12,7 +12,7 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>cmd2rdf.log</file>
+        <file>/Users/akmi/cmd2rdfXX.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
             <fileNamePattern>cmd2rdf.log.%d{yyyy-MM-dd}.log</fileNamePattern>
@@ -27,24 +27,24 @@
     </appender>
     
     <appender name="ERRORLOG-FILE" class="ch.qos.logback.core.FileAppender">
-        <file>errors.log</file>
+        <file>/Users/akmi/errorsYY.log</file>
         <append>true</append>
         <encoder>
             <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
         </encoder>
     </appender>
     <!-- additivity=false ensures analytics data only goes to the analytics log -->
-    <logger name="errorlog" level="DEBUG" additivity="false">
+    <logger name="errorlog" level="INFO" additivity="false">
         <appender-ref ref="ERRORLOG-FILE"/>
     </logger>
  
-	<logger name="javax.xml.bind" level="DEBUG"/>
+	<logger name="javax.xml.bind" level="INFO"/>
 	<logger name="org.easybatch.core.impl" level="INFO"/>
-	<logger name="nl.knaw.dans.clarin" level="DEBUG"/>
+	<logger name="nl.knaw.dans.clarin" level="INFO"/>
 	<logger name="org.apache.directmemory" level="ERROR"/>
 	<logger name="org.apache.http" level="ERROR"/>
 	
-    <root level="DEBUG" additivity="false">
+    <root level="INFO" additivity="false">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </root>
