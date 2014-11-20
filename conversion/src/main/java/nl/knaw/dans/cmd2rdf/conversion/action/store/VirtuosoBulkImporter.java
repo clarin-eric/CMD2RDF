@@ -72,7 +72,7 @@ public class VirtuosoBulkImporter implements IAction{
 			boolean status = excuteBulkImport();
 			split.stop();
 			if (!status) {
-				ERROR_LOG.debug("FATAL ERROR, THE BULK IMPORT IS FAILED ---> SYSTEM TERMINATED.");
+				ERROR_LOG.error("FATAL ERROR, THE BULK IMPORT IS FAILED ---> SYSTEM TERMINATED.");
 				System.exit(1);
 			}
 			return status;
@@ -83,9 +83,9 @@ public class VirtuosoBulkImporter implements IAction{
 
 private boolean excuteBulkImport() throws ActionException {
 	boolean ok=false;
-		log.debug("######## START EXCUTING BULK IMPORT ###############");
+		log.info("######## START EXCUTING BULK IMPORT ###############");
 		for (String s:virtuosoBulkImport)
-			log.debug("BULK COMMAND: " + s);
+			log.info("BULK COMMAND: " + s);
 		
 		long start = System.currentTimeMillis();
 		
@@ -96,8 +96,8 @@ private boolean excuteBulkImport() throws ActionException {
 		
 		long duration = System.currentTimeMillis() - start;
 		Period p = new Period(duration);
-		log.debug("######## END BULK IMPORT ###############");
-		log.debug("DURATION: " + p.getHours() + " hours, " + p.getMinutes() + " minutes, " + p.getSeconds() + " secs, " + p.getMillis() + " msec.");
+		log.info("######## END BULK IMPORT ###############");
+		log.info("DURATION: " + p.getHours() + " hours, " + p.getMinutes() + " minutes, " + p.getSeconds() + " secs, " + p.getMillis() + " msec.");
 		return ok;
 	}
 
@@ -108,7 +108,7 @@ private boolean executeIsql(String[] args) throws ActionException {
 	try {
 		process = Runtime.getRuntime().exec(args);
 		while (process.waitFor() != 0) {
-			log.debug("process...");
+			log.info("process...");
 		}
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -117,7 +117,7 @@ private boolean executeIsql(String[] args) throws ActionException {
 			output.append(line + "\n");
 		}
 		String outputstr = output.toString();
-		log.debug(outputstr);
+		log.info(outputstr);
 		ok = outputstr.contains("Done.") && outputstr.contains("msec.");
  
 	} catch (Exception e) {

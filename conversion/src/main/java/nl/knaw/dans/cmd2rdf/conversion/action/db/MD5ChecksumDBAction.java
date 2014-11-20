@@ -60,12 +60,12 @@ public class MD5ChecksumDBAction implements IAction {
 	}
 	
 	private void deleteAllRecordsWithStatusPurge() {
-		log.debug("Delete all records those have status 'PURGE'");
+		log.info("Delete all records those have status 'PURGE'");
 		db.deleteActionStatus(ActionStatus.PURGE);
 	}
 
 	private void updateAllDoneToDeleteStatus() {
-		log.debug("Update all records those have status 'DONE' to status 'DELETE'");
+		log.info("Update all records those have status 'DONE' to status 'DELETE'");
 		db.updateStatusOfDoneStatus(ActionStatus.DELETE);
 	}
 
@@ -84,39 +84,33 @@ public class MD5ChecksumDBAction implements IAction {
 				allFiles.addAll(files);
 			}
 		}
-//		List<File> smallFiles = new ArrayList<File>();
-//		for (File f:allFiles) {
-//			if ((f.length()/1048576)>1)
-//				smallFiles.add(f);
-//		}
 		split.stop();
-		log.debug("===== Number of files TOTAL FILES : " + allFiles.size());
-		//log.debug("===== Number of files SMALL FILES : " + smallFiles.size());
+		log.info("===== Number of files TOTAL FILES : " + allFiles.size());
+		
 		try {
 			log.debug("==================================");
 			log.debug("Number of records before process: " + db.getTotalNumberOfRecords());
 			db.process(xmlSourceDir, allFiles);
-			//db.process(xmlSourceDir, smallFiles);
 			log.debug("Number of records after process: " + db.getTotalNumberOfRecords());
-			log.debug("==================================");
-			log.debug("\n");
-			log.debug("---------- Counter reports ---------");
-			log.debug("Total processed records: " + ChecksumDb.getnRecords());
-			log.debug("Total inserted records: " + ChecksumDb.getnInsert());
-			log.debug("Total updated records: " + ChecksumDb.getnUpdate());
-			log.debug("Total skipped records: " + ChecksumDb.getnSkip());
-			log.debug("Total Query DURATION: " + ChecksumDb.getTotalQueryDuration() + " milliseconds");
-			log.debug("Total MD5 HASHING DURATION: " + ChecksumDb.getTotalMD5GeneratedTime() + " milliseconds");
-			log.debug("Total DB PROCESSING DURATION: " + ChecksumDb.getTotalDbProcessingTime() + " milliseconds");
-			log.debug("----------------------------------");
-			log.debug("\n");
-			log.debug("============= DB QUERY Reports ===============");
-			log.debug("Records with status NEW: " + db.getTotalNumberOfNewRecords());
-			log.debug("Records with status UPDATE: " + db.getTotalNumberOfUpdatedRecords());
-			log.debug("Records with status DONE: " + db.getTotalNumberOfDoneRecords());
-			log.debug("Records with status NONE: " + db.getTotalNumberOfNoneRecords());
-			log.debug("Records with status DELETE: " + db.getTotalNumberOfDeleteRecords());
-			log.debug("==================================");
+			log.info("==================================");
+			log.info("\n");
+			log.info("---------- Counter reports ---------");
+			log.info("Total processed records: " + ChecksumDb.getnRecords());
+			log.info("Total inserted records: " + ChecksumDb.getnInsert());
+			log.info("Total updated records: " + ChecksumDb.getnUpdate());
+			log.info("Total skipped records: " + ChecksumDb.getnSkip());
+			log.info("Total Query DURATION: " + ChecksumDb.getTotalQueryDuration() + " milliseconds");
+			log.info("Total MD5 HASHING DURATION: " + ChecksumDb.getTotalMD5GeneratedTime() + " milliseconds");
+			log.info("Total DB PROCESSING DURATION: " + ChecksumDb.getTotalDbProcessingTime() + " milliseconds");
+			log.info("----------------------------------");
+			log.info("\n");
+			log.info("============= DB QUERY Reports ===============");
+			log.info("Records with status NEW: " + db.getTotalNumberOfNewRecords());
+			log.info("Records with status UPDATE: " + db.getTotalNumberOfUpdatedRecords());
+			log.info("Records with status DONE: " + db.getTotalNumberOfDoneRecords());
+			log.info("Records with status NONE: " + db.getTotalNumberOfNoneRecords());
+			log.info("Records with status DELETE: " + db.getTotalNumberOfDeleteRecords());
+			log.info("==================================");
 			
 			
 		} catch (SQLException e) {

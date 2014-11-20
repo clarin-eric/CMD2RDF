@@ -64,7 +64,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 	IllegalAccessException, NoSuchFieldException,
 	NoSuchMethodException, InvocationTargetException, ActionException {
 		for (Profile component:Misc.emptyIfNull(components)) {
-			log.debug("###### PROCESSING OF Components : " + component.getDesc());
+			log.info("###### PROCESSING OF Components : " + component.getDesc());
 			Collection<File> files = FileUtils.listFiles(new File( Misc.subtituteGlobalValue(GLOBAL_VARS, component.getXmlSource()))
 														,  new WildcardFileFilter(component.getFilter()), null);
 			List<IAction> actions = new ArrayList<IAction>();
@@ -91,7 +91,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 	IllegalAccessException, NoSuchFieldException,
 	NoSuchMethodException, InvocationTargetException, ActionException {
 		for (Profile profile:Misc.emptyIfNull(profiles)) {
-			log.debug("###### PROCESSING OF Profiles : " + profile.getDesc());
+			log.info("###### PROCESSING OF Profiles : " + profile.getDesc());
 			Collection<File> files = FileUtils.listFiles(new File( Misc.subtituteGlobalValue(GLOBAL_VARS, profile.getXmlSource()))
 														,  new WildcardFileFilter(profile.getFilter()), null);
 			List<IAction> actions = new ArrayList<IAction>();
@@ -118,7 +118,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			throws IntrospectionException, 
 					IllegalAccessException,
 					InvocationTargetException {
-		log.debug("Setup the global configuration");
+		log.info("Setup the global configuration");
 		Config c = job.getConfig();
 		List<Property> props = c.getProperty();
 		for (Property prop:props) {
@@ -131,9 +131,9 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			if (m.find()) {
 				String globalVar = m.group(1);
 				if (GLOBAL_VARS.containsKey(globalVar)) {
-					log.debug("pKey: " + e.getKey() + "\tpVal: " + pVal);
+					log.info("pKey: " + e.getKey() + "\tpVal: " + pVal);
 					pVal = pVal.replace(m.group(0), GLOBAL_VARS.get(globalVar));
-					log.debug("pKey: " + e.getKey() + "\tnew pVal: " + pVal);
+					log.info("pKey: " + e.getKey() + "\tnew pVal: " + pVal);
 					GLOBAL_VARS.put(e.getKey(), pVal);
 				}
 			}
@@ -145,7 +145,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 					InstantiationException, IllegalAccessException,
 					NoSuchFieldException, NoSuchMethodException,
 					InvocationTargetException, ActionException {
-		log.debug("Execute prepare actions.");
+		log.info("Execute prepare actions.");
 		List<IAction> actions = new ArrayList<IAction>();
 		for (Action act : list) {
 			IAction clazzAction = startUpAction(act);				
@@ -163,7 +163,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, NoSuchFieldException,
 			NoSuchMethodException, InvocationTargetException, ActionException {
-		log.debug("Execute records.");	
+		log.info("Execute records.");	
 		
 		fillInCacheService();
 		
@@ -220,7 +220,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			
 			} else {
 				//Skip record
-				log.debug("###### SKIPPED: '" +  r.getDesc() + "'");
+				log.info("###### SKIPPED: '" +  r.getDesc() + "'");
 			}
 		}
 	}
@@ -228,15 +228,15 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 	
 	private void doCallableAction(Record r, List<String> paths,
 			List<IAction> actions) {
-		log.debug("Multithreading is on, number of threads: " + r.getnThreads());
+		log.info("Multithreading is on, number of threads: " + r.getnThreads());
 		int n=0;
 		int i=0;
 		List<List<String>> paths2 = Misc.split(paths, r.getnThreads());
 		int totalfiles = paths.size();
-		log.debug("==============================================================");
-		log.debug("Numbers of files: " + totalfiles);
-		log.debug("Numbers op splitsing: " + paths2.size());
-		log.debug("==============================================================");
+		log.info("==============================================================");
+		log.info("Numbers of files: " + totalfiles);
+		log.info("Numbers op splitsing: " + paths2.size());
+		log.info("==============================================================");
 		for (List<String> pth : paths2) {
 			n++;
 			ExecutorService executor = Executors.newCachedThreadPool();
@@ -282,7 +282,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 	
 	
 	private void closeCacheService() {
-		log.debug("closeCacheService: CLOSE CacheService. It contains " + cacheService.entries() + " items.");
+		log.info("closeCacheService: CLOSE CacheService. It contains " + cacheService.entries() + " items.");
 		cacheService.clear();
         try {
 			cacheService.close();
@@ -291,7 +291,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		}
 	}
 	private void fillInCacheService() {
-		log.debug("fillInCacheService");
+		log.info("fillInCacheService");
 		String profilesCacheDir = GLOBAL_VARS.get("profilesCacheDir");
 		 Collection<File> profiles = FileUtils.listFiles(new File(profilesCacheDir),new String[] {"xml"}, true);
 		 for (File profile:profiles) {
@@ -328,7 +328,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 				throws ClassNotFoundException, InstantiationException, 
 					IllegalAccessException, NoSuchFieldException, 
 					NoSuchMethodException, InvocationTargetException, ActionException {
-		log.debug("Execute cleanup part.");	
+		log.info("Execute cleanup part.");	
 		List<IAction> actions = new ArrayList<IAction>();
 		for (Action act : list) {
 			log.debug(act.getName());
@@ -354,8 +354,8 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, NoSuchFieldException,
 			NoSuchMethodException, InvocationTargetException, ActionException {
-		log.debug("Startup of " + act.getClazz().getName());
-		log.debug("Description: " + act.getName());
+		log.info("Startup of " + act.getClazz().getName());
+		log.info("Description: " + act.getName());
 		@SuppressWarnings("unchecked")
 		Class<IAction> clazz = (Class<IAction>) Class.forName(act.getClazz().getName());
 		Constructor[] constructors = clazz.getConstructors(); 
@@ -366,7 +366,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 				clazzAction.startUp(nl.knaw.dans.cmd2rdf.config.util.Misc.mergeVariables(JobProcessor.GLOBAL_VARS,act.getClazz().getProperty()));
 				return clazzAction;
 			} else if (parameterTypes.length == 1 && (parameterTypes[0].isInstance(cacheService))) {
-				log.debug("USING CACHE SERVICE - hashcode: " + cacheService.hashCode() + " ENTRIES: " + cacheService.entries());
+				log.info("USING CACHE SERVICE - hashcode: " + cacheService.hashCode() + " ENTRIES: " + cacheService.entries());
 				Constructor<IAction> ctor = clazz.getDeclaredConstructor(CacheService.class);
 			    ctor.setAccessible(true);
 			    IAction clazzAction = ctor.newInstance(cacheService);

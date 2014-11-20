@@ -132,10 +132,10 @@ private boolean deleteRdfFromVirtuoso(String path) {
 		WebTarget target = client.target(uriBuilder.build());
 		Response response = target.request().delete();
 		int status = response.getStatus();
-		log.debug("Upload " + (path.replace(".xml", ".rdf")) + " to virtuoso server.\nResponse status: " + status);
+		log.info("Upload " + (path.replace(".xml", ".rdf")) + " to virtuoso server.\nResponse status: " + status);
 		if ((status == Response.Status.CREATED.getStatusCode()) || (status == Response.Status.OK.getStatusCode())){
 			n++;
-			log.debug("[" + n + "] is DELETED.");
+			log.info("[" + n + "] is DELETED.");
 			return true;	
 		} else {
 			errLog.error(">>>>>>>>>> ERROR: " + status + "\t" + path);
@@ -166,20 +166,20 @@ private boolean uploadRdfToVirtuoso(String path, Object object)
 		throws ActionException {
 	if (object instanceof Node) {
 		String fname = path.replace(".xml", ".rdf");
-		log.debug("Upload '" + fname + "'.");
+		log.info("Upload '" + fname + "'.");
 		Node node = (Node)object;
 		DOMSource source = new DOMSource(node);
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		StreamResult result = new StreamResult(bos);
 		try {
-			log.debug("START transformation from DOMSource to RDF");
+			log.info("START transformation from DOMSource to RDF");
 			long startTrans = System.currentTimeMillis();
 			TransformerFactory.newInstance().newTransformer().transform(source,result);
 			Period p = new Period(System.currentTimeMillis() - startTrans);
-			log.debug("END transformation from DOMSource to RDF. Duration: "  + p.getMinutes() + " minutes, " +  p.getSeconds() + " secs, " + p.getMillis() + " ms.");
+			log.info("END transformation from DOMSource to RDF. Duration: "  + p.getMinutes() + " minutes, " +  p.getSeconds() + " secs, " + p.getMillis() + " ms.");
 			
 			byte[] bytes = bos.toByteArray();
-			log.debug(fname + " has BYTES SIZE : " + FileUtils.byteCountToDisplaySize(BigInteger.valueOf(bytes.length)));
+			log.info(fname + " has BYTES SIZE : " + FileUtils.byteCountToDisplaySize(BigInteger.valueOf(bytes.length)));
 			
 			long startUplod = System.currentTimeMillis();
 			
@@ -190,10 +190,10 @@ private boolean uploadRdfToVirtuoso(String path, Object object)
 			
 			Response response = target.request().post(Entity.entity(bytes, MediaType.APPLICATION_OCTET_STREAM));
 			int status = response.getStatus();
-			log.debug("'" + (path.replace(".xml", ".rdf")) + "' is uploaded to virtuoso server.\nResponse status: " + status);
+			log.info("'" + (path.replace(".xml", ".rdf")) + "' is uploaded to virtuoso server.\nResponse status: " + status);
 			if ((status == Response.Status.CREATED.getStatusCode()) || (status == Response.Status.OK.getStatusCode())){
 				n++;
-				log.debug("[" + n + "] is CREATED. Duration: " + (System.currentTimeMillis() - startUplod) + " milliseconds.");
+				log.info("[" + n + "] is CREATED. Duration: " + (System.currentTimeMillis() - startUplod) + " milliseconds.");
 				return true;	
 			} else {
 				log.error(">>>>>>>>>> ERROR: " + status);

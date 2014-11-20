@@ -54,10 +54,10 @@ public class OaipmhHarvester implements IAction{
 	 */
 	private boolean harvest(){
 		Split split = SimonManager.getStopwatch("stopwatch.oai").start();
-		log.debug("Harvesting... ");
-		log.debug("baseUrl: " + oaipmhBaseURL);
-		log.debug("prefix: " + prefix);
-		log.debug("SET: " + set);
+		log.info("Harvesting... ");
+		log.info("baseUrl: " + oaipmhBaseURL);
+		log.info("prefix: " + prefix);
+		log.info("SET: " + set);
 		boolean ok = true;
 		Document doc = DocumentFactory.getInstance()
 				.createDocument();
@@ -92,7 +92,7 @@ public class OaipmhHarvester implements IAction{
 					}
 				}
 				if (records.getResumptionToken() != null) {
-					log.debug("Harvest the next token.");
+					log.info("Harvest the next token.");
 					ResumptionToken rt = records.getResumptionToken();
 					Thread.sleep(1000);
 					records = server.listRecords(rt);
@@ -100,7 +100,7 @@ public class OaipmhHarvester implements IAction{
 					more = false;
 				}
 			}
-			log.debug("Harvesting is finish.");
+			log.info("Harvesting is finish.");
 		} catch (OAIException e) {
 			log.error("ERROR: OAIException, caused by " + e.getMessage());
 			return false;
@@ -129,7 +129,7 @@ public class OaipmhHarvester implements IAction{
 	public void shutDown() throws ActionException {
 		File file = new File(outputFile);
 		String filename = file.getName();
-		log.debug("Read cache from file and put in the cache service. Filename:  " + filename + "\tFile abspath: " + file.getAbsolutePath());
+		log.info("Read cache from file and put in the cache service. Filename:  " + filename + "\tFile abspath: " + file.getAbsolutePath());
 		try {
 			byte[] bytes = FileUtils.readFileToByteArray(file);
 			cacheService.putByteArray(filename, bytes);
@@ -155,11 +155,11 @@ public class OaipmhHarvester implements IAction{
 	}
 	private void removeOutputFileOnExist(File file) {
 		if (file.exists()) {
-			log.debug(outputFile + "is exists.");
-			log.debug("Deleting file...");
+			log.info(outputFile + "is exists.");
+			log.info("Deleting file...");
 			boolean ok = file.delete();
 			if (ok)
-				log.debug(outputFile + " is deleted.");
+				log.info(outputFile + " is deleted.");
 			else
 				log.error("Cannot delete the " + outputFile + " file.");
 		}
@@ -170,7 +170,7 @@ public class OaipmhHarvester implements IAction{
 			writer = new XMLWriter(
 			    new FileWriter( outputFile )
 			);
-			log.debug("Writing rdf file to " + outputFile);
+			log.info("Writing rdf file to " + outputFile);
 			writer.write( doc );
 			writer.close();
 		} catch (IOException e) {

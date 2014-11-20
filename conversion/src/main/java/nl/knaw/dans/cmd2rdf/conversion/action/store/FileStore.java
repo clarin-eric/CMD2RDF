@@ -60,7 +60,7 @@ public class FileStore implements IAction{
 				replacedPrefixBaseURI.add(s.trim());
 		}
 	
-		log.debug("Save the RDF files to " + rdfDir);
+		log.info("Save the RDF files to " + rdfDir);
 	}
 
 	public Object execute(String path, Object object) throws ActionException {
@@ -86,14 +86,14 @@ public class FileStore implements IAction{
 private boolean saveRdfToFileSystem(String path, Object object)
 		throws ActionException {
 	if (object instanceof Node) {
-		log.debug("Save '" + path.replace(".xml", ".rdf") + "'.");
+		log.info("Save '" + path.replace(".xml", ".rdf") + "'.");
 		Node node = (Node)object;
 		DOMSource source = new DOMSource(node);
 		try {
 			long l = System.currentTimeMillis();
 			String gIRI = getGIRI(path);
 			String rdfFileOutputName = gIRI.replace(prefixBaseURI,  rdfDir).replace(".xml", ".rdf");
-			log.debug("Saving " + rdfFileOutputName);
+			log.info("Saving " + rdfFileOutputName);
 			File rdfFile = new File(rdfFileOutputName);
 			TransformerFactory.newInstance().newTransformer().transform(source,new StreamResult(rdfFile));
 			FileUtils.write(new File(rdfFileOutputName+".graph"), gIRI);
@@ -102,10 +102,10 @@ private boolean saveRdfToFileSystem(String path, Object object)
 //				throw new ActionException("ERROR Saving file: " + rdfFile);
 //			}
 			long duration = (System.currentTimeMillis() - l );
-			log.debug("Save duration: " + duration + " ms. Size: " + FileUtils.byteCountToDisplaySize(rdfFile.length()));
+			log.info("Save duration: " + duration + " ms. Size: " + FileUtils.byteCountToDisplaySize(rdfFile.length()));
 			if (duration > 5000) {
 				Period p = new Period(duration);
-				log.debug("Saving took more than 4 seconds. It took " + p.getSeconds() + " secs.");
+				log.info("Saving took more than 4 seconds. It took " + p.getSeconds() + " secs.");
 			}
 			return true;
 		} catch (TransformerConfigurationException e) {

@@ -63,7 +63,7 @@ public class TeeAction implements IAction{
                     }
 		if (!tee.isDirectory())
 			throw new ActionException("teeOutputDir["+teeOutputDir+"] is not a directory");
-		log.debug("Save the tee files to " + teeOutputDir);
+		log.info("Save the tee files to " + teeOutputDir);
 	}
 
 	public Object execute(String path, Object object) throws ActionException {
@@ -89,21 +89,21 @@ public class TeeAction implements IAction{
 private boolean saveXMLToFileSystem(String path, Object object)
 		throws ActionException {
 	if (object instanceof Node) {
-		log.debug("Save '" + path + "'.");
+		log.info("Save '" + path + "'.");
 		Node node = (Node)object;
 		DOMSource source = new DOMSource(node);
 		try {
 			long l = System.currentTimeMillis();
 			String gIRI = getGIRI(path);
 			String teeFileOutputName = gIRI.replace(prefixBaseURI,  teeOutputDir);
-			log.debug("Saving " + teeFileOutputName);
+			log.info("Saving " + teeFileOutputName);
 			File teeFile = new File(teeFileOutputName);
 			TransformerFactory.newInstance().newTransformer().transform(source,new StreamResult(teeFile));
 			long duration = (System.currentTimeMillis() - l );
-			log.debug("Save duration: " + duration + " ms. Size: " + FileUtils.byteCountToDisplaySize(teeFile.length()));
+			log.info("Save duration: " + duration + " ms. Size: " + FileUtils.byteCountToDisplaySize(teeFile.length()));
 			if (duration > 5000) {
 				Period p = new Period(duration);
-				log.debug("Saving took more than 4 seconds. It took " + p.getSeconds() + " secs.");
+				log.info("Saving took more than 4 seconds. It took " + p.getSeconds() + " secs.");
 			}
 			return true;
 		} catch (TransformerConfigurationException e) {

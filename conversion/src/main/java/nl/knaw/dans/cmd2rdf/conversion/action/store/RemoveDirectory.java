@@ -31,7 +31,7 @@ public class RemoveDirectory implements IAction{
 	}
 
 	public Object execute(String path, Object object) throws ActionException {
-		log.debug("Deleting directory" + directoryToRemove);
+		log.info("Deleting directory" + directoryToRemove);
 		if (object != null && (Boolean) object) {
 			File file = new File(directoryToRemove);
 			if (!file.exists() || !file.isDirectory())

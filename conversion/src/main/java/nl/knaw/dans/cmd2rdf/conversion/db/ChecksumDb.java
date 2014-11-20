@@ -54,7 +54,7 @@ public class ChecksumDb {
     }
 
 	private void init(String db_file_name_prefix){
-		log.debug("Initiate database connection.");
+		log.info("Initiate database connection.");
 		try {
 			Class.forName("org.hsqldb.jdbcDriver");
 			conn = DriverManager.getConnection("jdbc:hsqldb:"
@@ -68,8 +68,8 @@ public class ChecksumDb {
 			if (!initialdata)
 				createTable();
 			else {
-				log.debug("TABLE EXIST, table name: " + TABLE_NAME);
-				log.debug("Total records of " + TABLE_NAME + " table: " + getTotalNumberOfRecords());
+				log.info("TABLE EXIST, table name: " + TABLE_NAME);
+				log.info("Total records of " + TABLE_NAME + " table: " + getTotalNumberOfRecords());
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -88,7 +88,7 @@ public class ChecksumDb {
 	}
 
 	public void updateStatusOfDoneStatus(ActionStatus as) {
-		log.debug("Update the status of all records to " + as.name() + " where status is 'DONE'");
+		log.info("Update the status of all records to " + as.name() + " where status is 'DONE'");
 		try {
 			update("UPDATE " + TABLE_NAME + " SET status='" + as.name() + "' " 
 					+ "WHERE status = '" + ActionStatus.DONE.name() + "'");
@@ -101,7 +101,7 @@ public class ChecksumDb {
 	}    
 	
 	public void updateActionStatusByRecord(String path, ActionStatus as) {
-		log.debug("Update the status to " + as.name() + " where path is '" + path + "'");
+		log.info("Update the status to " + as.name() + " where path is '" + path + "'");
 		try {
 			update("UPDATE " + TABLE_NAME + " SET status='" + as.name() + "' " 
 					+ "WHERE path = '" + path +"'");
@@ -125,7 +125,7 @@ public class ChecksumDb {
 	}    
 	
 	private void createTable() throws SQLException {
-		log.debug("CREATE A NEW TABLE, table name: " + TABLE_NAME);
+		log.info("CREATE A NEW TABLE, table name: " + TABLE_NAME);
 		update(
                 "CREATE TABLE " + TABLE_NAME 
                 + "( id INTEGER IDENTITY, path VARCHAR(" + COL_CHECKSUM_MAX_LENGTH + ") UNIQUE, "
@@ -161,7 +161,7 @@ public class ChecksumDb {
         int i = st.executeUpdate(expression); 
 
         if (i == -1) {
-            log.debug("db error : " + expression);
+            log.error("db error : " + expression);
         }
 
         st.close();
@@ -320,10 +320,10 @@ public class ChecksumDb {
     }
     
     private void initRecords(Collection<File> files) throws IOException{
-    	log.debug("GENERATE MD5 for [generateApacheMD5Checksum(file)] " + files.size() + " files.");
+    	log.info("GENERATE MD5 for [generateApacheMD5Checksum(file)] " + files.size() + " files.");
         try {
         	long t = System.currentTimeMillis();
-            log.debug("Generate MD5 Checksum of " + files.size() + " files.");
+            log.info("Generate MD5 Checksum of " + files.size() + " files.");
             PreparedStatement psInsert = conn.prepareStatement(INSERT_PREPARED_STATEMENT);
             
             long totalhashingtime = 0;
@@ -378,10 +378,10 @@ public class ChecksumDb {
     }
     
     private void checkAndstore(Collection<File> files) throws IOException {
-    	log.debug("CHECK AND GENERATE MD5 [generateFastMD5Checksum(file)] for " + files.size() + " files.");
+    	log.info("CHECK AND GENERATE MD5 [generateFastMD5Checksum(file)] for " + files.size() + " files.");
         try {
         	long t = System.currentTimeMillis();
-            log.debug("Generate MD5 Checksum of " + files.size() + " files.");
+            log.info("Generate MD5 Checksum of " + files.size() + " files.");
             PreparedStatement psInsert = conn.prepareStatement(INSERT_PREPARED_STATEMENT);
             PreparedStatement psUpdate = conn.prepareStatement(UPDATE_PREPARED_STATEMENT);
             PreparedStatement psSkip = conn.prepareStatement(SKIP_PREPARED_STATEMENT);
@@ -462,23 +462,23 @@ public class ChecksumDb {
     }
 
 	private long commitRecords(PreparedStatement ps, int nRecs, String msg) throws SQLException {
-		log.debug("Commiting records, msg: " + msg);
+		log.info("Commiting records, msg: " + msg);
 		long t = System.currentTimeMillis();
 		 ps.executeBatch();
 		 conn.commit();
 		 long dbprocessingtime = (System.currentTimeMillis() - t);
-		 log.debug(msg + " is done in " + dbprocessingtime + " milliseconds.");
-		 log.debug("Total number of committed records: " + nRecs);
+		 log.info(msg + " is done in " + dbprocessingtime + " milliseconds.");
+		 log.info("Total number of committed records: " + nRecs);
 		return dbprocessingtime;
 	}
 
 	
 	private void writeLog(long t, int nRecords, long totalhashingtime,
 			long totaldatabaseprocessingtime) {
-		log.debug("Total number of records: " + nRecords);
-		log.debug("Total duration of md5 process is  " + (totalhashingtime/1000)  + " seconds and " + totalhashingtime%1000 + " milliseconds");
-		log.debug("Total duration of database process is  " + (totaldatabaseprocessingtime/1000) + " seconds and " + totaldatabaseprocessingtime%1000 + " milliseconds");
-		log.debug("Total process time is  " + ((System.currentTimeMillis() - t)/1000)+ " seconds.");
+		log.info("Total number of records: " + nRecords);
+		log.info("Total duration of md5 process is  " + (totalhashingtime/1000)  + " seconds and " + totalhashingtime%1000 + " milliseconds");
+		log.info("Total duration of database process is  " + (totaldatabaseprocessingtime/1000) + " seconds and " + totaldatabaseprocessingtime%1000 + " milliseconds");
+		log.info("Total process time is  " + ((System.currentTimeMillis() - t)/1000)+ " seconds.");
 	}
 
 	private void setInsertedRecord(PreparedStatement psInsert, String hash,
