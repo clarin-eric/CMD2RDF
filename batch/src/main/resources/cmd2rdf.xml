@@ -448,7 +448,7 @@
 					<action name="Deleting rdf output file 750K-1M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.RemoveDirectory">
 							<properties>
-								<property name="directoryToRemove">{tmpOutDir}/250K-500K</property>
+								<property name="directoryToRemove">{tmpOutDir}/750K-1M</property>
 							</properties>
 						</class>
 					</action>
@@ -745,7 +745,7 @@
 							</properties>
 						</class>
 					</action>
-					<action name="Deleting rdf output file 250K-500K">
+					<action name="Deleting rdf output file 2M-5M">
 						<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.RemoveDirectory">
 							<properties>
 								<property name="directoryToRemove">{tmpOutDir}/2M-5M</property>
