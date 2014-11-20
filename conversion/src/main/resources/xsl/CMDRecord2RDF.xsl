@@ -16,7 +16,7 @@
 	<xsl:param name="base_strip" select="$base"/>
     <xsl:param name="base_add" select="''"/>
 
-    <xsl:variable name="about" select="replace(if ($base_strip=$base) then $base else replace($base, $base_strip, $base_add),'([./])(xml|cmdi)$','$1rdf')"/>
+    <xsl:variable name="about" select="replace(if ($base_strip=$base) then $base else for $strip in tokenize($base_strip,',') return if (starts-with($base,concat('file:',$strip))) then replace($base, concat('file:',$strip), $base_add) else (),'([./])(xml|cmdi)$','$1rdf')"/>
 
     <xsl:include href="CMD2RDF.xsl"/>
 
