@@ -12,7 +12,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -169,7 +168,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		fillInCacheService();
 		
 		for(Record r: Misc.emptyIfNull(records)) {
-			log.debug("###### PROCESSING OF RECORD : " + r.getDesc());
+			log.info("###### PROCESSING OF RECORD : " + r.getDesc() + "\tNumber of threads: " + r.getnThreads());
 			List<String> paths = null;
 			if (r.getXmlSource().contains(URL_DB)) {
 				String urlDB = subtituteGlobalValue(r.getXmlSource());
