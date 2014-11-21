@@ -3,13 +3,17 @@
  */
 package nl.knaw.dans.cmd2rdf.webapps.rest.sparql;
 
+import static nl.knaw.dans.cmd2rdf.webapps.util.Constants.SUPPORTED_RESPONSE_FORMATS;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.ws.rs.HeaderParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
@@ -108,7 +112,9 @@ public class SparqlQuery extends JerseyRestClient implements IQuery {
 	 * curl -v "http://localhost:8080/cmd2rdf/sparql" -d "query=SELECT count(*) {?s ?p ?o}" -H "Accept: application/rdf+xml"
 	 * curl -v "http://localhost:8080/cmd2rdf/sparql" -d "query=SELECT count(*) {?s ?p ?o}" -H "Accept: text/n3"
 	 */
-	@Override
+	
+	@POST
+	@Produces(SUPPORTED_RESPONSE_FORMATS)
 	public Response localTripleStorePOSTRequest(@HeaderParam("Accept") String headerParam,
 			MultivaluedMap<String, String> formParams) {
 		Form form = new Form();
