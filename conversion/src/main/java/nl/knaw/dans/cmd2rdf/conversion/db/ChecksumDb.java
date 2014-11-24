@@ -10,7 +10,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import nl.knaw.dans.cmd2rdf.conversion.action.ActionStatus;
 
@@ -28,7 +30,7 @@ public class ChecksumDb {
 	private static final String NEW_RECORD_QUERY = "SELECT path FROM " + TABLE_NAME + " WHERE status='" + ActionStatus.NEW + "'";
 	private static final String UPDATED_RECORD_QUERY = "SELECT path FROM " + TABLE_NAME + " WHERE status='" + ActionStatus.UPDATE + "'";
 	private static final String DELETE_RECORD_QUERY = "SELECT path FROM " + TABLE_NAME + " WHERE status='" + ActionStatus.DELETE + "'";
-	private static final String NEW_OR_UPDATED_RECORD_QUERY = "SELECT path FROM " + TABLE_NAME + " WHERE (status='" 
+	private static final String NEW_OR_UPDATED_RECORD_QUERY = "SELECT path, size FROM " + TABLE_NAME + " WHERE (status='" 
 													+ ActionStatus.NEW + "' OR status ='" + ActionStatus.UPDATE + "')";
 	
 	private static boolean initialdata = false;
@@ -202,6 +204,51 @@ public class ChecksumDb {
 		return paths;
 	}
     
+	public Map<String, Integer> getRecords(ActionStatus as, String xmlLimitSizeMin) {
+		String sql = "";
+		switch (as) {
+		case NEW:
+			sql = NEW_RECORD_QUERY;
+			break;
+		case UPDATE:
+			sql = UPDATED_RECORD_QUERY;
+			break;
+		case NEW_UPDATE:
+			sql = NEW_OR_UPDATED_RECORD_QUERY;
+			break;
+		case DELETE:
+			sql = DELETE_RECORD_QUERY;
+			break;
+		default:
+			sql = NEW_RECORD_QUERY;
+			break;
+		}
+		if (xmlLimitSizeMin != null) 
+			sql += " AND size >= " + xmlLimitSizeMin;
+		
+			
+		Map<String, Integer> paths = new HashMap<String, Integer>();
+		try {
+			paths = getPathsAndSizesByQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return paths;
+	}
+	
+    private Map<String, Integer> getPathsAndSizesByQuery(String query) throws SQLException {
+    	Map<String, Integer> paths = new HashMap<String, Integer>();
+        Statement st = conn.createStatement();        
+        ResultSet rs = st.executeQuery(query);    
+        for (; rs.next(); ) {
+        	String path = rs.getString("path"); 
+        	int size = rs.getInt("size");
+        	paths.put(path, size);
+        }
+        st.close(); 
+    	return paths;
+    }
+   
     private List<String> getPathsByQuery(String query) throws SQLException {
     	List<String> paths = new ArrayList<String>();
         Statement st = conn.createStatement();        
@@ -468,7 +515,7 @@ public class ChecksumDb {
 		 conn.commit();
 		 long dbprocessingtime = (System.currentTimeMillis() - t);
 		 log.info(msg + " is done in " + dbprocessingtime + " milliseconds.");
-		 log.info("Total number of committed records: " + nRecs);
+		 log.info("Committed records: " + nRecs + "\tTotal: " + getnRecords());
 		return dbprocessingtime;
 	}
 

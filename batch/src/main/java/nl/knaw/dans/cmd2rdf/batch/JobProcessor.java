@@ -29,6 +29,7 @@ import nl.knaw.dans.cmd2rdf.config.xmlmapping.Profile;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Property;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Record;
 import nl.knaw.dans.cmd2rdf.conversion.action.ActionException;
+import nl.knaw.dans.cmd2rdf.conversion.action.ActionStatus;
 import nl.knaw.dans.cmd2rdf.conversion.action.IAction;
 import nl.knaw.dans.cmd2rdf.conversion.action.WorkerCallable;
 import nl.knaw.dans.cmd2rdf.conversion.db.ChecksumDb;
@@ -47,6 +48,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 	private static final String URL_DB = "urlDB";
 	private static volatile Map<String, String> GLOBAL_VARS = new LinkedHashMap<String, String>();
 	private static volatile CacheService<Object, Object> cacheService;
+	private static int TOTAL_NUM_PROCESSED_PATHS;
 	
 
 	public void processRecord(Jobs job)
@@ -59,6 +61,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		doProcessProfile(job.profiles);
 		doProcessComponent(job.components);
 		closeCacheService();
+		log.info("TOTAL NUMBER OF PROCESSED PATHS: " + TOTAL_NUM_PROCESSED_PATHS);
 	}
 	private void doProcessComponent(List<Profile> components) throws ClassNotFoundException, InstantiationException,
 	IllegalAccessException, NoSuchFieldException,
@@ -169,7 +172,8 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		
 		for(Record r: Misc.emptyIfNull(records)) {
 			log.info("###### PROCESSING OF RECORD : " + r.getDesc() + "\tNumber of threads: " + r.getnThreads());
-			List<String> paths = null;
+			List<List<String>> allPaths = new ArrayList<List<String>>();
+			
 			if (r.getXmlSource().contains(URL_DB)) {
 				String urlDB = subtituteGlobalValue(r.getXmlSource());
 				ChecksumDb cdb = new ChecksumDb(urlDB);
@@ -189,40 +193,92 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 					}
 				}
 				
-		    	paths = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin(), r.getXmlLimitSizeMax());
+				if (r.getXmlLimitSizeMax() == null) {
+					if (!Misc.convertToActionStatus(r.getFilter()).equals(ActionStatus.NEW_UPDATE))
+						throw new ActionException("ERROR: NOT IMPLEMENT YET");
+					Map<String, Integer> pathsAndSizes = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin());
+					//List<String> pathsbigzise = new ArrayList<String>();
+					List<String> mbpaths = new ArrayList<String>();
+					int mB25 = 0;
+					int count = 0;
+					for (Map.Entry<String, Integer> e : pathsAndSizes.entrySet()) {
+						int size = e.getValue();
+						if (size > 26214400) {
+							List<String> alist = new ArrayList<String>();
+							alist.add(e.getKey());
+							allPaths.add(alist);
+							count++;
+						} else {
+							//collect the files until the total size about 25 MB
+							mB25 += size;
+							mbpaths.add(e.getKey());
+							count++;
+						}
+						if (mB25 > 26214400) {
+							//reset 
+							mB25 = 0;
+							allPaths.add(mbpaths);
+							mbpaths = new ArrayList<String>();
+						}
+					}
+					
+					//check whether the total number of paths are correct
+					if (pathsAndSizes.size() != count) {
+							log.error("========== ERRORS ========");
+							log.error("ERROR - The pathsAndSizes: " + pathsAndSizes + "\tcount: " + count);
+							throw new ActionException("FATAL Errors: The pathsAndSizes: " + pathsAndSizes + "\tcount: " + count);
+					}
+					
+					if (!mbpaths.isEmpty())
+						allPaths.add(mbpaths);
+					
+				} else {
+					List<String> paths = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin(), r.getXmlLimitSizeMax());
+					allPaths.add(paths);
+				}
+		    	
 		    	cdb.closeDbConnection();
 			}
-			if (paths != null && !paths.isEmpty()) {
-				List<IAction> actions = new ArrayList<IAction>();
-				List<Action> list = r.getActions();
-				//Start Action
-				for (Action act : list) {
-					IAction clazzAction = startUpAction(act);				
-					actions.add(clazzAction);
+			if (allPaths != null && !allPaths.isEmpty()) {
+				for (List<String> paths : allPaths) {
+					TOTAL_NUM_PROCESSED_PATHS+=paths.size();
+					executeRecords(r, paths);
 				}
-				
-				//Execute Action
-				if (r.getnThreads()>0) 
-					doCallableAction(r, paths, actions);
-				else {
-					for(IAction action : actions) {
-						for (String path:paths)
-							action.execute(path,null);
-					}
-				}
-		         
-				//Shutdown Action
-				for(IAction action : actions) {
-					action.shutDown();
-				}
-				if (r.getCleanup() != null && r.getCleanup().getActions() != null)
-					doCleanup(r.getCleanup().getActions());
 			
 			} else {
 				//Skip record
 				log.info("###### SKIPPED: '" +  r.getDesc() + "'");
 			}
 		}
+	}
+	private void executeRecords(Record r, List<String> paths)
+			throws ClassNotFoundException, InstantiationException,
+			IllegalAccessException, NoSuchFieldException,
+			NoSuchMethodException, InvocationTargetException, ActionException {
+		List<IAction> actions = new ArrayList<IAction>();
+		List<Action> list = r.getActions();
+		//Start Action
+		for (Action act : list) {
+			IAction clazzAction = startUpAction(act);				
+			actions.add(clazzAction);
+		}
+		
+		//Execute Action
+		if (r.getnThreads()>0) 
+			doCallableAction(r, paths, actions);
+		else {
+			for(IAction action : actions) {
+				for (String path:paths)
+					action.execute(path,null);
+			}
+		}
+		 
+		//Shutdown Action
+		for(IAction action : actions) {
+			action.shutDown();
+		}
+		if (r.getCleanup() != null && r.getCleanup().getActions() != null)
+			doCleanup(r.getCleanup().getActions());
 	}
 	
 	
