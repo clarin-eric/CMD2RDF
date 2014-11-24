@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 public class VirtuosoBulkImporter implements IAction{
 	private static final Logger ERROR_LOG = LoggerFactory.getLogger("errorlog");
 	private static final Logger log = LoggerFactory.getLogger(VirtuosoBulkImporter.class);
-	private static String VIRTUOSO_BULK_IMPORT_SH = "/virtuoso_bulk_import.sh";
+	private static String VIRTUOSO_BULK_IMPORT_SH;
 	private boolean skip;
 	private String[] virtuosoBulkImport;
 	public VirtuosoBulkImporter(){
@@ -38,7 +38,7 @@ public class VirtuosoBulkImporter implements IAction{
 		if (bulkImportShellPath == null || bulkImportShellPath.isEmpty())
 			throw new ActionException(this.name() + ": bulkImportShellPath is null or empty");
 		else {
-			VIRTUOSO_BULK_IMPORT_SH = bulkImportShellPath + VIRTUOSO_BULK_IMPORT_SH;
+			VIRTUOSO_BULK_IMPORT_SH = bulkImportShellPath;
 			//Check whether the virtuoso_bulk_import.sh is executable or not.
 			File file = new File(VIRTUOSO_BULK_IMPORT_SH);
 			if (!file.exists() || !file.isFile())
