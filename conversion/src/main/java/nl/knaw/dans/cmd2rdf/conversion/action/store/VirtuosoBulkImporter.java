@@ -38,7 +38,7 @@ public class VirtuosoBulkImporter implements IAction{
 		if (bulkImportShellPath == null || bulkImportShellPath.isEmpty())
 			throw new ActionException(this.name() + ": bulkImportShellPath is null or empty");
 		else {
-			VIRTUOSO_BULK_IMPORT_SH = bulkImportShellPath;
+			VIRTUOSO_BULK_IMPORT_SH = bulkImportShellPath.trim();
 			//Check whether the virtuoso_bulk_import.sh is executable or not.
 			File file = new File(VIRTUOSO_BULK_IMPORT_SH);
 			if (!file.exists() || !file.isFile())
