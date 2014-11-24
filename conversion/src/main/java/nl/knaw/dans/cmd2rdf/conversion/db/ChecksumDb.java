@@ -515,7 +515,7 @@ public class ChecksumDb {
 		 conn.commit();
 		 long dbprocessingtime = (System.currentTimeMillis() - t);
 		 log.info(msg + " is done in " + dbprocessingtime + " milliseconds.");
-		 log.info("Committed records: " + nRecs + "\tTotal: " + getnRecords());
+		 log.info("Total number of committed records: " + nRecs);
 		return dbprocessingtime;
 	}
 
