@@ -194,10 +194,10 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 				}
 				
 				if (r.getXmlLimitSizeMax() == null) {
+					log.info("START PROCESSING RECORD USING BATCH ITERATION");
 					if (!Misc.convertToActionStatus(r.getFilter()).equals(ActionStatus.NEW_UPDATE))
 						throw new ActionException("ERROR: NOT IMPLEMENT YET");
 					Map<String, Integer> pathsAndSizes = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin());
-					//List<String> pathsbigzise = new ArrayList<String>();
 					List<String> mbpaths = new ArrayList<String>();
 					int mB100 = 0;
 					int count = 0;
@@ -209,13 +209,13 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 							allPaths.add(alist);
 							count++;
 						} else {
-							//collect the files until the total size about 100 MB or number of files: 100 
+							//collect the files until the total size about 25 MB or number of files: 50 
 							mB100 += size;
 							mbpaths.add(e.getKey());
 							count++;
 						}
-						if ((mB100 > 104857600) || (mbpaths.size() > 200)) {
-							//reset he files until the total size about 100 MB or number of files: 100 
+						if ((mB100 > 26214400) || (mbpaths.size() > 50)) {
+							//reset he files until the total size about 25 MB or number of files: 50 
 							mB100 = 0;
 							allPaths.add(mbpaths);
 							mbpaths = new ArrayList<String>();
@@ -231,7 +231,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 					
 					if (!mbpaths.isEmpty())
 						allPaths.add(mbpaths);
-					
+					log.info("END PROCESSING RECORD USING BATCH ITERATION\tNumber of paths: " + pathsAndSizes.size() + "\tNumber of counts: " + count );
 				} else {
 					List<String> paths = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin(), r.getXmlLimitSizeMax());
 					allPaths.add(paths);
