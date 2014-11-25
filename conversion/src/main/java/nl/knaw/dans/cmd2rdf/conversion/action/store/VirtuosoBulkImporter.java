@@ -3,11 +3,13 @@ package nl.knaw.dans.cmd2rdf.conversion.action.store;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.util.Collection;
 import java.util.Map;
 
 import nl.knaw.dans.cmd2rdf.conversion.action.ActionException;
 import nl.knaw.dans.cmd2rdf.conversion.action.IAction;
 
+import org.apache.commons.io.FileUtils;
 import org.javasimon.SimonManager;
 import org.javasimon.Split;
 import org.joda.time.Period;
@@ -59,7 +61,8 @@ public class VirtuosoBulkImporter implements IAction{
 		if (!file.exists() || !file.isDirectory()) {
 			skip=true;
 			ERROR_LOG.error("Directory '" + rdfDir + "' doen't exist.");
-		}
+		} 
+		
 		//"/data/cmdi2rdf/virtuoso/bin/isql 1111  dba dba exec="ld_dir_all('/data/cmdi2rdf/BIG-files/rdf-output/','*.rdf','http://eko.indarto/tst.rdf');"
 		
 		if(!skip)
@@ -88,7 +91,8 @@ private boolean excuteBulkImport() throws ActionException {
 			log.info("BULK COMMAND: " + s);
 		
 		long start = System.currentTimeMillis();
-		
+		Collection<File> cf = FileUtils.listFiles(new File(virtuosoBulkImport[5]), new String[]{"rdf"}, true);
+		log.info("============= Trying to import '" + cf.size() + "' files.");
 		ok = executeIsql(virtuosoBulkImport);
 		
 		if (!ok)
