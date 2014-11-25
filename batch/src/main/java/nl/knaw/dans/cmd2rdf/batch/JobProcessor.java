@@ -199,24 +199,24 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 					Map<String, Integer> pathsAndSizes = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin());
 					//List<String> pathsbigzise = new ArrayList<String>();
 					List<String> mbpaths = new ArrayList<String>();
-					int mB25 = 0;
+					int mB10 = 0;
 					int count = 0;
 					for (Map.Entry<String, Integer> e : pathsAndSizes.entrySet()) {
 						int size = e.getValue();
-						if (size > 26214400) {
+						if (size > 10485760) {
 							List<String> alist = new ArrayList<String>();
 							alist.add(e.getKey());
 							allPaths.add(alist);
 							count++;
 						} else {
-							//collect the files until the total size about 25 MB
-							mB25 += size;
+							//collect the files until the total size about 10 MB or number of files: 50 
+							mB10 += size;
 							mbpaths.add(e.getKey());
 							count++;
 						}
-						if (mB25 > 26214400) {
-							//reset 
-							mB25 = 0;
+						if ((mB10 > 26214400) || (mbpaths.size() > 50)) {
+							//reset he files until the total size about 10 MB or number of files: 50 
+							mB10 = 0;
 							allPaths.add(mbpaths);
 							mbpaths = new ArrayList<String>();
 						}
@@ -241,6 +241,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			}
 			if (allPaths != null && !allPaths.isEmpty()) {
 				for (List<String> paths : allPaths) {
+					log.info(">>>>> Number of processing files: " + paths.size() );
 					TOTAL_NUM_PROCESSED_PATHS+=paths.size();
 					executeRecords(r, paths);
 				}
