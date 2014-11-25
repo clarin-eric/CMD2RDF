@@ -27,6 +27,21 @@
         <rdf:RDF xml:base="{$about}">
         	<rdf:Description rdf:about="{$about}">
         		<cmdi:inRepository rdf:resource="{replace($about,'(.*/).*','$1')}"/>
+        		<rdfs:label>
+        			<xsl:variable name="record" select="replace($about,'^.*/(.*)\.(.*)$','$1')"/>
+        			<xsl:variable name="repository" select="replace($about,'^.*/(.*)/.*$','$1')"/>
+        			<xsl:choose>
+        				<xsl:when test="exists(vlo:hasFacetName)">
+        					<xsl:value-of select="(vlo:hasFacetName)[1]"/>
+        				</xsl:when>
+        				<xsl:otherwise>
+        					<xsl:value-of select="replace(replace($record,'^oai_',''),'_',' ')"/>
+        				</xsl:otherwise>
+        			</xsl:choose>
+        			<xsl:text> (</xsl:text>
+        			<xsl:value-of select="replace($repository,'_',' ')"/>
+        			<xsl:text>)</xsl:text>
+        		</rdfs:label>
         	</rdf:Description>
             <!-- The CMDI is seen as OA Annotation of a (set of) resource(s) -->
             <oa:Annotation rdf:about="{$about}">

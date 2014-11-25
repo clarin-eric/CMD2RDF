@@ -15,7 +15,7 @@
     <xsl:param name="registry" select="'http://catalog.clarin.eu/ds/ComponentRegistry'"/>
     
     <!-- separator when traversing the component/element hierarchy --> 
-    <xsl:variable name="STEP" select="'.'"/>
+    <xsl:variable name="STEP" select="'_'"/>
     
     <!-- XSD data types allowed in RDF (see http://www.w3.org/TR/2004/REC-rdf-mt-20040210/#DTYPEINTERP) -->
     <xsl:variable name="RDF-XSD-DataTypes" select="(
