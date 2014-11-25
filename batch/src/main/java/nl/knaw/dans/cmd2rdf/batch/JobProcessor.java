@@ -214,7 +214,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 							mbpaths.add(e.getKey());
 							count++;
 						}
-						if ((mB10 > 26214400) || (mbpaths.size() > 50)) {
+						if ((mB10 > 26214400) || (mbpaths.size() > 30)) {
 							//reset he files until the total size about 10 MB or number of files: 50 
 							mB10 = 0;
 							allPaths.add(mbpaths);

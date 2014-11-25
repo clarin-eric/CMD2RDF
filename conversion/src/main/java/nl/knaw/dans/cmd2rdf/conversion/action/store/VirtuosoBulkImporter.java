@@ -91,7 +91,7 @@ private boolean excuteBulkImport() throws ActionException {
 			log.info("BULK COMMAND: " + s);
 		
 		long start = System.currentTimeMillis();
-		Collection<File> cf = FileUtils.listFiles(new File(virtuosoBulkImport[5]), new String[]{"rdf"}, true);
+		Collection<File> cf = FileUtils.listFiles(new File(virtuosoBulkImport[5]), new String[]{"rdf", "graph"}, true);
 		log.info("============= Trying to import '" + cf.size() + "' files.");
 		ok = executeIsql(virtuosoBulkImport);
 		
