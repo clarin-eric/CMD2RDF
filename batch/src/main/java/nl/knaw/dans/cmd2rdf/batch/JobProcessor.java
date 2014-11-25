@@ -199,7 +199,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 					Map<String, Integer> pathsAndSizes = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin());
 					//List<String> pathsbigzise = new ArrayList<String>();
 					List<String> mbpaths = new ArrayList<String>();
-					int mB10 = 0;
+					int mB100 = 0;
 					int count = 0;
 					for (Map.Entry<String, Integer> e : pathsAndSizes.entrySet()) {
 						int size = e.getValue();
@@ -209,14 +209,14 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 							allPaths.add(alist);
 							count++;
 						} else {
-							//collect the files until the total size about 10 MB or number of files: 50 
-							mB10 += size;
+							//collect the files until the total size about 100 MB or number of files: 100 
+							mB100 += size;
 							mbpaths.add(e.getKey());
 							count++;
 						}
-						if ((mB10 > 26214400) || (mbpaths.size() > 30)) {
-							//reset he files until the total size about 10 MB or number of files: 50 
-							mB10 = 0;
+						if ((mB100 > 104857600) || (mbpaths.size() > 200)) {
+							//reset he files until the total size about 100 MB or number of files: 100 
+							mB100 = 0;
 							allPaths.add(mbpaths);
 							mbpaths = new ArrayList<String>();
 						}
