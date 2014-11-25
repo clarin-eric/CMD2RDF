@@ -20,7 +20,7 @@
 		<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 			<properties>
 				<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
-				<property name="base_strip">file:{xmlSourceDir}</property>
+				<property name="base_strip">{xmlSourceDir}</property>
 				<property name="base_add">{prefixBaseURI}</property>
 			</properties>
 		</class>

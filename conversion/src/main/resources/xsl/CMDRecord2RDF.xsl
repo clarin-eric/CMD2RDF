@@ -26,10 +26,10 @@
     <xsl:template match="/cmd:CMD">
         <rdf:RDF xml:base="{$about}">
         	<rdf:Description rdf:about="{$about}">
-        		<cmdi:inRepository rdf:resource="{replace($about,'(.*/).*','$1')}"/>
+        		<cmdi:inRepository rdf:resource="{replace($about,'(^.*/)[^/]*','$1')}"/>
         		<rdfs:label>
         			<xsl:variable name="record" select="replace($about,'^.*/(.*)\.(.*)$','$1')"/>
-        			<xsl:variable name="repository" select="replace($about,'^.*/(.*)/.*$','$1')"/>
+        			<xsl:variable name="repository" select="replace($about,'^.*/([^/]*)/[^/]*$','$1')"/>
         			<xsl:choose>
         				<xsl:when test="exists(vlo:hasFacetName)">
         					<xsl:value-of select="(vlo:hasFacetName)[1]"/>
