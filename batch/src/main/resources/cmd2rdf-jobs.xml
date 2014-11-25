@@ -17,7 +17,7 @@
 			<property name="username">dba</property>
 			<property name="password">dba</property>
 			<property name="prefixBaseURI">https://catalog.clarin.eu/ds/cmd2rdf/graph</property>
-			<property name="shScriptPath">{gitrepo}/batch/src/main/resources/virtuoso_bulk_import.sh	</property>
+			<property name="shScriptPath">{gitrepo}/batch/src/main/resources/virtuoso_bulk_import.sh</property>
 			<property name="tmpOutDir">{workspace}/rdf-output</property>
 		</properties>
 	</config>
