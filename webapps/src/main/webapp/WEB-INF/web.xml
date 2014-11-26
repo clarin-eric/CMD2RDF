@@ -11,11 +11,15 @@
 			<param-name>applicationClassName</param-name>
 			<param-value>nl.knaw.dans.cmd2rdf.webapps.ui.secure.Cmd2RdfSecureApplication</param-value>
 		</init-param>
+		<init-param>
+      		<param-name>configuration</param-name>
+     		 <param-value>deployment</param-value>
+    	</init-param>
 	</filter>
 
 	<filter-mapping>
 		<filter-name>SecureApplication</filter-name>
-		<url-pattern>/sec/*</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
 	<servlet>
