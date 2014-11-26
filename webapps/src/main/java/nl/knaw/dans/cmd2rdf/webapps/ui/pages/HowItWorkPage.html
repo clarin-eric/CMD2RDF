@@ -1,7 +1,7 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
 <meta charset="UTF-8"/>
-<title>How does it work.</title>
+<title>How does it work?</title>
 </head>
 <body>
 <!-- start wrapper -->
@@ -11,7 +11,42 @@
 		    <!--start header-->
 		     <span wicket:id="header"/>
 		    <!--end header-->
-		   	<div id="panel">HOW</div>     		
+		   	<div id="panel">
+		   		<p>This page describes how CMD records are transformed into RDF and discusses some design decisions. Also described are two case studies that explore the possibilities of enriching the RDF with links to other datasets and the opportinities this creates.</p>
+		   		<h2>Transforming CMD to RDF</h2>
+		   		<p>A CMD record adheres to a Profile, which consists of a specific combination of reusable Components. Profiles and Components are specified in an XML vocabulary, which can be transformed to an XML Schema to validate the CMD record. In the case of CMD2RDF Profiles and Components are transformed to RDFS, and a CMD record to a compliant RDF. The CMD RDF thus follows the CMD meta model defined in <a href="http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=37336">ISO 24622-1:2013</a>:</p>
+		   		<img src="images/CMDM.png"/>
+		   		<p>This model is reflected in the CMDM RDFS, which defines the core RDF Classes and Properties for CMD2RDF.</p>
+		   		<p>As is natural Components become a RDF Class. And it would be natural to map a CMD Element to a RDF Property. However, Elements have some capabilities that complicate this. Elements can have attributes, which can't be attached to RDF Properties. To deal with this the CMD2RDF mapping makes RDF Classes of CMD Elements, and instances of this class have a <code>hasElementValue</code> property and can have additional properties related to Attributes.</p>
+<code><pre>&lt;descriptions xmlns="http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/components/clarin.eu:cr1:c_1271859438177/rdf#" rdf:about="#w354aac28b1b7">
+	&lt;cmdm:contains>
+		&lt;descriptions_Description rdf:about="#w354aac28b1b7b1">
+   			&lt;descriptions_hasDescriptionElementValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.&lt;/descriptions_hasDescriptionElementValue>
+   			&lt;cmdm:containsAttribute>
+   				&lt;descriptions_Description_LanguageIdAttribute rdf:about="#w354aac28b1b7b1Aa">
+   					&lt;descriptions_Description_hasLanguageIdAttributeValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">la&lt;/descriptions_Description_hasLanguageIdAttributeValue>
+   				&lt;/descriptions_Description_LanguageIdAttribute>
+   			&lt;/cmdm:containsAttribute>
+		&lt;/descriptions_Description>
+	&lt;/cmdm:contains>
+&lt;/descriptions></pre></code>
+		   		<p>This example uses the common <code><a href="http://catalog.clarin.eu/ds/ComponentRegistry?item=clarin.eu:cr1:c_1271859438177">descriptions</a></code> Component, which can contain zero or more <code>Description</code> elements. And each <code>Description</code> element can have a <code>LanguageId</code> attribute. All the RDF Classes corresponding to this Component are defined in the RDFS with the URI <code>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/components/clarin.eu:cr1:c_1271859438177/rdf</code> (Note: at the moment this URL is not resolvable as the ComponentRegistry doesn't support RDF yet, but the corresponding RDF Graph is available in the CMD2RDF triple store), so all CMD records that use this Component can reuse these Classes and Properties.</p>
+		   		<p>The example also shows how CMD2RDF deals with the nesting of Components. In XML and in CMDI the type of relationship between a parent and a child is not made explicit, so CMD2RDF reuses the generic <code>contains</code> Property of the CMD Model to relate the Class instances.</p>
+		   		<p>The ComponentRegistry exposes an URI for every reusable Component, but these Components can be the root of a hierarchy of Components, named here inner Components. And these Components ultimitaly lead to Elements and Attributes. Inner Components, Elements and Attributes don't have their own URI, so CMD2RDF creates an URI for them based on URI of the reusable Component and their place in the hierarchy, e.g., <code>descriptions_Description</code> and <code>descriptions_Description_LanguageIdAttribute</code>.</p>
+		   		<h2>Enriching CMD RDF</h2>
+		   		<p>Linked (Open) Data is an interesting approach as it enables to link datasets by sharing URI. As CMDI isn't natively based on RDF these URIs are lacking. In the CMD2RDF project 2 experiments were done to enrich the CMD records with URIs that would enable linkage to other datasets.</p>
+		   		<h3>CLAVAS</h3>
+		   		<p>CLAVAS is a SKOS-based vocabulary server, also developed by CLARIN-NL. One of the vocabularies CLAVAS contains is a list of organisations and the variety of spellings of their names, sometimes even faulty ones. In CMD2RDF organisation names, as identified by the VLO facet concept mapping, were enriched with the links to the corresponding CLAVAS Concept. This enabled now to search for records related to an organisation without having to deal with variant spellings.</p>
+		   		<code><pre>&lt;vlo:hasFacetOrganisationElementValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Max Planc Institute for Psycholinguistics&lt;/vlo:hasFacetOrganisationElementValue>
+&lt;vlo:hasFacetOrganisationElementEntity xmlns:skos="http://www.w3.org/2004/02/skos/core#" rdf:resource="http://openskos.meertens.knaw.nl/Organisations/8c778a30-f607-45fd-838d-1ea00cea9150"/></pre></code>
+		   		<p>Using this <code>vlo:hasFacetOrganisationElementEntity</code> all records from the MPI for Psycholinguistics can be found, even while some (like this one) contains an misspelling.</p>
+		   		<h3>WALS</h3>
+		   		<p>WALS is a rich Typological Database. It provides a wide range of linguistic features for many languages. A CMD record can be linked to a language appearing in WALS via 2 Linked Data hubs: <a href="http://www.lexvo.org/">Lexvo.org</a> and <a href="http://www.dbpedia.org/">DBpedia.org</a>. CMD2RDF extended the language codes found by applying the VLO facet concept mapping with Lexvo.org and DBPedia.org language URI's.</p>
+<code><pre>&lt;vlo:hasFacetISO6393ElementValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yle/vlo:hasFacetISO6393ElementValue>
+&lt;vlo:hasFacetISO6393ElementEntity xmlns:skos="http://www.w3.org/2004/02/skos/core#" rdf:resource="http://dbpedia.org/resource/ISO_639:yle"/>
+&lt;vlo:hasFacetISO6393ElementEntity xmlns:skos="http://www.w3.org/2004/02/skos/core#" rdf:resource="http://lexvo.org/id/iso639-3/yle"/></pre></code>
+		   		<p>Now it becomes possible to query for languages with a certain linguistic property and find CLARIN resources, e.g., audio recordings, for them.</p>
+		   	</div>
 	 	 </div>
    <!--end container-->
    </div>
