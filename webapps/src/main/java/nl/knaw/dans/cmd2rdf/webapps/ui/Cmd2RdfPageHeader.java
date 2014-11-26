@@ -34,7 +34,7 @@ public final class Cmd2RdfPageHeader extends Panel {
 	public Cmd2RdfPageHeader(String id, WebPage page) {
 		super(id);
 		add(new BookmarkablePageLink<HomePage>("home", HomePage.class).add(new Cmd2RdfNavigationLabel("homeLabel", "Home")));
-		add(new BookmarkablePageLink<AdminPage>("admin", AdminPage.class).add(new Cmd2RdfNavigationLabel("adminLabel", "Admin")));
+		//add(new BookmarkablePageLink<AdminPage>("admin", AdminPage.class).add(new Cmd2RdfNavigationLabel("adminLabel", "Admin")));
 		add(new BookmarkablePageLink<HowItWorkPage>("how", HowItWorkPage.class).add(new Cmd2RdfNavigationLabel("howLabel", "How it works")));
 		add(new BookmarkablePageLink<ApiPage>("api", ApiPage.class).add(new Cmd2RdfNavigationLabel("apiLabel", "API")));
 		add(new BookmarkablePageLink<PublicationPage>("pub",PublicationPage.class).add(new Cmd2RdfNavigationLabel("pubLabel", "Publications")));
