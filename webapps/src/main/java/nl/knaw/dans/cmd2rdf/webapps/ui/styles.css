@@ -12,7 +12,6 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, ol, ul, li, form, label, legen
 }
 a:selected {color: blue;}
 ol, ul {
-	list-style: none;
 }
 
 a img {
@@ -57,7 +56,6 @@ p {
 
 a, p a {
 	text-decoration: underline;
-	color: white;
 }
 
 a: hover {
@@ -163,7 +161,6 @@ header {
 	height: 300px;
 	background: transparent;
 	margin-top: 25px;
-	color:red;
 }
 
 /***************************************************
