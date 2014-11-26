@@ -121,8 +121,8 @@ public class SparqlQuery extends JerseyRestClient implements IQuery {
 	public Response localTripleStorePOSTRequest(@HeaderParam("Accept") String headerParam,
 			@FormParam("query") String formParams) {
 		Form form = new Form();
-		log.info("Accept (format): " + headerParam);
-		log.info("query: " + formParams);
+		log.debug("Accept (format): " + headerParam);
+		log.debug("query: " + formParams);
 		form.param("format", headerParam);
 		form.param("query", formParams);
 //		Iterator<String> it = formParams.keySet().iterator();
