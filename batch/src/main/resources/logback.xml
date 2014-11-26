@@ -12,7 +12,7 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>cmd2rdf.log</file>
+        <file>/lat/tools/cmd2rdf/workspace/log/cmd2rdf.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
             <fileNamePattern>cmd2rdf.log.%d{yyyy-MM-dd}.log</fileNamePattern>
@@ -27,7 +27,7 @@
     </appender>
     
     <appender name="ERRORLOG-FILE" class="ch.qos.logback.core.FileAppender">
-        <file>errors.log</file>
+        <file>/lat/tools/cmd2rdf/workspace/log/errors.log</file>
         <append>true</append>
         <encoder>
             <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
