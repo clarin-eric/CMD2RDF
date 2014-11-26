@@ -15,6 +15,7 @@ import java.net.URISyntaxException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
@@ -250,7 +251,7 @@ public class GraphQuery extends JerseyRestClient implements IQuery {
 	 */
 	@Override
 	public Response localTripleStorePOSTRequest(@HeaderParam("Accept") String headerParam,
-			MultivaluedMap<String, String> formParams) {
+			@FormParam("query") String query) {
 		return Response.status(Status.NOT_IMPLEMENTED).build();
 	}
 	

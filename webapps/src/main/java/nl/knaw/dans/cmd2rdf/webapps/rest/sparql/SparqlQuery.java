@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -92,6 +93,8 @@ public class SparqlQuery extends JerseyRestClient implements IQuery {
 	public Response localTripleStoreGETRequest(HttpHeaders headers,
 			UriInfo uriInfo) {
 		String query = uriInfo.getRequestUri().getQuery();
+		if (!query.contains("format="))
+			query += "&format=application/atom+xml";
 		log.debug("SPARQL query: " + query);
 		try {
 			return getSparqlGetQueryResult(query);
@@ -116,17 +119,20 @@ public class SparqlQuery extends JerseyRestClient implements IQuery {
 	@POST
 	@Produces(SUPPORTED_RESPONSE_FORMATS)
 	public Response localTripleStorePOSTRequest(@HeaderParam("Accept") String headerParam,
-			MultivaluedMap<String, String> formParams) {
+			@FormParam("query") String formParams) {
 		Form form = new Form();
+		log.info("Accept: " + headerParam);
+		log.info("query: " + formParams);
 		form.param("format", headerParam);
-		Iterator<String> it = formParams.keySet().iterator();
-		while (it.hasNext()) {
-			String name = it.next();
-			List<String> ls = formParams.get(name);
-			for (String value : ls) {
-				form.param(name, value);
-			}
-		}
+		form.param("query", formParams);
+//		Iterator<String> it = formParams.keySet().iterator();
+//		while (it.hasNext()) {
+//			String name = it.next();
+//			List<String> ls = formParams.get(name);
+//			for (String value : ls) {
+//				form.param(name, value);
+//			}
+//		}
 
 		try {
 			return getSparqlPostQueryResult(form);
