@@ -1,0 +1,53 @@
+<configuration>
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+<!--         reset all previous level configurations of all j.u.l. loggers -->
+        <resetJUL>true</resetJUL>
+    </contextListener> 
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+     ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.base}/logs/cmd2rdf.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>cmd2rdf.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <!-- keep 1 days' worth of history -->
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS}  %-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="ERRORLOG-FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${catalina.base}/logs/cmd2rdf.error.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <!-- additivity=false ensures analytics data only goes to the analytics log -->
+    <logger name="errorlog" level="INFO" additivity="false">
+        <appender-ref ref="ERRORLOG-FILE"/>
+    </logger>
+ 
+	<logger name="javax.xml.bind" level="INFO"/>
+	<logger name="org.easybatch.core.impl" level="INFO"/>
+	<logger name="nl.knaw.dans.clarin" level="INFO"/>
+	<logger name="org.apache.directmemory" level="ERROR"/>
+	<logger name="org.apache.http" level="ERROR"/>
+	
+    <root level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+
+</configuration>
