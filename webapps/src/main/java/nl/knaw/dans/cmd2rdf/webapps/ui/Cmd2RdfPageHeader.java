@@ -5,7 +5,6 @@ import nl.knaw.dans.cmd2rdf.webapps.ui.pages.ContactPage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.HomePage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.HowItWorkPage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.PublicationPage;
-import nl.knaw.dans.cmd2rdf.webapps.ui.secure.view.AdminPage;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
