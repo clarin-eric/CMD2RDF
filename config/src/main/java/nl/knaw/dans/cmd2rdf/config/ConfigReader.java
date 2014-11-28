@@ -111,4 +111,8 @@ public class ConfigReader {
 		return GLOBAL_VARS.get("prefixBaseURI");
 	}
 	
+	public String getDirDownloadPwd() {
+		return GLOBAL_VARS.get("dirDownloadPwd");
+	}
+	
 }
