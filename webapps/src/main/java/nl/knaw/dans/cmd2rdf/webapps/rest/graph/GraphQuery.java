@@ -21,13 +21,13 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
@@ -107,7 +107,7 @@ public class GraphQuery extends JerseyRestClient implements IQuery {
     {
         //we write to the PipedOutputStream
         //that data is then available in the PipedInputStream which we return
-        final PipedOutputStream sink = new PipedOutputStream();
+    	final PipedOutputStream sink = new PipedOutputStream();
         PipedInputStream source = new PipedInputStream(sink);
  
         //apparently we need to write to the PipedOutputStream in a separate thread
@@ -158,19 +158,33 @@ public class GraphQuery extends JerseyRestClient implements IQuery {
 	@GET
 	@Path("/{query:.+}")
 	@Produces("application/rdf+xml,application/json,application/x-zip-compressed")
-	public Response localTripleStoreGETRequest(@PathParam("query") String incomingQuery, @Context UriInfo uriInfo, @HeaderParam("format")/*Accept*/ String headerParam) {
+	public Response localTripleStoreGETRequest(@QueryParam("pwd") String pwd, @PathParam("query") String incomingQuery, @Context UriInfo uriInfo, @HeaderParam("format")/*Accept*/ String headerParam) {
 		String prefixBaseURI = Cmd2RdfSecureApplication.cofigReader.getPrefixBaseURI();
 		String query = prefixBaseURI + "/" + incomingQuery;
 		String filename = incomingQuery.replaceAll("/", "-");
 		String ext = FilenameUtils.getExtension(incomingQuery).trim().toLowerCase();
 		String childrenQuery = QUERY_GET_CHILDREN.replace(PARENT_PATH, incomingQuery);
 		if (ext.isEmpty()) {
-			 
-			try {
-				return getChildrenGraphInZip(childrenQuery, uriInfo, headerParam, filename);
-			} catch (IOException e) {
-				
-			}
+			boolean allowDownloadDir = false;
+			LOG.info("Dowloading zip file: '" + query + "'.\tpwd='" + pwd);
+			
+			String dirDownloadPwd = Cmd2RdfSecureApplication.cofigReader.getDirDownloadPwd();
+			
+			if (dirDownloadPwd != null && !dirDownloadPwd.trim().isEmpty()) {
+				if (pwd !=null && !pwd.isEmpty() && pwd.equals(dirDownloadPwd))
+					allowDownloadDir = true;
+			} else
+				allowDownloadDir = true;
+			
+			if (allowDownloadDir) {
+				try {
+					return getChildrenGraphInZip(childrenQuery, uriInfo, headerParam, filename);
+				} catch (IOException e) {
+					LOG.error(e.getMessage());
+				}
+			} else
+				return  Response.status(Status.FORBIDDEN).build();
+			
 			
 		} else {
 			if (ext.toLowerCase().equals("rdf")) {
