@@ -19,6 +19,7 @@
 			<property name="prefixBaseURI">https://catalog.clarin.eu/ds/cmd2rdf/graph</property>
 			<property name="shScriptPath">{gitrepo}/batch/src/main/resources/virtuoso_bulk_import.sh</property>
 			<property name="tmpOutDir">{workspace}/rdf-output</property>
+			<property name="dirDownloadPwd">Put here a strong password</property>
 		</properties>
 	</config>
 	<prepare>
