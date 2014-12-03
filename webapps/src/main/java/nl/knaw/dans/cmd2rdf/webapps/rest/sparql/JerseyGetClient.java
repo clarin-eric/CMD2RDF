@@ -46,7 +46,7 @@ public class JerseyGetClient extends JerseyRestClient{
 				String fieldname = jp.getCurrentName();
 				String text = jp.getText();
 				String value = jp.getValueAsString();
-				System.out.println("fieldname: " + fieldname + "\ttext: " + text + "\tvalue: " + value );
+				//System.out.println("fieldname: " + fieldname + "\ttext: " + text + "\tvalue: " + value );
 				
 				if ("value".equals(fieldname)) {
 					return jp.getValueAsString();

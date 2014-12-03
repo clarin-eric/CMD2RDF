@@ -38,13 +38,13 @@
 		   		<h3>CLAVAS</h3>
 		   		<p>CLAVAS is a SKOS-based vocabulary server, also developed by CLARIN-NL. One of the vocabularies CLAVAS contains is a list of organisations and the variety of spellings of their names, sometimes even faulty ones. In CMD2RDF organisation names, as identified by the VLO facet concept mapping, were enriched with the links to the corresponding CLAVAS Concept. This enabled now to search for records related to an organisation without having to deal with variant spellings.</p>
 		   		<code><pre>&lt;vlo:hasFacetOrganisationElementValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Max Planc Institute for Psycholinguistics&lt;/vlo:hasFacetOrganisationElementValue>
-&lt;vlo:hasFacetOrganisationElementEntity xmlns:skos="http://www.w3.org/2004/02/skos/core#" rdf:resource="http://openskos.meertens.knaw.nl/Organisations/8c778a30-f607-45fd-838d-1ea00cea9150"/></pre></code>
+&lt;vlo:hasFacetOrganisationElementEntity rdf:resource="http://openskos.meertens.knaw.nl/Organisations/8c778a30-f607-45fd-838d-1ea00cea9150"/></pre></code>
 		   		<p>Using this <code>vlo:hasFacetOrganisationElementEntity</code> all records from the MPI for Psycholinguistics can be found, even while some (like this one) contains an misspelling.</p>
 		   		<h3>WALS</h3>
 		   		<p>WALS is a rich Typological Database. It provides a wide range of linguistic features for many languages. A CMD record can be linked to a language appearing in WALS via 2 Linked Data hubs: <a href="http://www.lexvo.org/">Lexvo.org</a> and <a href="http://www.dbpedia.org/">DBpedia.org</a>. CMD2RDF extended the language codes found by applying the VLO facet concept mapping with Lexvo.org and DBPedia.org language URI's.</p>
-<code><pre>&lt;vlo:hasFacetISO6393ElementValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yle/vlo:hasFacetISO6393ElementValue>
-&lt;vlo:hasFacetISO6393ElementEntity xmlns:skos="http://www.w3.org/2004/02/skos/core#" rdf:resource="http://dbpedia.org/resource/ISO_639:yle"/>
-&lt;vlo:hasFacetISO6393ElementEntity xmlns:skos="http://www.w3.org/2004/02/skos/core#" rdf:resource="http://lexvo.org/id/iso639-3/yle"/></pre></code>
+<code><pre>&lt;vlo:hasFacetISO6393ElementValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yle&lt;/vlo:hasFacetISO6393ElementValue>
+&lt;vlo:hasFacetISO6393ElementEntity rdf:resource="http://dbpedia.org/resource/ISO_639:yle"/>
+&lt;vlo:hasFacetISO6393ElementEntity rdf:resource="http://lexvo.org/id/iso639-3/yle"/></pre></code>
 		   		<p>Now it becomes possible to query for languages with a certain linguistic property and find CLARIN resources, e.g., audio recordings, for them.</p>
 		   	</div>
 	 	 </div>

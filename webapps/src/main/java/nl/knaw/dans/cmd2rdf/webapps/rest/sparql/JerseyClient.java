@@ -55,10 +55,10 @@ public class JerseyClient {
 			} else {
 				InputStream in = response.readEntity(InputStream.class);
 				String theString = IOUtils.toString(in, "UTF-8");
-				System.out.println(theString);
+				//System.out.println(theString);
 			}
 
-			System.out.println("Output from Server .... \n");
+			//System.out.println("Output from Server .... \n");
 
 		} catch (Exception e) {
 
@@ -92,10 +92,10 @@ public class JerseyClient {
 			} else {
 				InputStream in = response.readEntity(InputStream.class);
 				String theString = IOUtils.toString(in, "UTF-8");
-				System.out.println(theString);
+				//System.out.println(theString);
 			}
 
-			System.out.println("Output from Server .... \n");
+			//System.out.println("Output from Server .... \n");
 
 		} catch (Exception e) {
 
