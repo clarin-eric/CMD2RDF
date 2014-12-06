@@ -199,24 +199,24 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 						throw new ActionException("ERROR: NOT IMPLEMENT YET");
 					Map<String, Integer> pathsAndSizes = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin());
 					List<String> mbpaths = new ArrayList<String>();
-					int mB100 = 0;
+					int mB5 = 0;
 					int count = 0;
 					for (Map.Entry<String, Integer> e : pathsAndSizes.entrySet()) {
 						int size = e.getValue();
-						if (size > 10485760) {
+						if (size > 1048576) {
 							List<String> alist = new ArrayList<String>();
 							alist.add(e.getKey());
 							allPaths.add(alist);
 							count++;
 						} else {
-							//collect the files until the total size about 25 MB or number of files: 50 
-							mB100 += size;
+							//collect the files until the total size about 5 MB or number of files: 10 
+							mB5 += size;
 							mbpaths.add(e.getKey());
 							count++;
 						}
-						if ((mB100 > 26214400) || (mbpaths.size() > 50)) {
-							//reset he files until the total size about 25 MB or number of files: 50 
-							mB100 = 0;
+						if ((mB5 > 5242880) || (mbpaths.size() > 10)) {
+							//reset he files until the total size about 5 MB or number of files: 10 
+							mB5 = 0;
 							allPaths.add(mbpaths);
 							mbpaths = new ArrayList<String>();
 						}
