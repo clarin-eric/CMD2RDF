@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>nl.knaw.dans.cmd2rdf</groupId>
+    <artifactId>cmd2rdf</artifactId>
+    <version>1.0.1</version>
+  </parent>
+  <artifactId>lda</artifactId>
+  <packaging>war</packaging>
+  <name>CMD2RDF LDA</name>
+  <url>http://catalog.clarin.eu/ds/cmd2rdf-lda</url>
+  <dependencies>
+      <dependency>
+        <groupId>com.epimorphics.lda</groupId>
+        <artifactId>elda-lda</artifactId>
+        <version>1.3.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.epimorphics.lda</groupId>
+        <artifactId>elda-assets</artifactId>
+        <version>1.3.1</version>
+        <type>war</type>
+      </dependency>
+    </dependencies>
+    <repositories>
+      <repository>
+        <id>epi-public-repo</id>
+        <name>Epimorphics Public Repository</name>
+        <url>http://repository.epimorphics.com</url>
+        <layout>default</layout>
+        <releases>
+          <enabled>true</enabled>
+        </releases>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+      </repository>
+    </repositories>
+  <build>
+    <finalName>cmd2rdf-lda</finalName>
+  </build>
+</project>
