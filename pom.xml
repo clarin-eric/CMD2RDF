@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nl.knaw.dans.cmd2rdf</groupId>
 	<artifactId>cmd2rdf</artifactId>
-	<version>0.5-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>pom</packaging>
 	<build>
 		<resources>
@@ -35,30 +35,6 @@
 			</testResource>
 		</testResources>
 		<plugins>
-<!-- 			<plugin> -->
-<!--   				<artifactId>maven-assembly-plugin</artifactId> -->
-<!--   				<executions> -->
-<!-- 					<execution> -->
-<!-- 				      <id>make-assembly Launcher</id> this is used for inheritance merges -->
-<!-- 				      <phase>package</phase> bind to the packaging phase -->
-<!-- 				      <goals> -->
-<!-- 				        <goal>single</goal> -->
-<!-- 				      </goals> -->
-<!-- 				      <configuration> -->
-<!-- 					    <archive> -->
-<!-- 					      <manifest> -->
-<!-- 					        <mainClass>nl.knaw.dans.cmd2rdf.batch.Launcher</mainClass> -->
-<!-- 					      </manifest> -->
-<!-- 					    </archive> -->
-<!-- 					    <descriptorRefs> -->
-<!-- 					      <descriptorRef>jar-with-dependencies</descriptorRef> -->
-<!-- 					    </descriptorRefs> -->
-<!-- 					    <finalName>Cmd2rdf</finalName> -->
-<!-- 					    <appendAssemblyId>false</appendAssemblyId> -->
-<!-- 				  	</configuration> -->
-<!-- 				  </execution>  -->
-<!--  			 	</executions> -->
-<!-- 			</plugin>	 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -172,11 +148,17 @@
 			<version>3.5.1</version>
 		</dependency>	
 		
+		<dependency>
+    		<groupId>pl.project13.maven</groupId>
+    		<artifactId>git-commit-id-plugin</artifactId>
+    		<version>2.1.11</version>
+		</dependency>
 	</dependencies>
 	<modules>
 		<module>config</module>
 		<module>batch</module>
 		<module>conversion</module>
     	<module>webapps</module>
+  <module>lda</module>
   </modules>
 </project>

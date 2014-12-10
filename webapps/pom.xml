@@ -5,7 +5,7 @@
   <parent>
     <groupId>nl.knaw.dans.cmd2rdf</groupId>
     <artifactId>cmd2rdf</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>1.0.1</version>
   </parent>
   <artifactId>webapps</artifactId>
   <packaging>war</packaging>
@@ -17,6 +17,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- allowed values: R7, 1.0, 1.5, 2.0 or none -->
 		<wtp.version>none</wtp.version>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 	</properties>
   <dependencies>
    <!-- modules dependencies -->
@@ -89,6 +90,35 @@
 	<finalName>cmd2rdf</finalName>
 	<plugins>
 		<plugin>
+	<groupId>com.google.code.maven-replacer-plugin</groupId>
+	<artifactId>maven-replacer-plugin</artifactId>
+	<version>1.4.0</version>
+	<executions>
+		<execution>
+			<phase>prepare-package</phase>
+			<goals>
+				<goal>replace</goal>
+			</goals>
+		</execution>
+	</executions>
+	<configuration>
+		<file>src/main/resources/version.txt</file>
+		<outputFile>target/cmd2rdf/WEB-INF/classes/nl/knaw/dans/cmd2rdf/webapps/ui/Cmd2RdfPageHeader.properties</outputFile>
+		<regex>false</regex>
+		<replacements>
+			<replacement>
+				<token>@VERSION@</token>
+				<value>${version}</value>
+			</replacement>
+			<replacement>
+				<token>@BUILTON@</token>
+				<value>${maven.build.timestamp}</value>
+			</replacement>
+		</replacements>
+	</configuration>
+</plugin>
+	
+		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-war-plugin</artifactId>
 			<version>2.3</version>
@@ -96,6 +126,9 @@
 				<warName>cmd2rdf</warName>
 			</configuration>
 		</plugin>
+		
+	
+		
 	</plugins>
 </build>
 </project>

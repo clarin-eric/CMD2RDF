@@ -1,6 +1,7 @@
 package nl.knaw.dans.cmd2rdf.webapps.ui;
 
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.ApiPage;
+import nl.knaw.dans.cmd2rdf.webapps.ui.pages.BrowsePage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.ContactPage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.HomePage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.HowItWorkPage;
@@ -33,8 +34,8 @@ public final class Cmd2RdfPageHeader extends Panel {
 	public Cmd2RdfPageHeader(String id, WebPage page) {
 		super(id);
 		add(new BookmarkablePageLink<HomePage>("home", HomePage.class).add(new Cmd2RdfNavigationLabel("homeLabel", "Home")));
-		//add(new BookmarkablePageLink<AdminPage>("admin", AdminPage.class).add(new Cmd2RdfNavigationLabel("adminLabel", "Admin")));
 		add(new BookmarkablePageLink<HowItWorkPage>("how", HowItWorkPage.class).add(new Cmd2RdfNavigationLabel("howLabel", "How it works")));
+		add(new BookmarkablePageLink<BrowsePage>("browse", BrowsePage.class).add(new Cmd2RdfNavigationLabel("browseLabel", "Browse")));
 		add(new BookmarkablePageLink<ApiPage>("api", ApiPage.class).add(new Cmd2RdfNavigationLabel("apiLabel", "API")));
 		add(new BookmarkablePageLink<PublicationPage>("pub",PublicationPage.class).add(new Cmd2RdfNavigationLabel("pubLabel", "Publications")));
 		add(new BookmarkablePageLink<ContactPage>("contact", ContactPage.class).add(new Cmd2RdfNavigationLabel("contactLabel", "Contact")));

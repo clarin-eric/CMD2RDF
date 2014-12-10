@@ -1,0 +1,212 @@
+#
+# A CMD2RDF config. 
+#
+
+# Assorted prefix declarations. Some of them are for the structuring
+# of the API config, others are for the vocabulary definitions.
+#
+
+@prefix api:                <http://purl.org/linked-data/api/vocab#> .
+@prefix dct:				<http://purl.org/dc/terms/> .
+
+@prefix rdf:                <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:               <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:                <http://www.w3.org/2001/XMLSchema#> .
+
+# The elda namespace/prefix is for Elda extensions to the LDA specification.
+@prefix elda:               <http://www.epimorphics.com/vocabularies/lda#> .
+
+# Prefix for example-local entities.
+@prefix cmd: 				<https://catalog.clarin.eu/ds/> .
+
+@prefix vlo:				<http://www.clarin.eu/vlo/>					.
+# ---------------------------------------------------------------------
+# API config
+
+cmd:cmd2rdf-lda a api:API 
+	; rdfs:label "CMD2RDF LDA API -- browse "@en
+	; api:sparqlEndpoint <https://catalog.clarin.eu/ds/cmd2rdf/sparql?format=application/atom+xml>
+	# ; api:defaultViewer api:labelledDescribeViewer
+	;api:defaultViewer api:cmdViewer
+	# the page size can't be set higher than this 
+	; api:maxPageSize 10
+	# and this is the default page size
+	; api:defaultPageSize 5 
+	; api:defaultFormatter cmd:HtmlFormatter 
+    ; api:formatter
+        [a elda:FeedFormatter
+        ; api:name "atom"
+        ; elda:className "com.epimorphics.lda.renderers.FeedRendererFactory"
+        ; api:mimeType "application/atom+xml"
+        ]
+	; api:endpoint cmd:browse, cmd:explore
+	.
+api:cmdViewer a api:Viewer;
+	api:name "cmdi2rdf";
+	api:property rdfs:label, 
+			vlo:hasFacetNameElementValue
+			, vlo:hasFacetDescriptionElementValue
+			#, vlo:hasFacetProjectNameElementValue 
+			, vlo:hasFacetCollectionElementValue
+			#, vlo:hasFacetYearElementValue
+			#, vlo:hasFacetContinentElementValue
+			#, vlo:hasFacetCountryElementValue
+			, vlo:hasFacetLanguageElementValue
+			#, vlo:hasFacetLanguageCodeElementValue
+			, vlo:hasFacetLanguageCodeElementEntity
+			#, vlo:hasFacetLanguagesElementValue
+			#, vlo:hasFacetOrganisationElementValue
+			#, vlo:hasFacetOrganisationElementEntity
+			#, vlo:hasFacetGenreElementValue
+			, vlo:hasFacetSubjectElementValue
+			, vlo:hasFacetResourceClassElementValue
+			#, vlo:hasFacetFormatElementValue
+			, vlo:hasFacetNationalProjectElementValue
+			#, vlo:hasFacetKeywordsElementValue
+	.
+	
+# Endpoint definition	
+	
+cmd:browse a api:ListEndpoint 
+	; rdfs:label "Browse CMD2RDF Records" 
+	; api:uriTemplate "/browse" 
+	#; api:variable [api:name 'uri' api:type xsd:string]
+  
+	; api:selector 
+        [ api:where " ?item a <http://www.w3.org/ns/oa#Annotation> . "
+        ]	
+	.	
+	
+cmd:explore a api:ListEndpoint 
+	; rdfs:label "Explore CMD2RDF Records" 
+	; api:uriTemplate "/explore/{repo}"
+	; api:itemTemplate "https://catalog.clarin.eu/ds/cmd2rdf/graph/{repo}";
+	; api:selector 
+        [ 
+        	api:where " ?item <http://www.clarin.eu/cmdi/inRepository>  <https://catalog.clarin.eu/ds/cmd2rdf/graph/?repo> . graph ?item {?s ?p ?v} . "
+        ]	
+	.	
+#
+# This XSLT formatter produces rich HTML from the viewer properties.
+#
+
+cmd:HtmlFormatter a api:XsltFormatter 
+	; api:name "html" 
+	; api:mimeType "text/html; charset=utf-8" 
+	; api:stylesheet "lda-assets/xslt/result-osm-trimmed.xsl"
+	# ; elda:shortnameMode elda:roundTrip
+	.
+
+
+vlo:hasFacetCollectionElementValue a rdf:Property
+	; api:label "collection"
+	; rdfs:label "collection"
+	; rdfs:range xsd:string
+	.
+	
+vlo:hasFacetProjectNameElementValue a rdf:Property
+	; api:label "project"
+	; rdfs:label "project"
+	; rdfs:range xsd:string
+	.
+	
+vlo:hasFacetNameElementValue a rdf:Property
+	; api:label "name"
+	; rdfs:label "name"
+	; rdfs:range xsd:string
+	.
+	
+vlo:hasFacetYearElementValue a rdf:Property
+	; api:label "year"
+	; rdfs:label "year"
+	; rdfs:range xsd:string
+	.
+
+vlo:hasFacetContinentElementValue a rdf:Property
+	; api:label "continent"
+	; rdfs:label "continent"
+	; rdfs:range xsd:string
+	.
+
+vlo:hasFacetCountryElementValue a rdf:Property
+	; api:label "country"
+	; rdfs:label "country"
+	; rdfs:range xsd:string
+	.
+
+vlo:hasFacetLanguageElementValue a rdf:Property
+	; api:label "language"
+	; rdfs:label "language"
+	; rdfs:range xsd:string
+	.
+
+vlo:hasFacetLanguageCodeElementValue a rdf:Property
+	; api:label "languageCode"
+	; rdfs:label "language Code"
+	; rdfs:range xsd:string
+	.
+
+vlo:hasFacetLanguageCodeElementEntity a rdf:Property
+	; api:label "languageCode"
+	; rdfs:label "language Code"
+	.
+
+vlo:hasFacetLanguagesElementValue a rdf:Property
+	; api:label "languages"
+	; rdfs:label "languages"
+	; rdfs:range xsd:string
+	.
+
+vlo:hasFacetOrganisationElementValue a rdf:Property
+	; api:label "organisation"
+	; rdfs:label "organisation"
+	; rdfs:range xsd:string
+	.
+
+vlo:hasFacetOrganisationElementEntity a rdf:Property
+	; api:label "organisation"
+	; rdfs:label "organisation"
+	.
+	
+vlo:hasFacetGenreElementValue a rdf:Property
+	; api:label "genre"
+	; rdfs:label "genre"
+	; rdfs:range xsd:string
+	.
+
+vlo:hasFacetSubjectElementValue a rdf:Property
+	; api:label "subject"
+	; rdfs:label "subject"
+	; rdfs:range xsd:string
+	.
+
+vlo:hasFacetDescriptionElementValue a rdf:Property
+	; api:label "description"
+	; rdfs:label "description"
+	; rdfs:range xsd:string
+	.
+
+vlo:hasFacetResourceClassElementValue a rdf:Property
+	; api:label "resourceType"
+	; rdfs:label "resource type"
+	; rdfs:range xsd:string
+	.
+	
+# THIS PART IS COMMENT OUT OTHER WISE THE FORMAT LINKS ARE DISAPPEAR
+#vlo:hasFacetFormatElementValue a rdf:Property
+#	; api:label "format"
+#	; rdfs:label "format"
+#	; rdfs:range xsd:string
+#	.
+
+vlo:hasFacetNationalProjectElementValue a rdf:Property
+	; api:label "NationalProject"
+	; rdfs:label "National project"
+	; rdfs:range xsd:string
+	.
+	
+vlo:hasFacetKeywordsElementValue a rdf:Property
+	; api:label "keywords"
+	; rdfs:label "keywords"
+	; rdfs:range xsd:string
+	.

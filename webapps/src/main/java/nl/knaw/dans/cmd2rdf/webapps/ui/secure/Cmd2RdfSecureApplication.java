@@ -4,6 +4,7 @@ import nl.knaw.dans.cmd2rdf.config.ConfigReader;
 import nl.knaw.dans.cmd2rdf.config.exeception.ConfigException;
 import nl.knaw.dans.cmd2rdf.webapps.ui.ExceptionPage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.ApiPage;
+import nl.knaw.dans.cmd2rdf.webapps.ui.pages.BrowsePage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.ContactPage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.HomePage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.HowItWorkPage;
@@ -58,6 +59,7 @@ public class Cmd2RdfSecureApplication extends WebApplication {
 		}
         mountPage("/admin", AdminPage.class);
         mountPage("/how", HowItWorkPage.class);
+        mountPage("/browse", BrowsePage.class);
         mountPage("/api", ApiPage.class);
         mountPage("/pub", PublicationPage.class);
         mountPage("/contact", ContactPage.class);
