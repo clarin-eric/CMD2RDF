@@ -103,7 +103,7 @@
 	</executions>
 	<configuration>
 		<file>src/main/resources/version.txt</file>
-		<outputFile>target/cmd2rdf/WEB-INF/classes/nl/knaw/dans/cmd2rdf/webapps/ui/Cmd2RdfPageHeader.properties</outputFile>
+		<outputFile>src/main/java/nl/knaw/dans/cmd2rdf/webapps/ui/Cmd2RdfPageHeader.properties</outputFile>
 		<regex>false</regex>
 		<replacements>
 			<replacement>
