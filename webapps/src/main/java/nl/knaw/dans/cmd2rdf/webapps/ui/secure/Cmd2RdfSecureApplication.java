@@ -1,7 +1,7 @@
 package nl.knaw.dans.cmd2rdf.webapps.ui.secure;
 
 import nl.knaw.dans.cmd2rdf.config.ConfigReader;
-import nl.knaw.dans.cmd2rdf.config.exeception.ConfigException;
+import nl.knaw.dans.cmd2rdf.config.exception.ConfigException;
 import nl.knaw.dans.cmd2rdf.webapps.ui.ExceptionPage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.ApiPage;
 import nl.knaw.dans.cmd2rdf.webapps.ui.pages.BrowsePage;

@@ -11,7 +11,6 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.UriBuilder;
 
 import nl.knaw.dans.cmd2rdf.webapps.ui.secure.Cmd2RdfSecureApplication;
-import nl.knaw.dans.cmd2rdf.webapps.util.Misc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -7,8 +7,6 @@ import static nl.knaw.dans.cmd2rdf.webapps.util.Constants.SUPPORTED_RESPONSE_FOR
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.HeaderParam;
@@ -20,7 +18,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
