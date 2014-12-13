@@ -1,7 +1,7 @@
 /**
  * 
  */
-package nl.knaw.dans.cmd2rdf.config.exeception;
+package nl.knaw.dans.cmd2rdf.config.exception;
 
 /**
  * @author akmi

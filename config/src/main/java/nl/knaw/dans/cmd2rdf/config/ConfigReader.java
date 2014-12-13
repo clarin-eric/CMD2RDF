@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import nl.knaw.dans.cmd2rdf.config.exeception.ConfigException;
+import nl.knaw.dans.cmd2rdf.config.exception.ConfigException;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Jobs;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Property;
 
