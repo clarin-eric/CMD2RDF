@@ -1,0 +1,3 @@
+Changes with CMD2RDF-LDA 
+*) Bug fixed: Empty link of download formats. 
+*) 10 pages is the maximum page size. This limit is defined to prevent the "Virtuoso 37000 Error SP031" error.
