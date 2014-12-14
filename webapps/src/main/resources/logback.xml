@@ -34,17 +34,17 @@
         </encoder>
     </appender>
     <!-- additivity=false ensures analytics data only goes to the analytics log -->
-    <logger name="errorlog" level="INFO" additivity="false">
+    <logger name="errorlog" level="ERROR" additivity="false">
         <appender-ref ref="ERRORLOG-FILE"/>
     </logger>
  
-	<logger name="javax.xml.bind" level="INFO"/>
-	<logger name="org.easybatch.core.impl" level="INFO"/>
-	<logger name="nl.knaw.dans.clarin" level="INFO"/>
+	<logger name="javax.xml.bind" level="ERROR"/>
+	<logger name="org.easybatch.core.impl" level="ERROR"/>
+	<logger name="nl.knaw.dans.clarin" level="ERROR"/>
 	<logger name="org.apache.directmemory" level="ERROR"/>
 	<logger name="org.apache.http" level="ERROR"/>
 	
-    <root level="INFO" additivity="false">
+    <root level="ERROR" additivity="false">
 <!--         <appender-ref ref="STDOUT"/> -->
         <appender-ref ref="FILE"/>
     </root>
