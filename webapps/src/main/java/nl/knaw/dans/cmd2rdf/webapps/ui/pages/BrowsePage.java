@@ -27,8 +27,8 @@ public class BrowsePage extends Cmd2RdfBasePage
 		super(pageParameters);
 
 		Url relative = Url.parse("graph/browse");
-		String cmd2rdfLdaUrl = getRequestCycle().getUrlRenderer().renderFullUrl(relative).replace(getRequestCycle().getRequest().getContextPath(), "/cmd2rdf-lda");
-		RedirectPage page = new RedirectPage ( cmd2rdfLdaUrl );
+		String cmd2rdfLdaUrl = getRequestCycle().getUrlRenderer().renderFullUrl(relative).replace("/cmd2rdf", "/cmd2rdf-lda");
+		RedirectPage page = new RedirectPage ( "https://catalog.clarin.eu/ds/cmd2rdf-lda/graph/browse" );
 		InlineFrame frame = new InlineFrame("cmd2rdfLdaUrl", page);
 		add(frame);
 		
