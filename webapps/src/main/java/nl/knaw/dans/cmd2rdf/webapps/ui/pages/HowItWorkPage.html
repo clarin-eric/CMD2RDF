@@ -33,9 +33,9 @@
 		   		<p>This example uses the common <code><a href="http://catalog.clarin.eu/ds/ComponentRegistry?item=clarin.eu:cr1:c_1271859438177">descriptions</a></code> Component, which can contain zero or more <code>Description</code> elements. And each <code>Description</code> element can have a <code>LanguageId</code> attribute. All the RDF Classes corresponding to this Component are defined in the RDFS with the URI <code>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/components/clarin.eu:cr1:c_1271859438177/rdf</code> (Note: at the moment this URL is not resolvable as the ComponentRegistry doesn't support RDF yet, but the corresponding RDF Graph is available in the CMD2RDF triple store), so all CMD records that use this Component can reuse these Classes and Properties.</p>
 		   		<p>The example also shows how CMD2RDF deals with the nesting of Components. In XML and in CMDI the type of relationship between a parent and a child is not made explicit, so CMD2RDF reuses the generic <code>contains</code> Property of the CMD Model to relate the Class instances.</p>
 		   		<p>The ComponentRegistry exposes an URI for every reusable Component, but these Components can be the root of a hierarchy of Components, named here inner Components. And these Components ultimitaly lead to Elements and Attributes. Inner Components, Elements and Attributes don't have their own URI, so CMD2RDF creates an URI for them based on URI of the reusable Component and their place in the hierarchy, e.g., <code>descriptions_Description</code> and <code>descriptions_Description_LanguageIdAttribute</code>.</p>
-		   		<a name="enrich"><h1>Enriching CMD RDF</h1></a>
+		   		<a name="enrich"><h2>Enriching CMD RDF</h2></a>
 		   		<p>Linked (Open) Data is an interesting approach as it enables to link datasets by sharing URI. As CMDI isn't natively based on RDF these URIs are lacking. In the CMD2RDF project 2 experiments were done to enrich the CMD records with URIs that would enable linkage to other datasets.</p>
-		   		<h2>CLAVAS</h2>
+		   		<h3>CLAVAS</h3>
 		   		<p>CLAVAS is a SKOS-based vocabulary server, also developed by CLARIN-NL. One of the vocabularies CLAVAS contains is a list of organisations and the variety of spellings of their names, sometimes even faulty ones. In CMD2RDF organisation names, as identified by the VLO facet concept mapping, were enriched with the links to the corresponding CLAVAS Concept. This enabled now to search for records related to an organisation without having to deal with variant spellings.</p>
 		   		<code><pre>&lt;vlo:hasFacetOrganisationElementValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Max Planc Institute for Psycholinguistics&lt;/vlo:hasFacetOrganisationElementValue>
 &lt;vlo:hasFacetOrganisationElementEntity rdf:resource="http://openskos.meertens.knaw.nl/Organisations/8c778a30-f607-45fd-838d-1ea00cea9150"/></pre></code>
@@ -66,7 +66,7 @@ WHERE {
 		   			</p>
 		   			<button type="submit">Execute</button>
 		   		</form>
-		   		<h2>WALS</h2>
+		   		<h3>WALS</h3>
 		   		<p>WALS is a rich Typological Database. It provides a wide range of linguistic features for many languages. A CMD record can be linked to a language appearing in WALS via 2 Linked Data hubs: <a href="http://www.lexvo.org/">Lexvo.org</a> and <a href="http://www.dbpedia.org/">DBpedia.org</a>. CMD2RDF extended the language codes found by applying the VLO facet concept mapping with Lexvo.org and DBPedia.org language URI's.</p>
 <code><pre>&lt;vlo:hasFacetISO6393ElementValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yle&lt;/vlo:hasFacetISO6393ElementValue>
 &lt;vlo:hasFacetISO6393ElementEntity rdf:resource="http://dbpedia.org/resource/ISO_639:yle"/>
