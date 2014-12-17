@@ -49,7 +49,7 @@ public class ClientWithResponseHandler {
         try {
             HttpGet httpget = new HttpGet("http://localhost/");
 
-            System.out.println("Executing request " + httpget.getRequestLine());
+            //System.out.println("Executing request " + httpget.getRequestLine());
 
             // Create a custom response handler
             ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
@@ -67,8 +67,8 @@ public class ClientWithResponseHandler {
 
             };
             String responseBody = httpclient.execute(httpget, responseHandler);
-            System.out.println("----------------------------------------");
-            System.out.println(responseBody);
+            //System.out.println("----------------------------------------");
+            //System.out.println(responseBody);
         } finally {
             httpclient.close();
         }

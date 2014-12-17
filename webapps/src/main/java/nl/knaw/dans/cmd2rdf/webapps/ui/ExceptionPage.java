@@ -63,10 +63,8 @@ public class ExceptionPage extends Cmd2RdfBasePage {
 
 			@Override
 			public void onSubmit() {
-				LOG.debug("******************ERROR EXCEPTION PAGE***************************");
-				LOG.debug(taComments.getDefaultModelObjectAsString());
-				LOG.debug(taAdditional.getDefaultModelObjectAsString());
-				LOG.debug("************************EKOINDARTO**********************");
+//				LOG.debug(taComments.getDefaultModelObjectAsString());
+//				LOG.debug(taAdditional.getDefaultModelObjectAsString());
 				setResponsePage(HomePage.class);
 			}
 		});

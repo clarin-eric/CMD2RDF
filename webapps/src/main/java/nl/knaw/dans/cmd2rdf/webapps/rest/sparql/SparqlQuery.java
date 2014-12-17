@@ -92,7 +92,7 @@ public class SparqlQuery extends JerseyRestClient implements IQuery {
 		String query = uriInfo.getRequestUri().getQuery();
 		if (!query.contains("format="))
 			query += "&format=application/atom+xml";
-		log.debug("SPARQL query: " + query);
+		//log.debug("SPARQL query: " + query);
 		try {
 			return getSparqlGetQueryResult(query);
 		} catch (IOException | URISyntaxException e) {
@@ -118,8 +118,8 @@ public class SparqlQuery extends JerseyRestClient implements IQuery {
 	public Response localTripleStorePOSTRequest(@HeaderParam("Accept") String headerParam,
 			@FormParam("query") String formParams) {
 		Form form = new Form();
-		log.debug("Accept (format): " + headerParam);
-		log.debug("query: " + formParams);
+//		log.debug("Accept (format): " + headerParam);
+//		log.debug("query: " + formParams);
 		form.param("format", headerParam);
 		form.param("query", formParams);
 //		Iterator<String> it = formParams.keySet().iterator();
