@@ -121,7 +121,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			throws IntrospectionException, 
 					IllegalAccessException,
 					InvocationTargetException {
-		log.info("Setup the global configuration");
+//		log.info("Setup the global configuration");
 		Config c = job.getConfig();
 		List<Property> props = c.getProperty();
 		for (Property prop:props) {
@@ -134,9 +134,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			if (m.find()) {
 				String globalVar = m.group(1);
 				if (GLOBAL_VARS.containsKey(globalVar)) {
-					log.info("pKey: " + e.getKey() + "\tpVal: " + pVal);
 					pVal = pVal.replace(m.group(0), GLOBAL_VARS.get(globalVar));
-					log.info("pKey: " + e.getKey() + "\tnew pVal: " + pVal);
 					GLOBAL_VARS.put(e.getKey(), pVal);
 				}
 			}
@@ -166,7 +164,6 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, NoSuchFieldException,
 			NoSuchMethodException, InvocationTargetException, ActionException {
-		log.info("Execute records.");	
 		
 		fillInCacheService();
 		

@@ -132,7 +132,7 @@ private boolean deleteRdfFromVirtuoso(String path) {
 		WebTarget target = client.target(uriBuilder.build());
 		Response response = target.request().delete();
 		int status = response.getStatus();
-		log.info("Upload " + (path.replace(".xml", ".rdf")) + " to virtuoso server.\nResponse status: " + status);
+		//log.info("Upload " + (path.replace(".xml", ".rdf")) + " to virtuoso server.\nResponse status: " + status);
 		if ((status == Response.Status.CREATED.getStatusCode()) || (status == Response.Status.OK.getStatusCode())){
 			n++;
 			log.info("[" + n + "] is DELETED.");
@@ -193,7 +193,7 @@ private boolean uploadRdfToVirtuoso(String path, Object object)
 			log.info("'" + (path.replace(".xml", ".rdf")) + "' is uploaded to virtuoso server.\nResponse status: " + status);
 			if ((status == Response.Status.CREATED.getStatusCode()) || (status == Response.Status.OK.getStatusCode())){
 				n++;
-				log.info("[" + n + "] is CREATED. Duration: " + (System.currentTimeMillis() - startUplod) + " milliseconds.");
+				//log.info("[" + n + "] is CREATED. Duration: " + (System.currentTimeMillis() - startUplod) + " milliseconds.");
 				return true;	
 			} else {
 				log.error(">>>>>>>>>> ERROR: " + status);
