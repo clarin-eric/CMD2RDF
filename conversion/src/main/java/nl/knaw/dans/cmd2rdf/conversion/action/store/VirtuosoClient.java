@@ -166,7 +166,7 @@ private boolean uploadRdfToVirtuoso(String path, Object object)
 		throws ActionException {
 	if (object instanceof Node) {
 		String fname = path.replace(".xml", ".rdf");
-		log.info("Upload '" + fname + "'.");
+//		log.info("Upload '" + fname + "'.");
 		Node node = (Node)object;
 		DOMSource source = new DOMSource(node);
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();

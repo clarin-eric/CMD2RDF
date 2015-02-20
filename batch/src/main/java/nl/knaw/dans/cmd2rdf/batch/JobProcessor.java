@@ -168,7 +168,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		fillInCacheService();
 		
 		for(Record r: Misc.emptyIfNull(records)) {
-			log.info("###### PROCESSING OF RECORD : " + r.getDesc() + "\tNumber of threads: " + r.getnThreads());
+//			log.info("###### PROCESSING OF RECORD : " + r.getDesc() + "\tNumber of threads: " + r.getnThreads());
 			List<List<String>> allPaths = new ArrayList<List<String>>();
 			
 			if (r.getXmlSource().contains(URL_DB)) {
@@ -191,7 +191,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 				}
 				
 				if (r.getXmlLimitSizeMax() == null) {
-					log.info("START PROCESSING RECORD USING BATCH ITERATION");
+//					log.info("START PROCESSING RECORD USING BATCH ITERATION");
 					if (!Misc.convertToActionStatus(r.getFilter()).equals(ActionStatus.NEW_UPDATE))
 						throw new ActionException("ERROR: NOT IMPLEMENT YET");
 					Map<String, Integer> pathsAndSizes = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin());
@@ -228,7 +228,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 					
 					if (!mbpaths.isEmpty())
 						allPaths.add(mbpaths);
-					log.info("END PROCESSING RECORD USING BATCH ITERATION\tNumber of paths: " + pathsAndSizes.size() + "\tNumber of counts: " + count );
+//					log.info("END PROCESSING RECORD USING BATCH ITERATION\tNumber of paths: " + pathsAndSizes.size() + "\tNumber of counts: " + count );
 				} else {
 					List<String> paths = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin(), r.getXmlLimitSizeMax());
 					allPaths.add(paths);
@@ -238,7 +238,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			}
 			if (allPaths != null && !allPaths.isEmpty()) {
 				for (List<String> paths : allPaths) {
-					log.info(">>>>> Number of processing files: " + paths.size() );
+//					log.info(">>>>> Number of processing files: " + paths.size() );
 					TOTAL_NUM_PROCESSED_PATHS+=paths.size();
 					executeRecords(r, paths);
 				}
@@ -282,15 +282,15 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 	
 	private void doCallableAction(Record r, List<String> paths,
 			List<IAction> actions) {
-		log.info("Multithreading is on, number of threads: " + r.getnThreads());
+//		log.info("Multithreading is on, number of threads: " + r.getnThreads());
 		int n=0;
 		int i=0;
 		List<List<String>> paths2 = Misc.split(paths, r.getnThreads());
 		int totalfiles = paths.size();
-		log.info("==============================================================");
-		log.info("Numbers of files: " + totalfiles);
-		log.info("Numbers op splitsing: " + paths2.size());
-		log.info("==============================================================");
+//		log.info("==============================================================");
+//		log.info("Numbers of files: " + totalfiles);
+//		log.info("Numbers op splitsing: " + paths2.size());
+//		log.info("==============================================================");
 		for (List<String> pth : paths2) {
 			n++;
 			ExecutorService executor = Executors.newCachedThreadPool();
@@ -326,9 +326,9 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 //			}
 			executor.shutdown();
 			while (!executor.isTerminated()) {}
-			log.info("===Finished "+ pth.size() + " threads===");
+//			log.info("===Finished "+ pth.size() + " threads===");
 			totalfiles=totalfiles-pth.size();
-			log.info("REMAINS: " + totalfiles);
+//			log.info("REMAINS: " + totalfiles);
 		}
 	}
 	

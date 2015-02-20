@@ -387,10 +387,10 @@ public class ChecksumDb {
                 	 totaldatabaseprocessingtime += commitRecords(
 							psInsert, nInsert, "Inserting");
                 }
-            	if (nRecords%10000 == 0) {
-            		writeLog(t, nRecords, totalhashingtime,
-							totaldatabaseprocessingtime);
-            	}
+//            	if (nRecords%10000 == 0) {
+//            		writeLog(t, nRecords, totalhashingtime,
+//							totaldatabaseprocessingtime);
+//            	}
                 
             }
             
@@ -509,13 +509,13 @@ public class ChecksumDb {
     }
 
 	private long commitRecords(PreparedStatement ps, int nRecs, String msg) throws SQLException {
-		log.info("Commiting records, msg: " + msg);
+//		log.info("Commiting records, msg: " + msg);
 		long t = System.currentTimeMillis();
 		 ps.executeBatch();
 		 conn.commit();
 		 long dbprocessingtime = (System.currentTimeMillis() - t);
-		 log.info(msg + " is done in " + dbprocessingtime + " milliseconds.");
-		 log.info("Total number of committed records: " + nRecs);
+//		 log.info(msg + " is done in " + dbprocessingtime + " milliseconds.");
+//		 log.info("Total number of committed records: " + nRecs);
 		return dbprocessingtime;
 	}
 
