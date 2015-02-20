@@ -385,7 +385,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 		log.info("Execute cleanup part.");	
 		List<IAction> actions = new ArrayList<IAction>();
 		for (Action act : list) {
-			log.debug(act.getName());
+//			log.debug(act.getName());
 			IAction clazzAction = startUpAction(act);		
 			if (clazzAction == null)
 				log.error("FATAL ERROR: " + act.getName() + " is null.");
@@ -408,8 +408,8 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, NoSuchFieldException,
 			NoSuchMethodException, InvocationTargetException, ActionException {
-		log.info("Startup of " + act.getClazz().getName());
-		log.info("Description: " + act.getName());
+//		log.info("Startup of " + act.getClazz().getName());
+//		log.info("Description: " + act.getName());
 		@SuppressWarnings("unchecked")
 		Class<IAction> clazz = (Class<IAction>) Class.forName(act.getClazz().getName());
 		Constructor[] constructors = clazz.getConstructors(); 
@@ -420,7 +420,7 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 				clazzAction.startUp(nl.knaw.dans.cmd2rdf.config.util.Misc.mergeVariables(JobProcessor.GLOBAL_VARS,act.getClazz().getProperty()));
 				return clazzAction;
 			} else if (parameterTypes.length == 1 && (parameterTypes[0].isInstance(cacheService))) {
-				log.info("USING CACHE SERVICE - hashcode: " + cacheService.hashCode() + " ENTRIES: " + cacheService.entries());
+//				log.info("USING CACHE SERVICE - hashcode: " + cacheService.hashCode() + " ENTRIES: " + cacheService.entries());
 				Constructor<IAction> ctor = clazz.getDeclaredConstructor(CacheService.class);
 			    ctor.setAccessible(true);
 			    IAction clazzAction = ctor.newInstance(cacheService);

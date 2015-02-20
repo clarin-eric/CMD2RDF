@@ -70,8 +70,8 @@ public class ChecksumDb {
 			if (!initialdata)
 				createTable();
 			else {
-				log.info("TABLE EXIST, table name: " + TABLE_NAME);
-				log.info("Total records of " + TABLE_NAME + " table: " + getTotalNumberOfRecords());
+//				log.info("TABLE EXIST, table name: " + TABLE_NAME);
+//				log.info("Total records of " + TABLE_NAME + " table: " + getTotalNumberOfRecords());
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -361,7 +361,7 @@ public class ChecksumDb {
                 System.out.print(o.toString() + " ");
             }
 
-            log.debug(" ");
+//            log.debug(" ");
         }
         st.close();  
     }
@@ -446,7 +446,7 @@ public class ChecksumDb {
             	String checksum = getChecksumRecord(path);
             	if (checksum == null) {
             		nInsert++;
-            		log.debug("INSERTING " + file.getName());
+//            		log.debug("INSERTING " + file.getName());
 					setInsertedRecord(psInsert, hash, path, file.length());
                 	if (nInsert%10000 ==0) {
                     	 totaldatabaseprocessingtime += commitRecords(
@@ -456,7 +456,7 @@ public class ChecksumDb {
                     }
             	} else {
 	            	if (!checksum.equals(hash)) {
-	            		log.debug("UPDATING " + file.getName());	
+//	            		log.debug("UPDATING " + file.getName());	
 	            			nUpdate++;
 	            			setUpdateRecord(psUpdate, hash, file.length(), path, ActionStatus.UPDATE);
 	            			if (nUpdate%10000 ==0) {
@@ -466,7 +466,7 @@ public class ChecksumDb {
 		                    	 psUpdate = conn.prepareStatement(UPDATE_PREPARED_STATEMENT);
 		                    }
 	            		} else {
-	            			log.debug("SKIPPING " + file.getName());
+//	            			log.debug("SKIPPING " + file.getName());
 	            			nSkip++;
 	            			setSkipRecord(psSkip, path, ActionStatus.NONE);
 	            			if (nSkip%10000==0){

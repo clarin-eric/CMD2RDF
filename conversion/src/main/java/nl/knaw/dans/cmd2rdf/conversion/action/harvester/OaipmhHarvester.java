@@ -92,7 +92,7 @@ public class OaipmhHarvester implements IAction{
 					}
 				}
 				if (records.getResumptionToken() != null) {
-					log.info("Harvest the next token.");
+//					log.info("Harvest the next token.");
 					ResumptionToken rt = records.getResumptionToken();
 					Thread.sleep(1000);
 					records = server.listRecords(rt);

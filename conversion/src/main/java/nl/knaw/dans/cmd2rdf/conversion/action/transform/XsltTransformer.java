@@ -113,7 +113,7 @@ public class XsltTransformer implements IAction{
 			transformer.transform(input,  
 					 output);
 			long end = System.currentTimeMillis();
-			log.info("Duration of transformation " + ((end-start)) + " milliseconds");
+//			log.info("Duration of transformation " + ((end-start)) + " milliseconds");
 			return output.getNode();
 		} catch (TransformerConfigurationException e) {
 			errLog.error("ERROR: TransformerConfigurationException, caused by: " + e.getCause(), e);
