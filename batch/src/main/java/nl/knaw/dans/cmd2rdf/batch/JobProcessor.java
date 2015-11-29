@@ -39,10 +39,11 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.directmemory.DirectMemory;
 import org.apache.directmemory.cache.CacheService;
-import org.easybatch.core.api.AbstractRecordProcessor;
+import org.easybatch.core.processor.RecordProcessingException;
+import org.easybatch.core.processor.RecordProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
+public class JobProcessor  implements RecordProcessor<org.easybatch.core.record.Record<Jobs>, org.easybatch.core.record.Record<Jobs>> {
 	private static final Logger log = LoggerFactory.getLogger(JobProcessor.class);
 	private final Pattern pattern = Pattern.compile("\\{(.*?)\\}");
 	private static final String URL_DB = "urlDB";
@@ -51,17 +52,23 @@ public class JobProcessor  extends AbstractRecordProcessor<Jobs> {
 	private static int TOTAL_NUM_PROCESSED_PATHS;
 	
 
-	public void processRecord(Jobs job)
-			throws Exception {
-		setupGlolbalConfiguration(job);
-		initiateCacheService();
-		doPrepare(job.getPrepare().getActions());
-		doProcessRecord(job.records);
-		doCleanup(job.getCleanup().getActions());
-		doProcessProfile(job.profiles);
-		doProcessComponent(job.components);
-		closeCacheService();
-		log.info("TOTAL NUMBER OF PROCESSED PATHS: " + TOTAL_NUM_PROCESSED_PATHS);
+	public org.easybatch.core.record.Record<Jobs> processRecord(org.easybatch.core.record.Record<Jobs> record)
+			throws RecordProcessingException {
+		try {
+			Jobs job = record.getPayload();
+			setupGlolbalConfiguration(job);
+			initiateCacheService();
+			doPrepare(job.getPrepare().getActions());
+			doProcessRecord(job.records);
+			doCleanup(job.getCleanup().getActions());
+			doProcessProfile(job.profiles);
+			doProcessComponent(job.components);
+			closeCacheService();
+			log.info("TOTAL NUMBER OF PROCESSED PATHS: " + TOTAL_NUM_PROCESSED_PATHS);
+			return record;
+		} catch (Exception e) {
+			throw new RecordProcessingException("Unable to process job " + record.getPayload(), e);
+		}
 	}
 	private void doProcessComponent(List<Profile> components) throws ClassNotFoundException, InstantiationException,
 	IllegalAccessException, NoSuchFieldException,
