@@ -4,6 +4,7 @@
 package nl.knaw.dans.cmd2rdf.config;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,8 @@ import nl.knaw.dans.cmd2rdf.config.exception.ConfigException;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Jobs;
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Property;
 
-import org.easybatch.core.api.Record;
+import org.easybatch.core.record.Record;
+import org.easybatch.xml.XmlRecord;
 import org.easybatch.xml.XmlRecordMapper;
 import org.easybatch.xml.XmlRecordReader;
 
@@ -48,24 +50,25 @@ public class ConfigReader {
 	}
 
 	private void init() throws ConfigException{
-		// Build an easy batch engine
-    	XmlRecordReader xrr = new XmlRecordReader("CMD2RDF", xmlFile);
-    	try {
+		// Build an easy batch job
+		try {
+			XmlRecordReader xrr = new XmlRecordReader("CMD2RDF", new FileInputStream(xmlFile));
 			xrr.open();
 			boolean b = xrr.hasNextRecord();
-	    	if (b) {
-		    	Record<String> r = xrr.readNextRecord();
-		    	rawXmlContent = r.getRawContent();
-		    	XmlRecordMapper<Jobs> xrm = new XmlRecordMapper<Jobs>(Jobs.class);
-		    	Jobs j = xrm.mapRecord(r);
-		    	fetchConfigProperties(j.getConfig().getProperty());
-	    	} else
-	    		throw new ConfigException("The " + xmlFile.getAbsolutePath() + " isn't valid CMD2RDF config file.");
-	    	xrr.close();
+			if (b) {
+				XmlRecord r = xrr.readNextRecord();
+				rawXmlContent = r.getPayload();
+				XmlRecordMapper<Jobs> xrm = new XmlRecordMapper<Jobs>(Jobs.class);
+				Record<Jobs> record = xrm.processRecord(r);
+				Jobs j = record.getPayload();
+				fetchConfigProperties(j.getConfig().getProperty());
+			} else
+				throw new ConfigException("The " + xmlFile.getAbsolutePath() + " isn't valid CMD2RDF config file.");
+			xrr.close();
 		} catch (Exception e) {
 			throw new ConfigException("Cannot open CMD2RDF FIle. " + e.getMessage());
 		}
-    	
+
 	}
 	
 	private void fetchConfigProperties(List<Property> configPropertyList) {

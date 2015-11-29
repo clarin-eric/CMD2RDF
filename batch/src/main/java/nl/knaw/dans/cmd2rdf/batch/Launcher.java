@@ -6,13 +6,15 @@ package nl.knaw.dans.cmd2rdf.batch;
  */
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Jobs;
 
-import org.easybatch.core.api.EasyBatchReport;
-import org.easybatch.core.impl.EasyBatchEngine;
-import org.easybatch.core.impl.EasyBatchEngineBuilder;
+import org.easybatch.core.job.JobExecutor;
+import org.easybatch.core.job.JobReport;
+import org.easybatch.core.job.Job;
+import org.easybatch.core.job.JobBuilder;
 import org.easybatch.xml.XmlRecordMapper;
 import org.easybatch.xml.XmlRecordReader;
 import org.javasimon.SimonManager;
@@ -55,22 +57,22 @@ public class Launcher {
     	SLF4JBridgeHandler.install();
     	
     	
-        // Build an easy batch engine
-        EasyBatchEngine easyBatchEngine = new EasyBatchEngineBuilder()
-                .registerRecordReader(new XmlRecordReader("CMD2RDF", new File(args[0])))
-                .registerRecordMapper(new XmlRecordMapper<Jobs>(Jobs.class))
-                .registerRecordProcessor(new JobProcessor())
+        // Build an easy batch job
+        Job job = new JobBuilder()
+                .reader(new XmlRecordReader("CMD2RDF", new FileInputStream(new File(args[0]))))
+                .mapper(new XmlRecordMapper<Jobs>(Jobs.class))
+                .processor(new JobProcessor())
                 .build();
 
         
-        // Run easy batch engine
-        EasyBatchReport easyBatchReport = easyBatchEngine.call();
+        // Run easy batch job
+        JobReport jobReport = JobExecutor.execute(job);
         split.stop();
        
-        // Print the batch execution report
-        log.info("Start time: " + easyBatchReport.getFormattedStartTime());
-        log.info("End time: "+ easyBatchReport.getFormattedEndTime());
-        Period p = new Period(easyBatchReport.getBatchDuration());
+        // Print the job execution report
+        log.info("Start time: " + jobReport.getFormattedStartTime());
+        log.info("End time: "+ jobReport.getFormattedEndTime());
+        Period p = new Period(jobReport.getFormattedDuration());
         log.info("Duration: " + p.getHours() + " hours, " 
         		+ p.getMinutes() + " minutes, " + p.getSeconds() + " seconds, " + p.getMillis() + " ms.");
         Period p2 = new Period(stopwatchTotal.getLastUsage()-stopwatchTotal.getFirstUsage());
