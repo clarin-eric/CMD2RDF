@@ -1,0 +1,3 @@
+---
+- name: "Build cmd2rdf from source (takes a while; check progress in cmd2rdf.log)"
+  local_action: shell git checkout dev-bugfixes; mvn -f {{ cmd2rdf_source_dir}}/CMD2RDF clean install > {{ cmd2rdf_source_dir }}/cmd2rdf.log

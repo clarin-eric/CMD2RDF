@@ -1,0 +1,12 @@
+---
+- name: "Get local clone of {{ repo }}"
+  local_action:
+       git 
+       repo={{ repo_base_url }}/{{ repo }}.git
+       dest={{ cmd2rdf_source_dir}}/{{ repo }}
+       remote=blessed
+       clone=yes
+       update=no
+       
+- name: "Build {{ repo }} from source (takes a while; check progress in build.log)"
+  local_action: shell git checkout dev-bugfixes; mvn -f {{ cmd2rdf_source_dir }}/{{ repo }} clean install > build.log

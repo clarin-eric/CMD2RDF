@@ -1,0 +1,3 @@
+---
+do_build: False
+repo_base_url: https://github.com/TheLanguageArchive/CMD2RDF

@@ -1,0 +1,68 @@
+---
+           
+  - name: Clone stable/7 branch of Virtuoso Github repo.
+    git: 
+        repo={{ virtuoso_repo_url }}
+        dest={{ virtuoso_clone_dest }}
+        version={{ virtuoso_version }}
+        
+  #TODO: Using place holder instead of hard coded
+  - name: Autogen the Virtuoso build configuration
+    shell: /opt/virtuoso-opensource/autogen.sh 
+        chdir=/opt/virtuoso-opensource 
+        creates=/opt/virtuoso-opensource/autogen.log
+        executable=/bin/bash 
+
+  - name: Configure Makefile.
+    command: /opt/virtuoso-opensource/configure --prefix={{ virtuoso_install_dir }} chdir=/opt/virtuoso-opensource creates=/opt/virtuoso-opensource/Makefile
+    environment: 
+        cflags: "-O2 -m64"
+
+  - name: Build Virtuoso from source.
+    command: make install
+          chdir=/opt/virtuoso-opensource
+          creates="{{ virtuoso_install_dir }}/bin/virtuoso-t"
+
+  - name: Copy virtuoso.ini file to enable sparql
+    copy: src=virtuoso.ini dest={{ virtuoso_install_dir }}/var/virtuoso.ini
+    
+  - name: Copy virtuoso-start.sh 
+    copy: src=virtuoso-start.sh dest={{ virtuoso_install_dir }}/virtuoso-start.sh
+    
+  - name: Copy virtuoso-stop.sh 
+    copy: src=virtuoso-stop.sh dest={{ virtuoso_install_dir }}/virtuoso-stop.sh
+    
+  - name: Make delete discipline scripts executable
+    file: path={{ virtuoso_install_dir }}/{{ item }}
+          mode=u+x
+    with_items:
+        - virtuoso-start.sh
+        - virtuoso-stop.sh
+    
+  - name: Copy virtuoso.isqli file to enable sparql
+    copy: src=virtuoso.isql dest=/tmp/virtuoso.isql
+
+  #- name: Start virtuoso 
+  #  shell: cd /opt/virtuoso-home/bin; ./virtuoso-t +configfile {{ virtuoso_install_dir }}/var/virtuoso.ini
+    
+  - name: Create virtuoso service
+    template: src=virtuoso.service
+            dest=/etc/systemd/system/
+        
+  - name: Enable Virtuoso service
+    service: name=virtuoso enabled=true
+  
+  - name: Start virtuoso Server
+    service: name=virtuoso state=started
+
+  - name: Wait for virtuoso port to be open
+    wait_for: port=1111 delay=10
+
+  - name: Run isql script to enable sparql permissions.
+    shell: cd  /opt/virtuoso-home/bin; ./isql 1111 dba dba VERBOSE=OFF BANNER=OFF PROMPT=OFF ECHO=OFF BLOBS=ON ERRORS=stdout /tmp/virtuoso.isql
+            
+    
+  - name: Enable Virtuoso Server
+    service: name=virtuoso enabled=true 
+    
+    

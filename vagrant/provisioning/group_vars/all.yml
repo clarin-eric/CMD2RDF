@@ -1,0 +1,14 @@
+cmd2rdf_version: "dev-bugfixes"
+
+cmd2rdf_source_dir: "~/Hobby/cmd2rdf-source"
+
+do_update: False
+do_build: False
+
+versions_fact_version: "13"
+installed_fact_version: "5"
+
+# Virtuoso settings. The settings are used by the following roles: virtuoso, samples
+virtuoso_repo_url: https://github.com/openlink/virtuoso-opensource.git
+virtuoso_port: 8890
+virtuoso_install_dir: /opt/virtuoso-home

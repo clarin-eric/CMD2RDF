@@ -1,0 +1,34 @@
+- hosts: all
+  sudo: yes
+  roles:
+    - preconditions
+    - role: local_facts
+      when: ansible_local is not defined
+            or ansible_local.versions.version != versions_fact_version
+            or ansible_local.installed.version != installed_fact_version
+    - common_handlers    
+    - java_8        
+    - tomcat_8
+    - virtuoso
+    - maven
+    - elda
+    - cmd2rdf-source
+
+    # Only build CMD2RDF components from source when explicitly told to do so
+    - role: build
+      sudo: no
+      when: do_build
+
+    # Back-end components (will trigger install of standard software)
+    # - { role:  }
+   
+    # Front-end components
+   # - { role:  }
+
+
+
+- hosts: cmd2rdf
+  sudo: yes
+  roles:  
+    - apache_httpd
+    - virtuoso

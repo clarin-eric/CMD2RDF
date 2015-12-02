@@ -1,0 +1,30 @@
+---
+- name: Install Apache HTTP Server
+  yum: name=httpd.x86_64
+
+- name: Enable Apache HTTP Server
+  service: name=httpd enabled=true
+  
+- name: Start Apache HTTP Server
+  service: name=httpd state=started
+  
+- name: Configure server name
+  lineinfile: dest=/etc/httpd/conf/httpd.conf
+    line='ServerName {{ host }}'
+    insertafter='^# ServerName.*$'
+
+- name: Add configuration for site
+  template: src=site.conf dest=/etc/httpd/conf.d/{{ host }}.conf
+  notify:
+    - restart httpd
+
+- name: (Re-)create directory for maintenance pages
+  shell: rm -fr /var/www/html/error;
+         mkdir /var/www/html/error
+         
+- name: Install maintenance page 1/2
+  template: src=cmd2rdf-offline.html dest=/var/www/html/error/
+
+- name: Install maintenance page 2/2
+  copy: src=cmd2rdf-offline dest=/var/www/html/error/
+

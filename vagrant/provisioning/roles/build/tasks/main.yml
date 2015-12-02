@@ -1,0 +1,16 @@
+---
+
+- include: build_repo.yml
+           repo_base_url=https://github.com/TheLanguageArchive
+           repo=CMD2RDF
+
+- name: "Get local clone of CMD2RDF"
+  local_action:
+       git
+       repo=https://github.com/TheLanguageArchive/CMD2RDF
+       dest={{ cmd2rdf_source_dir}}/CMD2RDF
+       remote=blessed
+       clone=yes
+       update=no
+
+       

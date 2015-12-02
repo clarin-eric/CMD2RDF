@@ -1,0 +1,30 @@
+---
+  - name: Create tomcat user
+    user: name=tomcat 
+    
+  - name: Download Tomcat
+    copy: src=/Users/akmi/EXCLUDE/apache-tomcat-8.0.29.tar.gz dest=/opt
+#    command: "wget -q -O {{tomcat_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{download_url}} creates={{java_archive}}"
+
+  - name: (Re-)create directory for installation files
+    shell: rm -fr {{ tomcat_home }}; 
+           mkdir {{ tomcat_home }}
+           
+  - name: Unpack archive
+    command: "tar -zvxf {{tomcat_archive}} -C {{tomcat_home}} --strip 1"
+
+  - name: Fix ownership
+    file: state=directory path={{tomcat_home}} owner=tomcat group=tomcat recurse=yes
+    
+  - name: Create Tomcat service
+    template: src=tomcat.service
+            dest=/etc/systemd/system/
+    
+  - name: Enable Tomcat Server
+    service: name=tomcat enabled=true
+  
+  - name: Start Tomcat Server
+    service: name=tomcat   state=started
+  
+  - name: Clean up
+    file: state=absent path={{tomcat_archive}}

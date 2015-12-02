@@ -1,0 +1,37 @@
+---
+- name: "{{ repo }}: find out if repo is already present"
+  local_action:
+      stat path={{ cmd2rdf_source_dir }}/{{ repo }}/.git
+  register: git_dir
+
+#
+# If previously cloned to the same location ...
+#
+- name: "{{ repo }}: 1. add untracked files"
+  local_action:
+      shell git -C {{ cmd2rdf_source_dir}}/{{ repo }} add .
+  when: git_dir.stat.isdir is defined and git_dir.stat.isdir
+
+- name: "{{ repo }}: 2. stash any uncommitted files"
+  local_action:
+      shell git -C {{ cmd2rdf_source_dir}}/{{ repo }} stash
+  when: git_dir.stat.isdir is defined and git_dir.stat.isdir
+
+- name: "{{ repo }}: 3. check out master"
+  local_action:
+      shell git -C {{ cmd2rdf_source_dir }}/{{ repo }} checkout master
+  when: git_dir.stat.isdir is defined and git_dir.stat.isdir
+
+- name: "{{ repo }}: 4. pull blessed/master"
+  local_action:
+      shell git -C {{ cmd2rdf_source_dir }}/{{ repo }} pull
+  when: git_dir.stat.isdir is defined and git_dir.stat.isdir
+
+#
+# If not yet cloned, go ahead an clone ...
+#
+- name: "{{ repo }}: clone project"
+  local_action:
+      shell git clone -o blessed {{ repo_base_url }}/{{ repo }}.git {{ cmd2rdf_source_dir}}/{{ repo }}
+  when: git_dir.stat.isdir is not defined or git_dir.stat.isdir == False
+

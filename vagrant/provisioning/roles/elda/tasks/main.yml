@@ -1,0 +1,12 @@
+---
+           
+  - name: Clone Elda {{ elda_version branch }}
+    git: 
+        repo={{ elda_repo_url }}
+        dest=/opt/elda
+        version={{ elda_version }}
+        
+  - name: Maven clean install
+    shell: cd /opt/elda; mvn clean install > /tmp/elda-clean-install.log
+    environment:
+           JAVA_HOME: /opt/java8

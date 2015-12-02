@@ -1,0 +1,4 @@
+---
+- name: Add configuration for site
+  template: src=cmd2rdf.xml dest=/tmp/cmd2rdf.xml
+  

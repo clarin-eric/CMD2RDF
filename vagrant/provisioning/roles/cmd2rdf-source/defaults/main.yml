@@ -1,0 +1,3 @@
+cmd2rdf_repo_url: https://github.com/TheLanguageArchive/CMD2RDF
+cmd2rdf_clone_dir: /opt/CMD2RDF
+cmd2rdf_version: dev-bugfixes

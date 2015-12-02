@@ -1,0 +1,20 @@
+---
+  - name: Download Java
+    copy: src=/Users/akmi/EXCLUDE/jdk-8u66-linux-x64.tar.gz dest=/opt
+#    command: "wget -q -O {{java_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{download_url}} creates={{java_archive}}"
+
+  - name: (Re-)create directory for installation files
+    shell: rm -fr {{ java_name }}; 
+           mkdir {{ java_name }}
+           
+  - name: Unpack archive
+    command: "tar -zxf {{java_archive}} -C {{java_name}} --strip 1"
+
+  - name: Fix ownership
+    file: state=directory path={{java_name}} owner=root group=root recurse=yes
+
+  - name: Make Java available for system
+    command: 'alternatives --install "/usr/bin/java" "java" "{{java_name}}/bin/java" 2000'
+
+  - name: Clean up
+    file: state=absent path={{java_archive}}

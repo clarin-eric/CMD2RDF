@@ -1,0 +1,5 @@
+#download_url: http://download.oracle.com/otn-pub/java/jdk/8u66-b17/jdk-8u66-linux-i586.tar.gz
+download_url: file:///Users/akmi/EXCLUDE/jdk-8u66-linux-x64.tar.gz
+download_folder: /opt
+java_name: "{{download_folder}}/java8"
+java_archive: "{{download_folder}}/jdk-8u66-linux-x64.tar.gz"

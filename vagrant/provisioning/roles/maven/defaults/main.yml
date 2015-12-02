@@ -1,0 +1,5 @@
+download_url: http://ftp.nluug.nl/internet/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+#download_url: file:///Users/akmi/EXCLUDE/apache-tomcat-8.0.29.tar.gz
+download_folder: /opt
+maven_home: "{{download_folder}}/maven"
+maven_archive: "{{download_folder}}/apache-maven-3.3.9-bin.tar.gz"

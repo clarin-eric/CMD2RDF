@@ -1,0 +1,52 @@
+---
+- name: Install glibc.i686 for java 8
+  yum: name=glibc.i686
+  
+- name: Install Python additions for use during installation
+  yum: name=libselinux-python
+  
+- name: Install Python PsyCopG2
+  yum: name=python-psycopg2.x86_64
+  
+- name: Install mlocate
+  yum: name=mlocate
+ 
+- name: After mlocate is installed, run updatedb
+  shell: updatedb
+  
+- name: Install links
+  yum: name=links
+
+- name: install the 'Development tools' package group for virtuoso
+  yum: name="@Development tools" state=present
+    
+- name: Install gperf for virtuoso
+  yum: name=gperf
+ 
+- name: Install net-tools for virtuoso
+  yum: name=net-tools
+ 
+- name: Install Openssl-devel to get development headers & libraries for virtuoso
+  yum: name=openssl-devel 
+  
+- name: Set CET as timezone
+  file: src=/usr/share/zoneinfo/CET  dest=/etc/localtime state=link force=yes
+  
+- name: Install EPEL repo
+  yum: name=epel-release state=present
+  
+- name: reload ansible_local
+  setup: filter=ansible_local
+  
+   
+- name: Open port 80 Apache Webserver for public
+  shell: firewall-cmd --zone=public --add-port=80/tcp --permanent;
+         firewall-cmd --reload
+  
+- name: Open port 8080 of Tomcat for public
+  shell: firewall-cmd --zone=public --add-port=8080/tcp --permanent;
+         firewall-cmd --reload
+
+- name: Open port 8890 of virtuoso for public
+  shell: firewall-cmd --zone=public --add-port=8890/tcp --permanent;
+         firewall-cmd --reload

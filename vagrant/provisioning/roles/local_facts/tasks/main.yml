@@ -1,0 +1,21 @@
+---
+- name: Ensure /etc/ansible/facts.d exists
+  file: path=/etc/ansible/facts.d
+        recurse=yes
+        state=directory
+        
+- name: Copy facts-scripts to server
+  template: src={{ item }} dest=/etc/ansible/facts.d/ backup=yes
+  with_items:
+    - versions.fact
+    - installed.fact
+    
+- name: Make facts executable
+  file: path={{ item }}
+        mode="u+x"
+  with_items:
+    - /etc/ansible/facts.d/versions.fact
+    - /etc/ansible/facts.d/installed.fact
+  
+- name: reload ansible_local
+  setup: filter=ansible_local

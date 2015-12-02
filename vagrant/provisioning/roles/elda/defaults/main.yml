@@ -1,0 +1,3 @@
+elda_repo_url: https://github.com/epimorphics/elda.git
+elda_install_dir: /opt/elda
+elda_version: elda-1.3.16

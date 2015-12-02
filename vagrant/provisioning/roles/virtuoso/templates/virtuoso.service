@@ -1,0 +1,16 @@
+# Systemd unit file for virtuoso
+[Unit]
+Description=virtuoso
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+ExecStart=/opt/virtuoso-home/virtuoso-start.sh
+ExecStop=/opt/virtuoso-home/virtuoso-stop.sh
+
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

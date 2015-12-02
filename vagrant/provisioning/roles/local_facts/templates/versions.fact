@@ -1,0 +1,19 @@
+#!/usr/bin/python
+#
+# Facts about the versions currently active on the system. Other versions may
+# also be installed.
+
+import os, stat, json, re
+
+def version_from_path(path):
+        pattern = re.compile(path + '-(.*)')
+        m = pattern.match(os.path.realpath(path))
+        if m:
+          return m.group(1)
+        else:
+          return None
+
+print json.dumps({
+   'version': '{{ versions_fact_version }}'
+   'cmd2rdf_webui': version_from_path('/opt/CMD2RDF-src/webapps')   
+})

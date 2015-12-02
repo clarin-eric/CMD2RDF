@@ -1,0 +1,18 @@
+---
+  
+  - name: Download Maven
+#    copy: src=/Users/akmi/EXCLUDE/apache-maven-8.0.29.tar.gz dest=/opt
+    command: "wget -q -O {{maven_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{download_url}} creates={{maven_archive}}"
+
+  - name: (Re-)create directory for installation files
+    shell: rm -fr {{ maven_home }}; 
+           mkdir {{ maven_home }}
+           
+  - name: Unpack archive
+    command: "tar -zvxf {{maven_archive}} -C {{maven_home}} --strip 1"
+
+  - name: Make Maven available for system
+    command: 'alternatives --install "/usr/bin/mvn" "mvn" "{{maven_home}}/bin/mvn" 3000'
+    
+  - name: Clean up
+    file: state=absent path={{maven_archive}}
