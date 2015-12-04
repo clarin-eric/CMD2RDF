@@ -8,6 +8,8 @@ package nl.knaw.dans.cmd2rdf.batch;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import nl.knaw.dans.cmd2rdf.config.xmlmapping.Jobs;
 
@@ -72,9 +74,15 @@ public class Launcher {
         // Print the job execution report
         log.info("Start time: " + jobReport.getFormattedStartTime());
         log.info("End time: "+ jobReport.getFormattedEndTime());
-        Period p = new Period(jobReport.getFormattedDuration());
-        log.info("Duration: " + p.getHours() + " hours, " 
-        		+ p.getMinutes() + " minutes, " + p.getSeconds() + " seconds, " + p.getMillis() + " ms.");
+        //This is necessary since jobReport.getFormattedDuration() EASYBATCH 4 retun (long)ms
+        //so, regular exp will retrieve only the digits.
+		Matcher m=Pattern.compile("(\\d+)").matcher(jobReport.getFormattedDuration());
+		if (m.find()) {
+			Period p = new Period(Long.parseLong(m.group()));
+	        log.info("Duration: " + p.getHours() + " hours, " 
+	        		+ p.getMinutes() + " minutes, " + p.getSeconds() + " seconds, " + p.getMillis() + " ms.");
+		}
+			
         Period p2 = new Period(stopwatchTotal.getLastUsage()-stopwatchTotal.getFirstUsage());
         log.debug("Total: " + + p2.getHours() + " hours, " 
         		+ p2.getMinutes() + " minutes, " + p2.getSeconds() + " seconds, " + p2.getMillis() + " ms.");
