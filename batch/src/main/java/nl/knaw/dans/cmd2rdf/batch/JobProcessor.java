@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -129,6 +130,11 @@ public class JobProcessor  implements RecordProcessor<org.easybatch.core.record.
 					IllegalAccessException,
 					InvocationTargetException {
 //		log.info("Setup the global configuration");
+		try {
+		    Thread.sleep(11000);                 //1000 milliseconds is one second.
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 		Config c = job.getConfig();
 		List<Property> props = c.getProperty();
 		for (Property prop:props) {
@@ -175,7 +181,7 @@ public class JobProcessor  implements RecordProcessor<org.easybatch.core.record.
 		fillInCacheService();
 		
 		for(Record r: Misc.emptyIfNull(records)) {
-//			log.info("###### PROCESSING OF RECORD : " + r.getDesc() + "\tNumber of threads: " + r.getnThreads());
+			log.info("###### PROCESSING OF RECORD : " + r.getDesc() + "\tNumber of threads: " + r.getnThreads());
 			List<List<String>> allPaths = new ArrayList<List<String>>();
 			
 			if (r.getXmlSource().contains(URL_DB)) {
@@ -238,7 +244,8 @@ public class JobProcessor  implements RecordProcessor<org.easybatch.core.record.
 //					log.info("END PROCESSING RECORD USING BATCH ITERATION\tNumber of paths: " + pathsAndSizes.size() + "\tNumber of counts: " + count );
 				} else {
 					List<String> paths = cdb.getRecords(Misc.convertToActionStatus(r.getFilter()), r.getXmlLimitSizeMin(), r.getXmlLimitSizeMax());
-					allPaths.add(paths);
+					if (!paths.isEmpty())
+						allPaths.add(paths);
 				}
 		    	
 		    	cdb.closeDbConnection();
@@ -361,11 +368,41 @@ public class JobProcessor  implements RecordProcessor<org.easybatch.core.record.
 		 
 	}
 	private void initiateCacheService() {
+		 String initCacheParams[] = GLOBAL_VARS.get("init-cache").split(",");
+		 Properties props = new Properties();
+
+         for( String v : initCacheParams ) {
+        	 String vs[] = v.split("=");
+        	 if (vs != null && vs.length == 2)
+        	 props.setProperty(vs[0], vs[1] );
+         }
+	      
+         //fill in init cache 
+         int dmMumberOfBuffers = 1000;
+         String dmnob = props.getProperty("setNumberOfBuffers");
+         int dmSize = 15000000;
+         String dms = props.getProperty("setSize");
+         int dmInitialCapacity = 10000;
+         String dmic = props.getProperty("setInitialCapacity");
+         int dmConcurencyLevel = 4;
+         String dmcl = props.getProperty("setConcurrencyLevel");
+         try {
+        	 if (dmnob !=null && !dmnob.trim().isEmpty())
+        		 dmMumberOfBuffers = Integer.parseInt(dmnob);
+        	 if (dms !=null && !dms.trim().isEmpty())
+        		 dmSize = Integer.parseInt(dms);
+        	 if (dmic !=null && !dmic.trim().isEmpty())
+        		 dmInitialCapacity = Integer.parseInt(dms);
+        	 if (dmcl !=null && !dmcl.trim().isEmpty())
+        		 dmConcurencyLevel = Integer.parseInt(dmcl);
+         }catch (NumberFormatException e) {
+        	 log.error(e.toString());
+         }
 		 cacheService = new DirectMemory<Object, Object>()
-				    .setNumberOfBuffers( 100 )
-				    .setSize( 15000000 )
-				    .setInitialCapacity( 10000 )
-				    .setConcurrencyLevel( 4 )
+				    .setNumberOfBuffers( dmMumberOfBuffers )
+				    .setSize( dmSize )
+				    .setInitialCapacity( dmInitialCapacity )
+				    .setConcurrencyLevel( dmConcurencyLevel )
 				    .newCacheService();
 		 cacheService.scheduleDisposalEvery(30,TimeUnit.MINUTES);
 		 
