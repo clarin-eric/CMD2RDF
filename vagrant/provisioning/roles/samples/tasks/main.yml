@@ -2,3 +2,15 @@
 - name: Add configuration for site
   template: src=cmd2rdf.xml dest=/tmp/cmd2rdf.xml
   
+- name: (Re-)create directory for cmdi samples
+  shell: rm -fr {{ cmdi_resource }}; 
+           mkdir {{ cmdi_resource }}
+ 
+- name: Copy cmdi xml samples to {{ cmdi_resource }}
+  copy: src=cmdi-xml-samples.tgz dest={{ cmdi_resource }}/cmdi-xml-samples.tgz
+
+- name: Unpack archive
+  command: "tar -zxf {{ cmdi_resource }}/cmdi-xml-samples.tgz -C {{ cmdi_resource }} --strip 1"
+  
+- name: Clean up of {{ cmdi_resource }}/cmdi-xml-samples.tgz
+  file: state=absent path={{ cmdi_resource }}/cmdi-xml-samples.tgz

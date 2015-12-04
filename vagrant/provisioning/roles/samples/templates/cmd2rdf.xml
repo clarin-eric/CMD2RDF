@@ -7,7 +7,7 @@
 			<property name="gitrepo">{homedir}/git/CMD2RDF</property>
 			<property name="harvestedProfilesDir">{workspace}/harvester</property>
 			<property name="xsltSourceDir">{gitrepo}/conversion/src/main/resources/xsl</property>
-			<property name="xmlSourceDir">/lat/apache/htdocs/oai-harvester/clarin/results/cmdi,/lat/apache/htdocs/oai-harvester/others/results/cmdi</property>
+			<property name="xmlSourceDir">{{ cmdi_resource }}</property>
 			<property name="urlDB">{workspace}/db/DB_CMD_CHECKSUM</property>
 			<property name="profilesCacheDir">{workspace}/profiles-cache</property>
 			<property name="registry">http://catalog.clarin.eu/ds/ComponentRegistry</property>
