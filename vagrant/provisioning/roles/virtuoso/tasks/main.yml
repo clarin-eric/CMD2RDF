@@ -32,7 +32,7 @@
   - name: Copy virtuoso-stop.sh 
     copy: src=virtuoso-stop.sh dest={{ virtuoso_install_dir }}/virtuoso-stop.sh
     
-  - name: Make delete discipline scripts executable
+  - name: Make start/stop virtuoso scripts executable
     file: path={{ virtuoso_install_dir }}/{{ item }}
           mode=u+x
     with_items:

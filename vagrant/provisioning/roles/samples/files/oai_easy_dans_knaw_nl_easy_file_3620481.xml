@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CMD xmlns="http://www.clarin.eu/cmd/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:vk="http://www.loedejongdigitaal.nl"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema-datatypes"
+     xmlns:dcterms="http://purl.org/dc/terms/"
+     xmlns:html="http://www.w3.org/1999/xhtml"
+     xmlns:vkd="http://www.loedejongdigitaal.nl/docinfo"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     CMDVersion="1.1"
+     xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1361876010597/xsd">
+   <Header>
+      <MdCreator>Vesa Akerman</MdCreator>
+      <MdCreationDate>2013-03-21</MdCreationDate>
+      <MdSelfLink>http://rest.clarin-beta.dans.knaw.nl/metadata/cmdi/easy-file:3620481</MdSelfLink>
+      <MdProfile>clarin.eu:cr1:p_1361876010597</MdProfile>
+      <MdCollectionDisplayName/>
+   </Header>
+   <Resources>
+      <ResourceProxyList>
+         <ResourceProxy id="dans">
+            <ResourceType>Resource</ResourceType>
+            <ResourceRef>https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:52758</ResourceRef>
+         </ResourceProxy>
+         <ResourceProxy id="easy_landing_page">
+            <ResourceType>Resource</ResourceType>
+            <ResourceRef>https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:52758</ResourceRef>
+         </ResourceProxy>
+         <ResourceProxy id="application-reference">
+            <ResourceType mimetype="application/xml">Resource</ResourceType>
+            <ResourceRef>http://www.niod.nl/koninkrijk</ResourceRef>
+         </ResourceProxy>
+      </ResourceProxyList>
+      <JournalFileProxyList/>
+      <ResourceRelationList/>
+   </Resources>
+   <Components>
+      <VK-semantic>
+         <dc-terms>
+            <contributor>Boer, V. de</contributor>
+            <contributor>Buitinck, L.</contributor>
+            <contributor>Doornik, J. van</contributor>
+            <contributor>Grootveld, M.</contributor>
+            <contributor>Marx, M.</contributor>
+            <contributor>Ribbens, K.</contributor>
+            <contributor>Veken, T.</contributor>
+            <coverage>The Netherlands</coverage>
+            <coverage>World War II</coverage>
+            <creator>De Jong, Loe</creator>
+            <date>2012-12-20</date>
+            <description>RDF schema of the Back of the Book index for 'Het Koninkrijk der Nederlanden in de Tweede Wereldoorlog, digitally enriched and curated for
+CLARIN-NL</description>
+            <identifier>botb_schema</identifier>
+            <language>nld</language>
+            <publisher>NIOD Instituut voor Oorlogs-, Holocaust- en Genocidestudies</publisher>
+            <relation>De Linked Data versie van de metadata van de verrijkte versie Koninkrijk der Nederlanden in de Tweede
+Wereldoorlog [Resource is a version of metadata of 'Verrijkt Koninkrijk'][Relationship described is isVersionOf]</relation>
+            <rights>This work is licensed under a Creative Commons Attribution 3.0 Unported License</rights>
+            <source>http://www.niod.nl/koninkrijk/default.asp</source>
+            <title>Linked Data versie van het schema van de Back of the Book index voor 'Het Koninkrijk der Nederlanden in de Tweede Wereldoorlog'</title>
+         </dc-terms>
+      </VK-semantic>
+   </Components>
+</CMD>

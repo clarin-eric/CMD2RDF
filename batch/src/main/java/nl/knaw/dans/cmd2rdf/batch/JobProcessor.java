@@ -130,7 +130,11 @@ public class JobProcessor  implements RecordProcessor<org.easybatch.core.record.
 					IllegalAccessException,
 					InvocationTargetException {
 //		log.info("Setup the global configuration");
-		
+		try {
+		    Thread.sleep(11000);                 //1000 milliseconds is one second.
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 		Config c = job.getConfig();
 		List<Property> props = c.getProperty();
 		for (Property prop:props) {

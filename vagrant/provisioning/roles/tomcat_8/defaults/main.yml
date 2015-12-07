@@ -3,3 +3,4 @@ download_url: file:///Users/akmi/EXCLUDE/apache-tomcat-8.0.29.tar.gz
 download_folder: /opt
 tomcat_home: "{{download_folder}}/tomcat8"
 tomcat_archive: "{{download_folder}}/apache-tomcat-8.0.29.tar.gz"
+tomcat_context_location: "{{tomcat_home}}/conf/Catalina/localhost"

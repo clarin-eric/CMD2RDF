@@ -3,10 +3,10 @@
   - name: Clone CMD2RDF {{ cmd2rdf_version }}
     git: 
         repo={{ cmd2rdf_repo_url }}
-        dest={{ cmd2rdf_clone_dir }}
+        dest={{ cmd2rdf_r_clone_dir }}
         version={{ cmd2rdf_version }}
         
   - name: Maven clean install
-    shell: cd {{ cmd2rdf_clone_dir }}; mvn clean install > /tmp/cmd2rdf-clean-install.log
+    shell: cd {{ cmd2rdf_r_clone_dir }}; mvn clean install > /tmp/cmd2rdf-clean-install.log
     environment:
            JAVA_HOME: /opt/java8

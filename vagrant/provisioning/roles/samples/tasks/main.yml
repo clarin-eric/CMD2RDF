@@ -7,10 +7,40 @@
            mkdir {{ cmdi_resource }}
  
 - name: Copy cmdi xml samples to {{ cmdi_resource }}
-  copy: src=cmdi-xml-samples.tgz dest={{ cmdi_resource }}/cmdi-xml-samples.tgz
-
-- name: Unpack archive
-  command: "tar -zxf {{ cmdi_resource }}/cmdi-xml-samples.tgz -C {{ cmdi_resource }} --strip 1"
+  copy: src={{ item }} dest={{ cmdi_resource }}/{{ item }}
   
-- name: Clean up of {{ cmdi_resource }}/cmdi-xml-samples.tgz
-  file: state=absent path={{ cmdi_resource }}/cmdi-xml-samples.tgz
+  with_items:
+    - oai_easy_dans_knaw_nl_easy_file_3620481.xml
+    - oai_easy_dans_knaw_nl_easy_file_3620505.xml
+    - oai_easy_dans_knaw_nl_easy_file_4299067.xml
+    - oai_easy_dans_knaw_nl_easy_file_4334123.xml
+    - oai_easy_dans_knaw_nl_easy_file_4334124.xml
+    - oai_easy_dans_knaw_nl_easy_file_4334128.xml 
+  
+- name: (Re-)create directory for cmdi samples
+  shell: rm -fr {{ virtuoso_install_dir }}/workspace/{{ item }}; 
+         mkdir -p {{ virtuoso_install_dir }}/workspace/{{ item }}
+  with_items:
+    - harvester
+    - cache
+    - rdf-output/temp
+    - profiles
+    - profiles-cache
+    
+- name: Ensure virtuoso is down
+  service: name=virtuoso state=stopped
+         
+- name: Stop virtuoso server and remove the virtuoso db
+  shell: rm -fr {{ virtuoso_install_dir }}/var/lib/virtuoso/db/{{ item }}
+  with_items:
+    - virtuoso.db
+    - virtuoso.trx
+    - virtuoso-temp.db
+    
+- name: Startup virtuoso
+  service: name=virtuoso state=started
+         
+- name: Start batch processing
+  shell: cd {{ cmd2rdf_r_clone_dir }}/batch/target;
+         java -jar  Cmd2rdf.jar /tmp/cmd2rdf.xml
+              

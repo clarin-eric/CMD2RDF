@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CMD xmlns="http://www.clarin.eu/cmd/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:vk="http://www.loedejongdigitaal.nl"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema-datatypes"
+     xmlns:dcterms="http://purl.org/dc/terms/"
+     xmlns:html="http://www.w3.org/1999/xhtml"
+     xmlns:vkd="http://www.loedejongdigitaal.nl/docinfo"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     CMDVersion="1.1"
+     xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1361876010548/xsd">
+   <Header>
+      <MdCreator>Vesa Akerman</MdCreator>
+      <MdCreationDate>2013-03-21</MdCreationDate>
+      <MdSelfLink>http://rest.clarin-beta.dans.knaw.nl/metadata/cmdi/easy-file:3620505</MdSelfLink>
+      <MdProfile>clarin.eu:cr1:p_1361876010548</MdProfile>
+      <MdCollectionDisplayName/>
+   </Header>
+   <Resources>
+      <ResourceProxyList>
+         <ResourceProxy id="dans">
+            <ResourceType>Resource</ResourceType>
+            <ResourceRef>https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:52758</ResourceRef>
+         </ResourceProxy>
+         <ResourceProxy id="easy_landing_page">
+            <ResourceType>Resource</ResourceType>
+            <ResourceRef>https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:52758</ResourceRef>
+         </ResourceProxy>
+         <ResourceProxy id="application-reference">
+            <ResourceType mimetype="application/xml">Resource</ResourceType>
+            <ResourceRef>http://www.loedejongdigitaal.nl</ResourceRef>
+         </ResourceProxy>
+         <ResourceProxy id="easy-reference">
+            <ResourceType mimetype="application/xml">Resource</ResourceType>
+            <ResourceRef>https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:52758</ResourceRef>
+         </ResourceProxy>
+      </ResourceProxyList>
+      <JournalFileProxyList/>
+      <ResourceRelationList/>
+   </Resources>
+   <Components>
+      <VK-book ref="easy-reference">
+         <dc-terms>
+            <contributor>Boer, V. de</contributor>
+            <contributor>Buitinck, L.</contributor>
+            <contributor>Doornik, J. van</contributor>
+            <contributor>Grootveld, M.</contributor>
+            <contributor>Marx, M.</contributor>
+            <contributor>Ribbens, K.</contributor>
+            <contributor>Veken, T.</contributor>
+            <coverage>The Netherlands</coverage>
+            <coverage>World War II</coverage>
+            <creator>De Jong, Loe</creator>
+            <date>1980-01-01</date>
+            <description>The standard reference on the history of the Netherlands during World War II, digitally enriched and curated for CLARIN-NL</description>
+            <identifier>nl.vk.d.10a-1</identifier>
+            <language>nld</language>
+            <publisher>NIOD Instituut voor Oorlogs-, Holocaust- en Genocidestudies</publisher>
+            <relation>Het Koninkrijk der Nederlanden in de Tweede Wereldoorlog [Resource is a collection of 14 parts, one of which is Deel 10a – Het laatste jaar (1e band)][Relationship described is IsPartOf]</relation>
+            <rights>This work is licensed under a Creative Commons Attribution 3.0 Unported License</rights>
+            <source>http://www.niod.nl/koninkrijk/default.asp</source>
+            <title>Het Koninkrijk der Nederlanden in de Tweede Wereldoorlog - Deel 10a – Het laatste jaar (1e band)</title>
+         </dc-terms>
+         <VK-chapter>
+            <title>'D- Day' / De Geallieerde doorbraak</title>
+            <id>nl.vk.d.10a-1.2</id>
+            <number>I</number>
+            <section/>
+            <section>'D-Day'!</section>
+            <section>Moeizame strijd</section>
+            <section>Oostelijk front</section>
+            <section>Aanslag op Hitler 1</section>
+            <section>Geallieerde doorbraak</section>
+         </VK-chapter>
+         <VK-chapter>
+            <title>Bezet Nederland, zomer '44</title>
+            <id>nl.vk.d.10a-1.3</id>
+            <number>2</number>
+            <section/>
+            <section>Dagelijks leven / Duitse druk</section>
+            <section>Panorama der illegaliteit</section>
+            <section>Coördinatie / Wie krijgt hulp uit Engeland?</section>
+            <section>Begin van de spoorwegsabotage</section>
+            <section>Verwarring aan Duitse kant</section>
+         </VK-chapter>
+         <VK-chapter>
+            <title>Londen, zomer '44</title>
+            <id>nl.vk.d.10a-1.4</id>
+            <number>3</number>
+            <section/>
+            <section>Van Heuven Goedharts eerste weken in Londen</section>
+            <section>Augustus: een reeks conflicten</section>
+            <section>Positie van het Militair Gezag</section>
+            <section>Wapens voor de illegaliteit</section>
+            <section>Prins Bernhard Bevelhebber der Nederlandse Strijdkrachten</section>
+            <section>Maandag 4 september</section>
+         </VK-chapter>
+         <VK-chapter>
+            <title>Dolle Dinsdag</title>
+            <id>nl.vk.d.10a-1.5</id>
+            <number>4</number>
+            <section/>
+            <section>De NSB'ers op de vlucht</section>
+            <section>De Nederlandse Arbeidsdienst stroomt leeg</section>
+            <section>Alsof er geen bezetter meer was</section>
+            <section>Six en het College van Vertrouwensmannen</section>
+            <section>Acties der illegaliteit</section>
+            <section>Het concentratiekamp Vught ontruimd</section>
+            <section>Nieuws uit Londen</section>
+         </VK-chapter>
+         <VK-chapter>
+            <title>Van Dolle Dinsdag tot 'Market-Garden'</title>
+            <id>nl.vk.d.10a-1.6</id>
+            <number>5</number>
+            <section/>
+            <section>De Geallieerde iransportcrisis</section>
+            <section>Hit/ers besluiten</section>
+            <section>De 'Wehrmacht' zet zich schrap</section>
+            <section>Graven!</section>
+            <section>Roof en terreur</section>
+            <section>Nieuwe opdrachten aan de illegaliteit</section>
+            <section>Raad van Verzet/Knokploegen</section>
+            <section>Top- Driehoek</section>
+            <section>Londen</section>
+            <section>Maastricht bevrijd</section>
+            <section>Opnieuw Londen</section>
+         </VK-chapter>
+         <VK-chapter>
+            <title>'Market-Garden' / Spoorwegstaking</title>
+            <id>nl.vk.d.10a-1.7</id>
+            <number>6</number>
+            <section/>
+            <section>Zondag 17 september</section>
+            <section>Spooruiegstakino?</section>
+            <section>Eindhoven / 'HeWs Highway'</section>
+            <section>Nijmegen</section>
+            <section>Arnhem en Oosterbeek</section>
+            <section>Londen</section>
+            <section>Raad van Verzet/Knokploegen</section>
+            <section>Begin van de vernieling der grote havens</section>
+            <section>Is (Arnhem' verraden?</section>
+            <section>Terugblik</section>
+         </VK-chapter>
+         <VK-chapter>
+            <title>De strijd In het Zuiden</title>
+            <id>nl.vk.d.10a-1.8</id>
+            <number>7</number>
+            <section/>
+            <section>Zuid-Limburg</section>
+            <section>Ten oosten van de 'Corridor'</section>
+            <section>Venlo en Roermond!</section>
+            <section>Ten westen van de 'Corridor'</section>
+            <section>Zeeland</section>
+            <section>Tussen de grote rivieren</section>
+            <section>xx. De inundatie van de Betuwe</section>
+            <section>Slot / Nederland gesplitst</section>
+         </VK-chapter>
+      </VK-book>
+   </Components>
+</CMD>

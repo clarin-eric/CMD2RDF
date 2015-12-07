@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CMD xmlns="http://www.clarin.eu/cmd/"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     CMDVersion="1.1"
+     xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1369752611610/xsd">
+   <Header>
+      <MdCreator>Veteranen Instituut</MdCreator>
+      <MdCreationDate>2010-04-09</MdCreationDate>
+      <MdSelfLink>http://rest.clarin-beta.dans.knaw.nl/metadata/cmdi/easy-file:4299067</MdSelfLink>
+      <MdProfile>clarin.eu:cr1:p_1369752611610</MdProfile>
+   </Header>
+   <Resources>
+      <ResourceProxyList>
+         <ResourceProxy id="dans">
+            <ResourceType>Resource</ResourceType>
+            <ResourceRef>https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:46930</ResourceRef>
+         </ResourceProxy>
+      </ResourceProxyList>
+      <JournalFileProxyList/>
+      <ResourceRelationList/>
+   </Resources>
+   <Components>
+      <OralHistoryInterviewDANS>
+         <ID>IPNV_946</ID>
+         <InterviewGeneral>
+            <NumberOfSpeakers>2</NumberOfSpeakers>
+            <CreationDate>2010-01-27</CreationDate>
+            <PublicationDate>2013-03-01</PublicationDate>
+            <Duration>01:10:00</Duration>
+            <Owner>Veterans Institute, Doorn, The Netherlands</Owner>
+            <Genre>interview</Genre>
+            <Modality>
+               <Modality>Spoken</Modality>
+            </Modality>
+            <Multilinguality>
+               <Multilinguality>Monolingual</Multilinguality>
+            </Multilinguality>
+            <Access>
+               <Availability>All data including audio is accessible for authorised researchers.</Availability>
+               <DistributionMedium>Distribution medium will be decided in consultation with Access Contact</DistributionMedium>
+               <CatalogueLink>urn:nbn:nl:ui:13-ewqj-2j</CatalogueLink>
+               <Contact>
+                  <Address>P.O. Box 93067, 2509 AB Den Haag, The Netherlands</Address>
+                  <Email>info@dans.knaw.nl</Email>
+                  <Organisation>Data Archiving and Networked Services (DANS)</Organisation>
+                  <Telephone>+31 70 3446484</Telephone>
+                  <Website>www.dans.knaw.nl</Website>
+               </Contact>
+            </Access>
+            <Creators>
+               <Creator>
+                  <Role>Project Manager</Role>
+                  <Contact>
+                     <Person>Stef Scagliola</Person>
+                     <Address>P.O. Box 125, 3940 AC Doorn, The Netherlands</Address>
+                     <Email>ipnv@veteraneninstituut.nl</Email>
+                     <Organisation>Veterans Institute</Organisation>
+                     <Telephone>+31 343 474150</Telephone>
+                     <Website>www.veteraneninstituut.nl</Website>
+                  </Contact>
+               </Creator>
+            </Creators>
+            <Location>
+               <Address>often stated in the first part of the audio recording</Address>
+               <Region>Unknown</Region>
+               <Country>
+                  <Code>NL</Code>
+               </Country>
+               <Continent>
+                  <Code>EU</Code>
+               </Continent>
+            </Location>
+         </InterviewGeneral>
+         <InterviewContent>
+            <Language>Dutch</Language>
+            <InterviewKeyWords>
+               <TimeInterval>00:00:00-00:10:00</TimeInterval>
+               <Keyword>Motivatie</Keyword>
+               <Keyword>Opwerken</Keyword>
+               <Keyword>Reis naar inzetgebied</Keyword>
+            </InterviewKeyWords>
+            <InterviewKeyWords>
+               <TimeInterval>00:10:00-00:20:00</TimeInterval>
+               <Keyword>Beschrijving legering</Keyword>
+               <Keyword>Dagindeling</Keyword>
+               <Keyword>Functie en taak</Keyword>
+               <Keyword>Reis naar inzetgebied</Keyword>
+               <Keyword>Oorlogsleed</Keyword>
+            </InterviewKeyWords>
+            <InterviewKeyWords>
+               <TimeInterval>00:20:00-00:30:00</TimeInterval>
+               <Keyword>Contact met thuisfront</Keyword>
+               <Keyword>Eigen veiligheid</Keyword>
+               <Keyword>Beschieting kamp</Keyword>
+               <Keyword>Lokale bevolking</Keyword>
+            </InterviewKeyWords>
+            <InterviewKeyWords>
+               <TimeInterval>00:30:00-00:40:00</TimeInterval>
+               <Keyword>Eigen veiligheid</Keyword>
+               <Keyword>Roadblocks</Keyword>
+               <Keyword>Mijnen</Keyword>
+               <Keyword>Angst</Keyword>
+               <Keyword>Verplaatsingen</Keyword>
+            </InterviewKeyWords>
+            <InterviewKeyWords>
+               <TimeInterval>00:40:00-00:50:00</TimeInterval>
+               <Keyword>Oud en nieuw</Keyword>
+               <Keyword>Eten en drinken</Keyword>
+               <Keyword>Verlof</Keyword>
+               <Keyword>Dagindeling</Keyword>
+               <Keyword>Afscheid van eenheid</Keyword>
+               <Keyword>Soldatenliederen</Keyword>
+            </InterviewKeyWords>
+            <InterviewKeyWords>
+               <TimeInterval>00:50:00-01:00:00</TimeInterval>
+               <Keyword>Impact op persoonlijke ontwikkeling</Keyword>
+               <Keyword>Onbegrip bij thuisfront</Keyword>
+               <Keyword>Gebrek aan nazorg</Keyword>
+               <Keyword>Debriefing</Keyword>
+            </InterviewKeyWords>
+            <InterviewKeyWords>
+               <TimeInterval>01:00:00-01:10:00</TimeInterval>
+               <Keyword>Media</Keyword>
+               <Keyword>Internationale samenwerking</Keyword>
+               <Keyword>Teamwork</Keyword>
+               <Keyword>Defensie verlaten</Keyword>
+            </InterviewKeyWords>
+            <InterviewSummary>
+               <TimeInterval>00:00:00-01:10:00</TimeInterval>
+               <Summary>De uit Utrecht afkomstige Berry Reckers wilde zijn diensttijd nuttig vervullen en gaf zich op voor Bosnië. Hij diende als telexist in Kostunica bij een Deense eenheid. De samenwerking met de Denen verliep goed. De sfeer zowel binnen als buiten het kamp was over het algemeen prima. Reckers is tijdens de uitzending twee maal beschoten. Hij vierde Kerst in Joegoslavië en Oud en Nieuw in Nederland en schrok van het vuurwerk tijdens de jaarwisseling. Reckers vindt dat hij door de uitzending snel volwassen is geworden. Hij heeft tijdens de uitzending veel geld uitgegeven aan bellen en na afloop veel geld in de kroeg uitgegeven. Reckers heeft nog negen maanden nagediend en is nog altijd lid van de Nationale Reseve. Hij denkt met plezier terug aan de uitzending.</Summary>
+            </InterviewSummary>
+            <TopicList>
+            </TopicList>
+            <Mission>
+               <SpatialCoverage>Voormalig JoegoslaviÃ«</SpatialCoverage>
+               <TimeCoverage>1992-1995</TimeCoverage>
+            </Mission>
+         </InterviewContent>
+         <InterviewMethod>
+            <InterviewSort>semi structured</InterviewSort>
+            <RecruitmentMethod>mailing, contact persons, advertisements</RecruitmentMethod>
+            <PreInterviewInformation>introduction letter + telephone call</PreInterviewInformation>
+            <DataCollectionMethod>recording at interviewees home</DataCollectionMethod>
+            <TopicList>
+               <Topic>topic list available through access contact</Topic>
+            </TopicList>
+         </InterviewMethod>
+         <Interviewee>
+            <BirthPlace>Utrecht</BirthPlace>
+            <Actor>
+               <Role>interviewee</Role>
+               <Name>restricted access</Name>
+               <FullName>restricted access</FullName>
+               <SocialFamilyRole>restricted access</SocialFamilyRole>
+               <Age>37</Age>
+               <BirthYear>1973</BirthYear>
+               <Sex>Male</Sex>
+               <Education>Service engineer</Education>
+               <Profession>restricted access</Profession>
+               <Anonymized>true</Anonymized>
+               <BirthCountry>
+                  <Country>
+                     <Code>NL</Code>
+                  </Country>
+               </BirthCountry>
+               <ActorLanguages>
+                  <ActorLanguage>
+                     <Language>
+                        <LanguageName>Dutch</LanguageName>
+                        <ISO639>
+                           <iso-639-3-code>nld</iso-639-3-code>
+                        </ISO639>
+                     </Language>
+                  </ActorLanguage>
+               </ActorLanguages>
+            </Actor>
+         </Interviewee>
+         <Interviewer>
+            <Actor>
+               <Role>interviewer</Role>
+               <Age>53</Age>
+               <BirthYear>1957</BirthYear>
+               <Sex>Male</Sex>
+               <Education>WO</Education>
+               <Profession>journalist</Profession>
+               <Anonymized>true</Anonymized>
+               <BirthCountry>
+                  <Country>
+                     <Code>NL</Code>
+                  </Country>
+               </BirthCountry>
+               <ActorLanguages>
+                  <ActorLanguage>
+                     <Language>
+                        <LanguageName>Dutch</LanguageName>
+                        <ISO639>
+                           <iso-639-3-code>nld</iso-639-3-code>
+                        </ISO639>
+                     </Language>
+                  </ActorLanguage>
+               </ActorLanguages>
+            </Actor>
+         </Interviewer>
+         <InterviewAudio>
+            <AudioFileName>IPNV_946.wav</AudioFileName>
+            <AudioFormat>WAV</AudioFormat>
+            <RecordingPlatformHardware>Edirol R-09 24-bit WAV/MP3 Recorder</RecordingPlatformHardware>
+            <RecordingPlatformSoftware>hardware internal</RecordingPlatformSoftware>
+            <MicrophoneType>hardware internal</MicrophoneType>
+            <MediaType>audio</MediaType>
+            <SpeechTechnicalMetadata>
+               <SamplingFrequency>16000</SamplingFrequency>
+               <NumberOfChannels>1</NumberOfChannels>
+               <ByteOrder>little endian</ByteOrder>
+               <Compression>none</Compression>
+               <BitResolution>16</BitResolution>
+               <MimeType>
+                  <MimeType>audio/vnd.wave</MimeType>
+               </MimeType>
+            </SpeechTechnicalMetadata>
+         </InterviewAudio>
+      </OralHistoryInterviewDANS>
+   </Components>
+</CMD>

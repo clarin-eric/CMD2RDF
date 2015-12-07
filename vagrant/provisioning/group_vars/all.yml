@@ -1,4 +1,9 @@
-cmd2rdf_version: "dev-bugfixes"
+#CMD2RDF Global settings
+cmd2rdf_repo_url: https://github.com/TheLanguageArchive/CMD2RDF
+
+#CMD2RDF remote settings
+cmd2rdf_r_clone_dir: /opt/CMD2RDF
+cmd2rdf_r_version: dev-bugfixes
 
 cmd2rdf_source_dir: "~/Hobby/cmd2rdf-source"
 
@@ -12,3 +17,5 @@ installed_fact_version: "5"
 virtuoso_repo_url: https://github.com/openlink/virtuoso-opensource.git
 virtuoso_port: 8890
 virtuoso_install_dir: /opt/virtuoso-home
+
+#Batch settings

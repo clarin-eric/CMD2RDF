@@ -13,6 +13,7 @@
     - maven
     - elda
     - cmd2rdf-source
+    - samples	
 
     # Only build CMD2RDF components from source when explicitly told to do so
     - role: build

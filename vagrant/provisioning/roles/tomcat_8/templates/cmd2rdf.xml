@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context docBase="{{ cmd2rdf_r_clone_dir }}/webapps/target/cmd2rdf.war" path="" debug="0" reloadable="true">
+</Context>
