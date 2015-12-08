@@ -7,13 +7,13 @@
             or ansible_local.versions.version != versions_fact_version
             or ansible_local.installed.version != installed_fact_version
     - common_handlers    
-    - java_8        
-    - tomcat_8
+    - java_8      
     - virtuoso
     - maven
     - elda
     - cmd2rdf-source
     - samples	
+    - tomcat_8
 
     # Only build CMD2RDF components from source when explicitly told to do so
     - role: build
