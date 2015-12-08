@@ -17,6 +17,10 @@
     shell: rm -fr {{ tomcat_context_location }}; 
            mkdir -p {{ tomcat_context_location }}
            
+  - name: Maven clean install the webapps
+    shell: cd {{ cmd2rdf_r_clone_dir }}/webapps; 
+           mvn clean install > /tmp/cmd2rdf-webapps-clean-install.log
+           
   - name: Add cmd2rdf context
     template: src=cmd2rdf.xml dest={{ tomcat_context_location }}/cmd2rdf.xml
     
