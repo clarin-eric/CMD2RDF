@@ -3,8 +3,8 @@
     user: name=tomcat 
 
   - name: Download Tomcat
-    copy: src=/Users/akmi/EXCLUDE/apache-tomcat-8.0.29.tar.gz dest=/opt
-  #  get_url: url=http://apache.hippo.nl/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30.tar.gz dest={{ tomcat_archive }}
+#    copy: src=/Users/akmi/EXCLUDE/apache-tomcat-8.0.29.tar.gz dest=/opt
+    get_url: url=http://apache.hippo.nl/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30.tar.gz dest={{ tomcat_archive }}
   
   - name: (Re-)create directory for installation files
     shell: rm -fr {{ tomcat_home }}; 
