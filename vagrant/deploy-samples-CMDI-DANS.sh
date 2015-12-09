@@ -5,7 +5,7 @@ echo "
       sudo: yes
       roles:
         - common_handlers
-        - samples
+        - samples-CMDI-DANS
 " > provisioning/tmp.yml
 
 ansible-playbook provisioning/tmp.yml -vvv -u vagrant -i provisioning/hosts --private-key .vagrant/machines/cmd2rdf/virtualbox/private_key

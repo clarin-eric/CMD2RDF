@@ -1,0 +1,21 @@
+---
+- name: Add configuration for site
+  template: src=cmd2rdf.xml dest=/tmp/cmd2rdf.xml
+  
+- name: (Re-)create directory for cmdi samples
+  shell: rm -fr {{ cmdi_dans_resource }}; 
+           mkdir {{ cmdi_dans_resource }}
+ 
+- name: Copy cmdi xml samples to {{ cmdi_dans_resource }}
+  copy: src=CMDI-DANS.tgz dest={{ cmdi_dans_resource }}/CMDI-DANS.tgz
+
+- name: Unpack archive
+  command: "tar -zxf {{ cmdi_dans_resource }}/CMDI-DANS.tgz -C {{ cmdi_dans_resource }} --strip 1"
+  
+- name: Clean up of {{ cmdi_dans_resource }}/CMDI-DANS.tgz
+  file: state=absent path={{ cmdi_dans_resource }}/CMDI-DANS.tgz
+         
+#- name: Start batch processing
+#  shell: cd {{ cmd2rdf_r_clone_dir }}/batch/target;
+#         java -jar  Cmd2rdf.jar /tmp/cmd2rdf.xml
+              
