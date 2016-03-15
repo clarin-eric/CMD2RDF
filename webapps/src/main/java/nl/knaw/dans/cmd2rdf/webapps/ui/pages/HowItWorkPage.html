@@ -16,7 +16,7 @@
 		   		<h2>Transforming CMD to RDF</h2>
 		   		<p>A CMD record adheres to a Profile, which consists of a specific combination of reusable Components. Profiles and Components are specified in an XML vocabulary, which can be transformed to an XML Schema to validate the CMD record. In the case of CMD2RDF Profiles and Components are transformed to RDFS, and a CMD record to a compliant RDF. The CMD RDF thus follows the CMD meta model defined in <a href="http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=37336">ISO 24622-1:2013</a>:</p>
 		   		<img src="images/CMDM.png"/>
-		   		<p>This model is reflected in the <a href="https://catalog.clarin.eu/ds/cmd2rdf/graph/cmdi/general.rdf">CMDM RDFS</a>, which defines the core RDF Classes and Properties for CMD2RDF.</p>
+		   		<p>This model is reflected in the <a href="/cmd2rdf/graph/cmdi/general.rdf">CMDM RDFS</a>, which defines the core RDF Classes and Properties for CMD2RDF.</p>
 		   		<p>As is natural Components become a RDF Class. And it would be natural to map a CMD Element to a RDF Property. However, Elements have some capabilities that complicate this. Elements can have attributes, which can't be attached to RDF Properties. To deal with this the CMD2RDF mapping makes RDF Classes of CMD Elements, and instances of this class have a <code>hasElementValue</code> property and can have additional properties related to Attributes.</p>
 <code><pre>&lt;descriptions xmlns="http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/components/clarin.eu:cr1:c_1271859438177/rdf#" rdf:about="#w354aac28b1b7">
 	&lt;cmdm:contains>
@@ -40,7 +40,7 @@
 		   		<code><pre>&lt;vlo:hasFacetOrganisationElementValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Max Planc Institute for Psycholinguistics&lt;/vlo:hasFacetOrganisationElementValue>
 &lt;vlo:hasFacetOrganisationElementEntity rdf:resource="http://openskos.meertens.knaw.nl/Organisations/8c778a30-f607-45fd-838d-1ea00cea9150"/></pre></code>
 		   		<p>Using this <code>vlo:hasFacetOrganisationElementEntity</code> all records from the MPI for Psycholinguistics can be found, even while some (like this one) contains an misspelling. This is shown by the following 2 SPARQL queries: the first uses the organisation value, while the second uses the CLAVAS concept.</p>
-		   		<form method="post" action="https://catalog.clarin.eu/ds/cmd2rdf/sparql">
+		   		<form method="post" action="/cmd2rdf/sparql">
 		   			<p>
 		   				<textarea name="query" rows="6" style="width:80em" readonly="readonly">PREFIX vlo: &lt;http://www.clarin.eu/vlo/>
 		   					
@@ -52,7 +52,7 @@ WHERE {
 		   			</p>
 		   			<button type="submit">Execute</button>
 		   		</form>
-		   		<form method="post" action="https://catalog.clarin.eu/ds/cmd2rdf/sparql">
+		   		<form method="post" action="/cmd2rdf/sparql">
 		   			<p>
 		   				<textarea name="query" rows="8" style="width:80em" readonly="readonly">PREFIX vlo:  &lt;http://www.clarin.eu/vlo/>
 PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#>
@@ -72,7 +72,7 @@ WHERE {
 &lt;vlo:hasFacetISO6393ElementEntity rdf:resource="http://dbpedia.org/resource/ISO_639:yle"/>
 &lt;vlo:hasFacetISO6393ElementEntity rdf:resource="http://lexvo.org/id/iso639-3/yle"/></pre></code>
 		   		<p>Now it becomes possible to query for languages with a certain linguistic property and find CLARIN resources, e.g., audio recordings, for them.</p>
-		   		<form method="post" action="https://catalog.clarin.eu/ds/cmd2rdf/sparql">
+		   		<form method="post" action="/cmd2rdf/sparql">
 		   			<p>
 		   				<textarea name="query" rows="20" style="width:80em" readonly="readonly">PREFIX dc:   &lt;http://purl.org/dc/terms/>
 PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#>

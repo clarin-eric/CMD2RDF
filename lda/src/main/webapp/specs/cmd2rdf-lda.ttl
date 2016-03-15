@@ -25,7 +25,8 @@
 
 cmd:cmd2rdf-lda a api:API 
 	; rdfs:label "CMD2RDF LDA API -- browse "@en
-	; api:sparqlEndpoint <https://catalog.clarin.eu/ds/cmd2rdf/sparql?format=application/atom+xml>
+	; api:base "http://192.168.99.100:8080/cmd2rdf-lda/"
+	; api:sparqlEndpoint <http://192.168.99.100:8080/cmd2rdf/sparql?format=application/atom+xml>
 	# ; api:defaultViewer api:labelledDescribeViewer
 	;api:defaultViewer api:cmdViewer
 	# the page size can't be set higher than this 
@@ -80,10 +81,10 @@ cmd:browse a api:ListEndpoint
 cmd:explore a api:ListEndpoint 
 	; rdfs:label "Explore CMD2RDF Records" 
 	; api:uriTemplate "/explore/{repo}"
-	; api:itemTemplate "https://catalog.clarin.eu/ds/cmd2rdf/graph/{repo}";
+	; api:itemTemplate "http://192.168.99.100:8080/cmd2rdf/graph/{repo}";
 	; api:selector 
         [ 
-        	api:where " ?item <http://www.clarin.eu/cmdi/inRepository>  <https://catalog.clarin.eu/ds/cmd2rdf/graph/?repo> . graph ?item {?s ?p ?v} . "
+        	api:where " ?item <http://www.clarin.eu/cmdi/inRepository>  <http://192.168.99.100:8080/cmd2rdf/graph/?repo> . graph ?item {?s ?p ?v} . "
         ]	
 	.	
 #
@@ -192,7 +193,7 @@ vlo:hasFacetResourceClassElementValue a rdf:Property
 	; rdfs:range xsd:string
 	.
 	
-# THIS PART IS COMMENT OUT OTHER WISE THE FORMAT LINKS ARE DISAPPEAR
+# THIS PART IS COMMENT OUT OTHER WISE THE FORMAT LINKS DISAPPEAR
 #vlo:hasFacetFormatElementValue a rdf:Property
 #	; api:label "format"
 #	; rdfs:label "format"
