@@ -52,12 +52,6 @@
 	<artifactId>jersey-media-json-jackson</artifactId>
 	<version>2.5</version>
 </dependency>
-  <dependency> 
-		<groupId>org.glassfish.jersey.media</groupId>
-		<artifactId>jersey-media-json-jackson</artifactId>
-		<version>2.5</version>
-   </dependency>
-   
    <dependency>
 		<groupId>org.glassfish.jersey.containers</groupId>
 		<artifactId>jersey-container-servlet-core</artifactId>
@@ -108,7 +102,7 @@
 		<replacements>
 			<replacement>
 				<token>@VERSION@</token>
-				<value>${version}</value>
+				<value>${project.version}</value>
 			</replacement>
 			<replacement>
 				<token>@BUILTON@</token>
