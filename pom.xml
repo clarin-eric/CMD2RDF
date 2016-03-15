@@ -158,7 +158,7 @@
 		<module>config</module>
 		<module>batch</module>
 		<module>conversion</module>
-    	<module>webapps</module>
-  <module>lda</module>
-  </modules>
+	 <module>lda</module>
+	 <module>webapps</module>
+	</modules>
 </project>
