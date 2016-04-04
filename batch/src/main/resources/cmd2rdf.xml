@@ -17,8 +17,7 @@
 			<property name="username">dba</property>
 			<property name="password">dba</property>
 			<property name="prefixBaseURI">http://localhost:8080/cmd2rdf/graph</property>
-			<property name="shScriptPath"
-				>{gitrepo}/batch/src/main/resources/virtuoso_bulk_import.sh</property>
+			<property name="shScriptPath">{gitrepo}/batch/src/main/resources/virtuoso_bulk_import.sh</property>
 			<property name="tmpOutDir">{workspace}/rdf-output</property>
 			<property name="dirDownloadPwd">Put here a strong password!</property>
 		</properties>
@@ -64,7 +63,19 @@
 							<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 						</properties>
 					</class>
-				</action><action name="transform">
+				</action>
+				<!--
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
+						<properties>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
+							<property name="teeOutputDir">{homedir}/tee/xml</property>
+						</properties>
+					</class>
+				</action>
+				-->
+				<action name="transform">
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 						<properties>
 							<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -72,20 +83,33 @@
 							<property name="base_add">{prefixBaseURI}</property>
 						</properties>
 					</class>
-				</action><action>
+				</action>
+				<action>
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 						<properties>
 							<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 							<property name="VLO-orgs">{harvestedProfilesDir}/meertens-VLO-orgs.rdf</property>
 						</properties>
 					</class>
-				</action><action>
+				</action>
+				<action>
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 						<properties>
 							<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 						</properties>
 					</class>
 				</action>
+				<!--
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
+						<properties>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
+							<property name="teeOutputDir">{homedir}/tee/rdf</property>
+						</properties>
+					</class>
+				</action>
+				-->
 				<action>
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
 						<properties>
@@ -115,7 +139,19 @@
 							<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 						</properties>
 					</class>
-				</action><action name="transform">
+				</action>
+				<!--
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
+						<properties>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
+							<property name="teeOutputDir">{homedir}/tee/xml</property>
+						</properties>
+					</class>
+				</action>
+				-->
+				<action name="transform">
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 						<properties>
 							<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -123,20 +159,33 @@
 							<property name="base_add">{prefixBaseURI}</property>
 						</properties>
 					</class>
-				</action><action>
+				</action>
+				<action>
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 						<properties>
 							<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 							<property name="VLO-orgs">{harvestedProfilesDir}/meertens-VLO-orgs.rdf</property>
 						</properties>
 					</class>
-				</action><action>
+				</action>
+				<action>
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 						<properties>
 							<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 						</properties>
 					</class>
 				</action>
+				<!--
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
+						<properties>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
+							<property name="teeOutputDir">{homedir}/tee/rdf</property>
+						</properties>
+					</class>
+				</action>
+				-->
 				<action>
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.VirtuosoClient">
 						<properties>
@@ -166,7 +215,19 @@
 							<property name="xsltSource">{xsltSourceDir}/addVLOFacets.xsl</property>
 						</properties>
 					</class>
-				</action><action name="transform">
+				</action>
+				<!--
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
+						<properties>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
+							<property name="teeOutputDir">{homedir}/tee/xml</property>
+						</properties>
+					</class>
+				</action>
+				-->
+				<action name="transform">
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 						<properties>
 							<property name="xsltSource">{xsltSourceDir}/CMDRecord2RDF.xsl</property>
@@ -174,20 +235,33 @@
 							<property name="base_add">{prefixBaseURI}</property>
 						</properties>
 					</class>
-				</action><action>
+				</action>
+				<action>
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 						<properties>
 							<property name="xsltSource">{xsltSourceDir}/addOrganisationEntity.xsl</property>
 							<property name="VLO-orgs">{harvestedProfilesDir}/meertens-VLO-orgs.rdf</property>
 						</properties>
 					</class>
-				</action><action>
+				</action>
+				<action>
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 						<properties>
 							<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
 						</properties>
 					</class>
 				</action>
+				<!--
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
+						<properties>
+							<property name="replacedPrefixBaseURI">{xmlSourceDir}</property>
+							<property name="prefixBaseURI">{prefixBaseURI}</property>
+							<property name="teeOutputDir">{homedir}/tee/rdf</property>
+						</properties>
+					</class>
+				</action>
+				-->
 				<action>
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.FileStore">
 						<properties>
@@ -231,7 +305,7 @@
 					</action>
 				</actions>
 			</cleanup>
-		</record>	
+		</record>
 	</records>
 	<profiles>
 		<!-- convert all the profiles we encountered into RDF -->
