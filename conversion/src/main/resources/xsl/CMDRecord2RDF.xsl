@@ -146,13 +146,13 @@
         <!-- get the profile id -->
         <xsl:variable name="id">
             <xsl:choose>
+                <xsl:when test="exists(/cmd:CMD/@xsi:schemaLocation)">
+                    <xsl:sequence select="cmd:id(/cmd:CMD/@xsi:schemaLocation)"/>
+                </xsl:when>
                 <xsl:when test="exists(/cmd:CMD/cmd:Header/cmd:MdProfile)">
                     <!-- and ignore if there are multiple MdProfile and just take the first!! 
                          although probably this more a case for the schema validation!  -->
                     <xsl:sequence select="cmd:id((/cmd:CMD/cmd:Header/cmd:MdProfile)[1])"/>
-                </xsl:when>
-                <xsl:when test="exists(/cmd:CMD/@xsi:schemaLocation)">
-                    <xsl:sequence select="cmd:id(/cmd:CMD/@xsi:schemaLocation)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:message terminate="yes">
