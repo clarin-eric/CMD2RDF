@@ -74,25 +74,22 @@ WHERE {
 		   		<p>Now it becomes possible to query for languages with a certain linguistic property and find CLARIN resources, e.g., audio recordings, for them.</p>
 		   		<form method="post" action="/cmd2rdf/sparql">
 		   			<p>
-		   				<textarea name="query" rows="20" style="width:80em" readonly="readonly">PREFIX dc:   &lt;http://purl.org/dc/terms/>
+		   				<textarea name="query" rows="20" style="width:80em" readonly="readonly">PREFIX dcterms:   &lt;http://purl.org/dc/terms/>
 PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#>
 PREFIX oa:   &lt;http://www.w3.org/ns/oa#>
 PREFIX cmdm: &lt;http://www.clarin.eu/cmd/general.rdf#>
 PREFIX wals: &lt;http://wals.info/feature/>
 PREFIX vlo:  &lt;http://www.clarin.eu/vlo/>
 
-SELECT DISTINCT ?r ?m ?iso ?il
+SELECT DISTINCT ?resource ?mimetype ?language ?value
 WHERE {
-  ?f dc:references wals:9A .
-  ?f dc:hasPart ?i .
-  ?i rdfs:label ?il .
-  BIND(REPLACE(str(?i), '^.*-', "") AS ?c) .
-  BIND(IRI(CONCAT('http://wals.info/languoid/lect/wals_code_',$c)) AS ?l) .
-  ?l owl:sameAs ?iso .
+  ?feature dcterms:references wals:9A .
+  ?feature dcterms:hasPart/rdfs:label ?value .
+  ?feature ^dcterms:isReferencedBy/owl:sameAs ?language.
   GRAPH ?g { 
-    ?cmd vlo:hasFacetISO6393ElementEntity ?iso . 
-    ?cmd oa:hasTarget ?r .
-    ?r cmdm:hasMimeType ?m .
+    ?cmd vlo:hasFacetISO6393ElementEntity ?language . 
+    ?cmd oa:hasTarget ?resource .
+    ?resource cmdm:hasMimeType ?mimetype .
   }.
 }</textarea>
 		   			</p>
