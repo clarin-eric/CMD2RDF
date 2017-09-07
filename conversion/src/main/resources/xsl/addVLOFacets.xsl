@@ -63,7 +63,7 @@
 	</xsl:variable>
         
         <xsl:template match="/">
-            <xsl:message>INF: Welcome to addVLOFacets.xsl</xsl:message>
+            <!-- <xsl:message>INF: Welcome to addVLOFacets.xsl</xsl:message> -->
             <xsl:apply-templates/>
         </xsl:template>
 	
@@ -113,12 +113,12 @@
 			<xsl:variable name="vlo">
 				<xsl:for-each select="$fm//facetConcept[not(@name=$skipVLOFacets)]">
 					<xsl:variable name="facet" select="."/>
-					<xsl:message>DBG: facet[<xsl:value-of select="$facet/@name"/>]</xsl:message>
+					<!-- <xsl:message>DBG: facet[<xsl:value-of select="$facet/@name"/>]</xsl:message> -->
 					<xsl:variable name="facetValues">
 						<xsl:for-each select="vlo:findConceptPaths(concept,empty(@allowMultipleValues) or (@allowMultipleValues='true'))">
 							<xsl:variable name="pos" select="position()"/>
 							<xsl:variable name="xp" select="."/>
-							<xsl:message>DBG: facet concept path[<xsl:value-of select="$xp"/>]</xsl:message>
+							<!-- <xsl:message>DBG: facet concept path[<xsl:value-of select="$xp"/>]</xsl:message> -->
 							<xsl:for-each select="sx:evaluate($rec,$xp,$ns/*)">
 								<value pos="{$pos}">
 									<xsl:value-of select="."/>
@@ -126,10 +126,10 @@
 							</xsl:for-each>
 						</xsl:for-each>
 					</xsl:variable>
-					<xsl:message>DBG: facet values[<xsl:value-of select="count($facetValues/*)"/>]</xsl:message>
+					<!-- <xsl:message>DBG: facet values[<xsl:value-of select="count($facetValues/*)"/>]</xsl:message>
 					<xsl:for-each select="$facetValues/*">
 						<xsl:message>[<xsl:value-of select="position()"/>] <xsl:value-of select="."/></xsl:message>
-					</xsl:for-each>
+					</xsl:for-each> -->
 					<xsl:choose>
 						<xsl:when test="exists($facetValues/*)">
 							<xsl:for-each-group select="$facetValues/*" group-by="@pos">
@@ -147,7 +147,7 @@
 								<xsl:for-each select="pattern">
 									<xsl:variable name="pos" select="position()"/>
 									<xsl:variable name="xp" select="."/>
-									<xsl:message>DBG: facet pattern path[<xsl:value-of select="$xp"/>]</xsl:message>
+									<!-- <xsl:message>DBG: facet pattern path[<xsl:value-of select="$xp"/>]</xsl:message> -->
 									<xsl:for-each select="sx:evaluate($rec,$xp,$ns/*)">
 										<value pos="{$pos}">
 											<xsl:value-of select="."/>
@@ -155,10 +155,10 @@
 									</xsl:for-each>
 								</xsl:for-each>
 							</xsl:variable>
-							<xsl:message>DBG: facet values[<xsl:value-of select="count($facetValues/*)"/>]</xsl:message>
+							<!-- <xsl:message>DBG: facet values[<xsl:value-of select="count($facetValues/*)"/>]</xsl:message>
 							<xsl:for-each select="$facetValues/*">
 								<xsl:message>[<xsl:value-of select="position()"/>] <xsl:value-of select="."/></xsl:message>
-							</xsl:for-each>
+							</xsl:for-each> -->
 							<xsl:for-each-group select="$facetValues/*" group-by="@pos">
 								<xsl:if test="position()=1 or empty($facet/@allowMultipleValues) or ($facet/@allowMultipleValues='true')">
 									<xsl:for-each select="current-group()[normalize-space(.)!='']">
@@ -223,7 +223,7 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
-		<xsl:message>DBG: language[<xsl:value-of select="$language"/>] ISO 639-3[<xsl:value-of select="$code"/>]</xsl:message>
+		<!-- <xsl:message>DBG: language[<xsl:value-of select="$language"/>] ISO 639-3[<xsl:value-of select="$code"/>]</xsl:message> -->
 		<vlo:hasFacetISO6393>
 			<xsl:value-of select="$code"/>
 		</vlo:hasFacetISO6393>
