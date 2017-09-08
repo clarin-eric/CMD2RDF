@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:dcr="http://www.isocat.org/ns/dcr.rdf#"
 	xmlns:cmd="http://www.clarin.eu/cmd/" xmlns:vlo="http://www.clarin.eu/vlo/"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:sx="java:nl.mpi.tla.saxon"
+	xmlns:sx="java:nl.knaw.dans.saxon"
 	xmlns:functx="http://www.functx.com"
 	exclude-result-prefixes="xsl dcr xsi xs sx functx vlo cmd">
 
