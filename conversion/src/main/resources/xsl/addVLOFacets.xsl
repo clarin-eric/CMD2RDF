@@ -11,7 +11,7 @@
 	<xsl:include href="CMD2RDF.xsl"/>
 	
 	<!-- load the VLO facet mapping -->
-	<xsl:param name="vloFacetMapping" select="'https://lux17.mpi.nl/isocat/clarin/vlo/mapping/facetConcepts.xml'"/>
+	<xsl:param name="vloFacetMapping" select="'https://raw.githubusercontent.com/clarin-eric/VLO-mapping/master/mapping/facetConcepts.xml'"/>
 	<xsl:variable name="fm" select="document($vloFacetMapping)"/>
 	
 	<!-- skip some facets -->
