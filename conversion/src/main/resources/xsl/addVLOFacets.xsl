@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:dcr="http://www.isocat.org/ns/dcr.rdf#"
 	xmlns:cmd="http://www.clarin.eu/cmd/" xmlns:vlo="http://www.clarin.eu/vlo/"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:sx="java:nl.knaw.dans.saxon"
+	xmlns:sx="java:nl.mpi.tla.saxon"
 	xmlns:functx="http://www.functx.com"
 	exclude-result-prefixes="xsl dcr xsi xs sx functx vlo cmd">
 
@@ -59,7 +59,7 @@
 	
 	<!-- namespaces -->
 	<xsl:variable name="ns">
-		<c:ns xmlns:c="http://www.clarin.eu/cmd/"/>
+		<cmd:ns xmlns:cmd="http://www.clarin.eu/cmd/" xmlns:cmdp="http://www.clarin.eu/cmd/" cmdp:foo="bar"/>
 	</xsl:variable>
         
         <xsl:template match="/">
@@ -82,9 +82,9 @@
 			<xsl:choose>
 				<xsl:when test="$multiple">
 					<xpath>
-						<xsl:text>distinct-values(/c:CMD/c:Components/(c:</xsl:text>
+						<xsl:text>distinct-values(/cmd:CMD/cmd:Components/(cmd:</xsl:text>
 						<xsl:for-each select="$paths">
-							<xsl:value-of select="string-join(ancestor-or-self::*/@name,'/c:')"/>
+							<xsl:value-of select="string-join(ancestor-or-self::*/@name,'/cmd:')"/>
 							<xsl:text>/text()</xsl:text>
 							<xsl:if test="position()!=last()">
 								<xsl:text>,</xsl:text>
@@ -96,8 +96,8 @@
 				<xsl:otherwise>
 					<xsl:for-each select="$paths">
 						<xpath>
-							<xsl:text>/c:CMD/c:Components/c:</xsl:text>
-							<xsl:value-of select="string-join(ancestor-or-self::*/@name,'/c:')"/>
+							<xsl:text>/cmd:CMD/cmd:Components/cmd:</xsl:text>
+							<xsl:value-of select="string-join(ancestor-or-self::*/@name,'/cmd:')"/>
 							<xsl:text>/text()</xsl:text>
 						</xpath>
 					</xsl:for-each>
@@ -118,7 +118,7 @@
 						<xsl:for-each select="vlo:findConceptPaths(concept,empty(@allowMultipleValues) or (@allowMultipleValues='true'))">
 							<xsl:variable name="pos" select="position()"/>
 							<xsl:variable name="xp" select="."/>
-							<!-- <xsl:message>DBG: facet concept path[<xsl:value-of select="$xp"/>]</xsl:message> -->
+							<!--<xsl:message>DBG: facet concept path[<xsl:value-of select="$xp"/>]</xsl:message>-->
 							<xsl:for-each select="sx:evaluate($rec,$xp,$ns/*)">
 								<value pos="{$pos}">
 									<xsl:value-of select="."/>
@@ -147,7 +147,7 @@
 								<xsl:for-each select="pattern">
 									<xsl:variable name="pos" select="position()"/>
 									<xsl:variable name="xp" select="."/>
-									<!-- <xsl:message>DBG: facet pattern path[<xsl:value-of select="$xp"/>]</xsl:message> -->
+									<!--<xsl:message>DBG: facet pattern path[<xsl:value-of select="$xp"/>]</xsl:message>--> 
 									<xsl:for-each select="sx:evaluate($rec,$xp,$ns/*)">
 										<value pos="{$pos}">
 											<xsl:value-of select="."/>
