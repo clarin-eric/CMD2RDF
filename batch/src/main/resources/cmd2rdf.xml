@@ -99,6 +99,14 @@
 						</properties>
 					</class>
 				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
+						<properties>
+							<property name="xsltSource">{xsltSourceDir}/saveVLO.xsl</property>
+							<property name="vloOutputDir">{homedir}/vlo</property>
+						</properties>
+					</class>
+				</action>
 				<!--
 				<action>
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
@@ -175,6 +183,14 @@
 						</properties>
 					</class>
 				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
+						<properties>
+							<property name="xsltSource">{xsltSourceDir}/saveVLO.xsl</property>
+							<property name="vloOutputDir">{homedir}/vlo</property>
+						</properties>
+					</class>
+				</action>
 				<!--
 				<action>
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.store.TeeAction">
@@ -248,6 +264,14 @@
 					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
 						<properties>
 							<property name="xsltSource">{xsltSourceDir}/addLanguageEntity.xsl</property>
+						</properties>
+					</class>
+				</action>
+				<action>
+					<class name="nl.knaw.dans.cmd2rdf.conversion.action.transform.XsltTransformer">
+						<properties>
+							<property name="xsltSource">{xsltSourceDir}/saveVLO.xsl</property>
+							<property name="vloOutputDir">{homedir}/vlo</property>
 						</properties>
 					</class>
 				</action>
