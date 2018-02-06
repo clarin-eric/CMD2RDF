@@ -33,7 +33,7 @@
 					</properties>
 				</class>
 			</action>
-			<action name="fetch">
+			<!--<action name="fetch">
 				<class name="nl.knaw.dans.cmd2rdf.conversion.action.harvester.OaipmhHarvester">
 					<properties>
 						<property name="oaipmhBaseURL">https://openskos.meertens.knaw.nl/oai-pmh</property>
@@ -42,7 +42,7 @@
 						<property name="outputFile">{harvestedProfilesDir}/meertens-VLO-orgs.rdf</property>
 					</properties>
 				</class>
-			</action>
+			</action>-->
 			<action>
 				<class name="nl.knaw.dans.cmd2rdf.conversion.action.db.MD5ChecksumDBAction">
 					<properties>
