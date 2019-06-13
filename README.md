@@ -23,7 +23,8 @@ This guide expects that the code is already build.
 1. Make sure Virtuoso is running on its default uri: localhost:8090
 You can start the it with docker see: https://hub.docker.com/r/openlink/virtuoso-opensource-7  
 
-1.  Deploy the wars of the subprojects `webapps` and `lda` in Tomcat.
+1.  Deploy the wars of the subprojects `webapps` and `lda` in Apache Tomcat.
+Tomcat 6 & 7 will work with the application.
 
 1. Open the app `cmdi2rdf`: http://localhost:8080/cmd2rdf (when Tomcat runs or port 8080 of localhost)
 
