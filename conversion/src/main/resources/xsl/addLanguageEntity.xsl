@@ -14,6 +14,13 @@
         </xsl:copy>
     </xsl:template>
     
+    <!-- silence SXXP0005 warning -->
+    <xsl:template match="/rdf:RDF">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+    </xsl:template>
+    
 	<xsl:template match="vlo:hasFacetISO6393ElementValue" priority="1">
         <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>

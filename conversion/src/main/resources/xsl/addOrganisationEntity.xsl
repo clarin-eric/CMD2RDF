@@ -16,7 +16,14 @@
         </xsl:copy>
     </xsl:template>
     
-	<xsl:template match="vlo:hasFacetOrganisationElementValue" priority="1">
+    <!-- silence SXXP0005 warning -->
+    <xsl:template match="/rdf:RDF">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xsl:template match="vlo:hasFacetOrganisationElementValue" priority="1">
         <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
